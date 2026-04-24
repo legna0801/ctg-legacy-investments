@@ -1188,9 +1188,12 @@ function getNav(active: string) {
 
       <!-- Graded Cards Dropdown -->
       <div class="nav-dropdown" id="dd-graded">
-        <button class="nav-dropdown-btn ${active === 'graded' ? 'active' : ''}" onclick="toggleNavDD('dd-graded')" aria-haspopup="true">
-          Graded Cards <i class="fas fa-chevron-down nav-dd-arrow"></i>
-        </button>
+        <div style="display:flex;align-items:center">
+          <a href="/graded-cards" class="nav-link ${active === 'graded' ? 'active' : ''}" style="padding-right:0.25rem">Graded Cards</a>
+          <button class="nav-dropdown-btn" onclick="toggleNavDD('dd-graded')" aria-haspopup="true" style="padding:0.25rem 0.4rem;min-width:unset;background:transparent;border:none">
+            <i class="fas fa-chevron-down nav-dd-arrow"></i>
+          </button>
+        </div>
         <div class="nav-dropdown-panel">
           <div class="nav-dd-section">Browse By Grader</div>
           <a href="/graded-cards?grader=PSA" class="nav-dd-item">
