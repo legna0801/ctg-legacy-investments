@@ -11,6 +11,11 @@ app.get('/', (c) => {
   return c.html(homePage())
 })
 
+// ─── SHOP PAGE (Booster Boxes, Packs, Singles) ───────────────────────────────
+app.get('/shop', (c) => {
+  return c.html(shopPage())
+})
+
 // ─── TCG CARDS PAGE ──────────────────────────────────────────────────────────
 app.get('/tcg-cards', (c) => {
   return c.html(tcgCardsPage())
@@ -51,6 +56,14 @@ function getHead(title: string) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | CTG Legacy Investments</title>
+  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, graded cards (PSA, BGS, CGC) and singles. Collect. Invest. Dominate the Game." />
+  <meta name="keywords" content="Pokemon cards, booster boxes, graded Pokemon cards, PSA cards, TCG investing, Charizard, buy Pokemon cards, booster packs, BGS graded, CGC graded, TCG singles, Pokemon booster box" />
+  <meta property="og:title" content="${title} | CTG Legacy Investments" />
+  <meta property="og:description" content="Premium Pokémon TCG booster boxes, packs, graded slabs and singles. Investment-grade collectibles. Collect. Invest. Dominate." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CTG Legacy Investments — Collect. Invest. Dominate." />
+  <meta name="twitter:description" content="Premium Pokémon TCG booster boxes, packs and graded cards (PSA/BGS/CGC)." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23050818'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F0C96A'/%3E%3Cstop offset='100%25' stop-color='%23D8B35A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='68' font-family='Arial Black' font-size='44' font-weight='900' text-anchor='middle' fill='url(%23g)'%3ECTG%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1189,6 +1202,7 @@ function getNav(active: string) {
         </div>
       </div>
 
+      <a href="/shop" class="nav-link ${active === 'shop' ? 'active' : ''}">Shop</a>
       <a href="/contact" class="nav-link ${active === 'contact' ? 'active' : ''}">Contact</a>
       <a href="/cart" class="nav-cart-btn" id="cart-nav-btn">
         <i class="fas fa-shopping-cart"></i>
@@ -1233,6 +1247,7 @@ function getNav(active: string) {
     </div>
   </div>
 
+  <a href="/shop" class="nav-link">Shop</a>
   <a href="/contact" class="nav-link">Contact</a>
   <a href="/cart" class="nav-link" style="color:var(--gold-light)"><i class="fas fa-shopping-cart" style="margin-right:0.4rem"></i> Cart (<span id="mobile-cart-count">0</span>)</a>
 </div>
@@ -1464,10 +1479,18 @@ ${getNav('home')}
       Your premier destination for <span style="color:var(--gold-light);font-weight:600">investment-grade trading cards</span>. Raw singles & professionally graded collectibles — Pokémon, Yu-Gi-Oh!, and Magic: The Gathering.
     </p>
 
+    <!-- Hero Tagline -->
+    <p style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1rem,2.5vw,1.5rem);letter-spacing:0.08em;text-transform:uppercase;color:var(--text-main);margin:0 auto 2rem;text-align:center">
+      Collect. <span style="color:var(--gold-light)">Invest.</span> <span style="color:var(--cyan)">Dominate the Game.</span>
+    </p>
+
     <!-- CTA Buttons -->
     <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:4rem">
       <a href="/tcg-cards" class="btn-primary" style="text-decoration:none;font-size:1.05rem;padding:1rem 2.5rem">
-        <i class="fas fa-layer-group" style="margin-right:0.5rem"></i> Shop All Cards
+        <i class="fas fa-layer-group" style="margin-right:0.5rem"></i> Shop Now
+      </a>
+      <a href="/shop" class="btn-secondary" style="text-decoration:none;font-size:1.05rem;padding:1rem 2.5rem">
+        <i class="fas fa-boxes" style="margin-right:0.5rem"></i> View Inventory
       </a>
       <a href="/graded-cards" class="btn-secondary" style="font-size:1.05rem;padding:1rem 2.5rem">
         <i class="fas fa-award" style="margin-right:0.5rem"></i> Graded Collection
@@ -1628,6 +1651,115 @@ ${getNav('home')}
     </div>
   </section>
 
+  <!-- ══ FEATURED DROPS ══ -->
+  <section class="section" style="background:rgba(10,13,31,0.6);border-top:1px solid rgba(216,74,58,0.15);border-bottom:1px solid rgba(216,74,58,0.1);">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.3rem">
+            <span style="display:inline-block;width:8px;height:8px;background:var(--red);border-radius:50%;box-shadow:0 0 8px var(--red)"></span>
+            <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red)">Limited Inventory</span>
+          </div>
+          <h2 class="section-title">🔥 Featured Drops</h2>
+          <div class="gold-line"></div>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-top:-0.5rem">Exclusive items — grab them before they're gone.</p>
+        </div>
+        <a href="/shop" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);text-decoration:none;border:1px solid rgba(216,179,90,0.3);padding:0.5rem 1.25rem;border-radius:8px;transition:all 0.2s" onmouseover="this.style.background='rgba(216,179,90,0.1)'" onmouseout="this.style.background='transparent'">View All →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem" id="featured-drops-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ NEW ARRIVALS ══ -->
+  <section class="section container">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="section-sub">Just Landed</div>
+        <h2 class="section-title">✨ New Arrivals</h2>
+        <div class="gold-line"></div>
+      </div>
+      <a href="/shop" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);text-decoration:none;border:1px solid rgba(76,203,255,0.3);padding:0.5rem 1.25rem;border-radius:8px;transition:all 0.2s" onmouseover="this.style.background='rgba(76,203,255,0.07)'" onmouseout="this.style.background='transparent'">See All New →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem" id="new-arrivals-grid"></div>
+  </section>
+
+  <!-- ══ HIGH VALUE CARDS ══ -->
+  <section class="section" style="background:linear-gradient(135deg,rgba(216,179,90,0.04),rgba(14,18,48,0.85));border-top:1px solid rgba(216,179,90,0.12);border-bottom:1px solid rgba(216,179,90,0.12);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <div class="section-sub">Investment Grade</div>
+        <h2 class="section-title">💎 High Value Cards</h2>
+        <div class="gold-line" style="margin:0.75rem auto 0"></div>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-top:0.75rem">Top-tier collectibles with strong market value and appreciation potential.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem" id="high-value-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ RIP & SHIP / WHATNOT ══ -->
+  <section class="section container">
+    <div style="background:linear-gradient(135deg,rgba(166,107,255,0.08),rgba(76,203,255,0.04),rgba(14,18,48,0.95));border:1px solid rgba(166,107,255,0.25);border-radius:20px;padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(216,74,58,0.12);border:1px solid rgba(216,74,58,0.3);border-radius:20px;padding:0.35rem 0.9rem;margin-bottom:1.25rem">
+          <span style="width:8px;height:8px;background:var(--red);border-radius:50%;box-shadow:0 0 8px var(--red)"></span>
+          <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red)">Live Sales</span>
+        </div>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1.4rem,3vw,2rem);color:var(--text-main);letter-spacing:0.05em;margin-bottom:0.75rem">Rip &amp; Ship<br><span style="color:var(--purple)">Live Sales</span></h2>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem">Join us live on <strong style="color:var(--purple)">Whatnot</strong> for real-time pack openings, auctions, and exclusive drops. Watch the pulls happen live and buy the cards you want on the spot.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+          <a href="https://www.whatnot.com" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;font-size:0.95rem;padding:0.85rem 2rem;background:linear-gradient(135deg,var(--purple),#7c3aff);box-shadow:0 0 20px rgba(166,107,255,0.35)">
+            <i class="fas fa-play-circle" style="margin-right:0.5rem"></i> Watch on Whatnot
+          </a>
+          <a href="/contact" class="btn-secondary" style="font-size:0.95rem;padding:0.85rem 1.75rem">
+            <i class="fas fa-bell" style="margin-right:0.5rem"></i> Get Notified
+          </a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div style="background:rgba(166,107,255,0.08);border:1px solid rgba(166,107,255,0.2);border-radius:14px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(166,107,255,0.45)'" onmouseout="this.style.borderColor='rgba(166,107,255,0.2)'">
+          <div style="font-size:2rem;margin-bottom:0.5rem">📦</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;color:var(--purple);letter-spacing:0.05em">Pack Breaks</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem">Live booster rips every week</div>
+        </div>
+        <div style="background:rgba(76,203,255,0.06);border:1px solid rgba(76,203,255,0.2);border-radius:14px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(76,203,255,0.45)'" onmouseout="this.style.borderColor='rgba(76,203,255,0.2)'">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🔨</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;color:var(--cyan);letter-spacing:0.05em">Live Auctions</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem">Bid on high-value singles</div>
+        </div>
+        <div style="background:rgba(216,179,90,0.06);border:1px solid rgba(216,179,90,0.2);border-radius:14px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(216,179,90,0.45)'" onmouseout="this.style.borderColor='rgba(216,179,90,0.2)'">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🚢</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;color:var(--gold-light);letter-spacing:0.05em">Fast Ship</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem">Cards shipped same day</div>
+        </div>
+        <div style="background:rgba(216,74,58,0.06);border:1px solid rgba(216,74,58,0.2);border-radius:14px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(216,74,58,0.45)'" onmouseout="this.style.borderColor='rgba(216,74,58,0.2)'">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🎰</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;color:var(--red);letter-spacing:0.05em">Mystery Boxes</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem">Surprise value packs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EMAIL SIGNUP ══ -->
+  <section style="background:linear-gradient(135deg,rgba(216,179,90,0.07),rgba(31,91,255,0.06));border-top:1px solid rgba(216,179,90,0.15);border-bottom:1px solid rgba(216,179,90,0.15);padding:4.5rem 2rem;text-align:center">
+    <div class="container" style="max-width:620px">
+      <div style="font-size:2rem;margin-bottom:0.75rem">📬</div>
+      <div class="section-sub">Be First in Line</div>
+      <h2 class="section-title" style="font-size:clamp(1.4rem,3vw,2rem);margin-top:0.25rem">Exclusive Drop Alerts</h2>
+      <div class="gold-line" style="margin:0.75rem auto 0"></div>
+      <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.7;margin:1rem auto 2rem">Sign up to get early access to new arrivals, limited drops, and exclusive investor deals — before they go public.</p>
+      <form id="email-signup-form" onsubmit="submitEmailSignup(event)" style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;max-width:500px;margin:0 auto">
+        <input type="email" id="signup-email" placeholder="Enter your email address..." required
+          style="flex:1;min-width:220px;background:rgba(14,18,48,0.9);border:1px solid rgba(216,179,90,0.3);border-radius:10px;color:var(--text-main);font-family:'Inter',sans-serif;font-size:0.95rem;padding:0.85rem 1.1rem;outline:none;transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(216,179,90,0.3)'">
+        <button type="submit" class="btn-primary" style="padding:0.85rem 2rem;white-space:nowrap">
+          <i class="fas fa-bell" style="margin-right:0.5rem"></i> Notify Me
+        </button>
+      </form>
+      <p style="font-size:0.75rem;color:var(--text-muted);margin-top:1rem;opacity:0.7">No spam. Unsubscribe anytime. We respect your privacy.</p>
+    </div>
+  </section>
+
   <!-- INQUIRY CTA BANNER -->
   <section style="background:linear-gradient(135deg,rgba(31,91,255,0.08),rgba(166,107,255,0.08));border-top:1px solid rgba(216,179,90,0.12);border-bottom:1px solid rgba(216,179,90,0.12);padding:4rem 2rem;text-align:center">
     <div class="container">
@@ -1659,34 +1791,92 @@ ${getCartScript()}
     { id:'f8', name:'Exodia The Forbidden One', set:'LOB 1st Edition', price:550.00, game:'yugioh', condition:'VG', emoji:'👁️', holo:false },
   ];
 
+  // ── FEATURED DROPS data (limited feel – red LIVE badge) ──────────────────
+  const featuredDrops = [
+    { id:'fd1', name:'Scarlet & Violet Booster Box', set:'Scarlet & Violet Base', price:149.99, game:'pokemon', condition:'Sealed', emoji:'📦', holo:false, tag:'SEALED', limited:true },
+    { id:'fd2', name:'Charizard ex SAR',             set:'Obsidian Flames',       price:219.99, game:'pokemon', condition:'NM',     emoji:'🔥', holo:true,  tag:'HOT',    limited:true },
+    { id:'fd3', name:'Umbreon VMAX Alt Art',         set:'Evolving Skies',        price:299.00, game:'pokemon', condition:'NM',     emoji:'🌙', holo:true,  tag:'RARE',   limited:true },
+    { id:'fd4', name:'151 Booster Bundle',           set:'Pokémon 151',           price:89.99,  game:'pokemon', condition:'Sealed', emoji:'🎴', holo:false, tag:'BUNDLE', limited:false },
+  ];
+
+  // ── NEW ARRIVALS data ─────────────────────────────────────────────────────
+  const newArrivals = [
+    { id:'na1', name:'Temporal Forces Booster Box',  set:'Temporal Forces',  price:129.99, game:'pokemon', condition:'Sealed', emoji:'📦', holo:false, tag:'NEW' },
+    { id:'na2', name:'Iron Valiant ex Full Art',      set:'Paradox Rift',     price:48.50,  game:'pokemon', condition:'NM',     emoji:'⚔️', holo:true,  tag:'NEW' },
+    { id:'na3', name:'Twilight Masquerade Box',       set:'Twilight Masquerade', price:139.99, game:'pokemon', condition:'Sealed', emoji:'🎭', holo:false, tag:'NEW' },
+    { id:'na4', name:'Terapagos ex SAR',              set:'Stellar Crown',    price:65.00,  game:'pokemon', condition:'NM',     emoji:'💫', holo:true,  tag:'NEW' },
+  ];
+
+  // ── HIGH VALUE CARDS data ─────────────────────────────────────────────────
+  const highValueCards = [
+    { id:'hv1', name:'Pikachu Illustrator',         set:'CoroCoro Promo',    price:14999.99, game:'pokemon', condition:'PSA 7',  emoji:'⚡', holo:true },
+    { id:'hv2', name:'Charizard Holo 1st Ed',       set:'Base Set',          price:12500.00, game:'pokemon', condition:'PSA 9',  emoji:'🔥', holo:true },
+    { id:'hv3', name:'Black Lotus',                 set:'Alpha Edition',     price:9999.99,  game:'mtg',     condition:'HP',     emoji:'🌸', holo:false },
+    { id:'hv4', name:'Blue-Eyes White Dragon 1st',  set:'LOB 1st Edition',   price:3800.00,  game:'yugioh',  condition:'PSA 8',  emoji:'🐉', holo:false },
+  ];
+
   const gameBadge = { pokemon:'badge-pokemon', yugioh:'badge-yugioh', mtg:'badge-mtg' };
   const gameLabel = { pokemon:'Pokémon', yugioh:'Yu-Gi-Oh!', mtg:'MTG' };
 
-  function renderFeatured() {
-    const grid = document.getElementById('featured-grid');
-    if(!grid) return;
-    grid.innerHTML = featuredCards.map(card => \`
+  // ── Shared card renderer (with optional Buy Now) ───────────────────────────
+  function renderCardHTML(card, opts = {}) {
+    const limitedBadge = card.limited
+      ? \`<span style="position:absolute;top:10px;left:10px;background:rgba(216,74,58,0.85);color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px">🔴 LIMITED</span>\`
+      : '';
+    const tagBadge = card.tag
+      ? \`<span style="position:absolute;top:\${card.limited?'34px':'10px'};left:10px;background:rgba(76,203,255,0.2);color:var(--cyan);border:1px solid rgba(76,203,255,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">\${card.tag}</span>\`
+      : '';
+    return \`
       <div class="product-card">
         <div class="product-card-img" style="font-size:3.5rem">
           <span>\${card.emoji}</span>
           \${card.holo ? '<span class="holo-badge">✦ HOLO</span>' : ''}
           <span class="game-badge \${gameBadge[card.game]}">\${gameLabel[card.game]}</span>
+          \${limitedBadge}\${tagBadge}
         </div>
         <div class="product-info">
           <div class="product-name">\${card.name}</div>
           <div class="product-set">\${card.set}</div>
-          <div style="display:flex;justify-content:space-between;align-items:flex-end">
-            <div>
-              <div class="product-price">$\${card.price.toFixed(2)}</div>
-              <div class="product-condition">Condition: \${card.condition}</div>
-            </div>
+          <div class="product-price">$\${card.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+          <div class="product-condition">Condition: \${card.condition}</div>
+          <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+            <button class="btn-add-cart" style="flex:1" data-id="\${card.id}" onclick="addToCart('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}')">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+            <button onclick="buyNow('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}')"
+              style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0"
+              onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">
+              Buy Now
+            </button>
           </div>
-          <button class="btn-add-cart" data-id="\${card.id}" onclick="addToCart('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}')">
-            <i class="fas fa-cart-plus"></i> Add to Cart
-          </button>
         </div>
       </div>
-    \`).join('');
+    \`;
+  }
+
+  function renderFeatured() {
+    const grid = document.getElementById('featured-grid');
+    if(grid) grid.innerHTML = featuredCards.map(c => renderCardHTML(c)).join('');
+    const dg = document.getElementById('featured-drops-grid');
+    if(dg) dg.innerHTML = featuredDrops.map(c => renderCardHTML(c)).join('');
+    const na = document.getElementById('new-arrivals-grid');
+    if(na) na.innerHTML = newArrivals.map(c => renderCardHTML(c)).join('');
+    const hv = document.getElementById('high-value-grid');
+    if(hv) hv.innerHTML = highValueCards.map(c => renderCardHTML(c)).join('');
+  }
+
+  function buyNow(id, name, price, game, img) {
+    addToCart(id, name, price, game, img);
+    window.location.href = '/checkout';
+  }
+
+  function submitEmailSignup(e) {
+    e.preventDefault();
+    const email = document.getElementById('signup-email').value.trim();
+    if (!email) return;
+    document.getElementById('email-signup-form').innerHTML =
+      \`<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.05rem;color:var(--teal);letter-spacing:0.05em"><i class="fas fa-check-circle" style="margin-right:0.5rem"></i>You're on the list! We'll notify you first for every drop.</div>\`;
+    showToast('Subscribed! Watch your inbox for exclusive drops. 🔥');
   }
 
   // Spawn particles
@@ -1716,6 +1906,309 @@ ${getCartScript()}
     renderFeatured();
     spawnParticles();
   });
+</script>
+</body></html>`
+}
+
+// ─── SHOP PAGE (Booster Boxes, Packs, Singles) ───────────────────────────────
+function shopPage() {
+  return `${getHead('Shop')}
+<body>
+${getNav('shop')}
+<div class="page-wrap">
+
+  <div class="page-banner">
+    <div style="position:relative;z-index:1">
+      <div class="section-sub">Full Inventory</div>
+      <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Shop All Products</h1>
+      <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:520px;margin:0 auto">Booster Boxes, Booster Packs, Single Packs, and Graded Slabs — all in one place.</p>
+    </div>
+  </div>
+
+  <div class="container section">
+
+    <!-- ══ CATEGORY TABS ══ -->
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2.5rem">
+      <button class="filter-btn active" id="tab-all"      onclick="switchTab('all')"    ><i class="fas fa-th-large"    style="margin-right:6px"></i>All Products</button>
+      <button class="filter-btn"        id="tab-boxes"    onclick="switchTab('boxes')"  ><i class="fas fa-box"         style="margin-right:6px"></i>Booster Boxes</button>
+      <button class="filter-btn"        id="tab-packs"    onclick="switchTab('packs')"  ><i class="fas fa-layer-group" style="margin-right:6px"></i>Booster Packs</button>
+      <button class="filter-btn"        id="tab-singles"  onclick="switchTab('singles')"><i class="fas fa-id-card"     style="margin-right:6px"></i>Single Packs</button>
+      <button class="filter-btn"        id="tab-graded"   onclick="switchTab('graded')" ><i class="fas fa-award"       style="margin-right:6px"></i>Graded Cards</button>
+    </div>
+
+    <!-- ══ BOOSTER BOXES ══ -->
+    <div id="section-boxes">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
+        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--gold),var(--cyan));border-radius:2px"></div>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Boxes</h2>
+        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Sealed Product</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.08),rgba(14,18,48,0.9))">
+            <span>📦</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(76,203,255,0.2);color:var(--cyan);border:1px solid rgba(76,203,255,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">SEALED</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Scarlet &amp; Violet Booster Box</div>
+            <div class="product-set">Scarlet &amp; Violet Base Set · 36 Packs</div>
+            <div class="product-price">$149.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="box1" onclick="addToCart('box1','S&V Booster Box',149.99,'pokemon','📦')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('box1','S&V Booster Box',149.99,'pokemon','📦');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.08),rgba(14,18,48,0.9))">
+            <span>📦</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(216,74,58,0.2);color:var(--red);border:1px solid rgba(216,74,58,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">🔴 HOT</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Obsidian Flames Booster Box</div>
+            <div class="product-set">Obsidian Flames · 36 Packs</div>
+            <div class="product-price">$164.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="box2" onclick="addToCart('box2','Obsidian Flames Box',164.99,'pokemon','📦')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('box2','Obsidian Flames Box',164.99,'pokemon','📦');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.08),rgba(14,18,48,0.9))">
+            <span>📦</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(76,203,255,0.2);color:var(--cyan);border:1px solid rgba(76,203,255,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">NEW</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Twilight Masquerade Booster Box</div>
+            <div class="product-set">Twilight Masquerade · 36 Packs</div>
+            <div class="product-price">$139.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="box3" onclick="addToCart('box3','Twilight Masquerade Box',139.99,'pokemon','📦')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('box3','Twilight Masquerade Box',139.99,'pokemon','📦');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.08),rgba(14,18,48,0.9))">
+            <span>📦</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Temporal Forces Booster Box</div>
+            <div class="product-set">Temporal Forces · 36 Packs</div>
+            <div class="product-price">$129.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="box4" onclick="addToCart('box4','Temporal Forces Box',129.99,'pokemon','📦')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('box4','Temporal Forces Box',129.99,'pokemon','📦');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ BOOSTER PACKS ══ -->
+    <div id="section-packs">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
+        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--cyan),var(--purple));border-radius:2px"></div>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Packs</h2>
+        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Individual Packs</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(76,203,255,0.07),rgba(14,18,48,0.9))">
+            <span>🎴</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Scarlet &amp; Violet Booster Pack</div>
+            <div class="product-set">Scarlet &amp; Violet Base · 10 Cards</div>
+            <div class="product-price">$4.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="pk1" onclick="addToCart('pk1','S&V Booster Pack',4.99,'pokemon','🎴')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('pk1','S&V Booster Pack',4.99,'pokemon','🎴');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(76,203,255,0.07),rgba(14,18,48,0.9))">
+            <span>🎴</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Obsidian Flames Booster Pack</div>
+            <div class="product-set">Obsidian Flames · 10 Cards</div>
+            <div class="product-price">$5.49</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="pk2" onclick="addToCart('pk2','Obsidian Flames Pack',5.49,'pokemon','🎴')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('pk2','Obsidian Flames Pack',5.49,'pokemon','🎴');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(76,203,255,0.07),rgba(14,18,48,0.9))">
+            <span>🎴</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Twilight Masquerade Pack</div>
+            <div class="product-set">Twilight Masquerade · 10 Cards</div>
+            <div class="product-price">$4.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="pk3" onclick="addToCart('pk3','Twilight Masquerade Pack',4.99,'pokemon','🎴')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('pk3','Twilight Masquerade Pack',4.99,'pokemon','🎴');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(76,203,255,0.07),rgba(14,18,48,0.9))">
+            <span>🎴</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Pokémon 151 Booster Pack</div>
+            <div class="product-set">Pokémon 151 · 10 Cards</div>
+            <div class="product-price">$5.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="pk4" onclick="addToCart('pk4','Pokemon 151 Pack',5.99,'pokemon','🎴')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('pk4','Pokemon 151 Pack',5.99,'pokemon','🎴');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ SINGLE PACKS ══ -->
+    <div id="section-singles">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
+        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--purple),var(--gold));border-radius:2px"></div>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Single Packs</h2>
+        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Quick Purchase</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.07),rgba(14,18,48,0.9))">
+            <span>🃏</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Random Holo Guaranteed Pack</div>
+            <div class="product-set">Mixed Sets · 5 Cards + 1 Guaranteed Holo</div>
+            <div class="product-price">$9.99</div>
+            <div class="product-condition">Condition: NM — Hand-picked</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="sp1" onclick="addToCart('sp1','Holo Guaranteed Pack',9.99,'pokemon','🃏')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('sp1','Holo Guaranteed Pack',9.99,'pokemon','🃏');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.07),rgba(14,18,48,0.9))">
+            <span>🃏</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Vintage Base Set Single Pack</div>
+            <div class="product-set">Base Set · 5 Vintage Cards</div>
+            <div class="product-price">$19.99</div>
+            <div class="product-condition">Condition: LP–NM · Mixed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="sp2" onclick="addToCart('sp2','Vintage Base Set Pack',19.99,'pokemon','🃏')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('sp2','Vintage Base Set Pack',19.99,'pokemon','🃏');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.07),rgba(14,18,48,0.9))">
+            <span>🃏</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mystery Ultra Rare Pack</div>
+            <div class="product-set">Mixed Sets · Guaranteed Ultra Rare+</div>
+            <div class="product-price">$24.99</div>
+            <div class="product-condition">Condition: NM</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="sp3" onclick="addToCart('sp3','Mystery Ultra Rare Pack',24.99,'pokemon','🃏')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('sp3','Mystery Ultra Rare Pack',24.99,'pokemon','🃏');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.07),rgba(14,18,48,0.9))">
+            <span>🃏</span><span class="game-badge badge-pokemon">Pokémon</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Investor Lot — 10 Singles</div>
+            <div class="product-set">Mixed Sets · 10 Curated Investment Cards</div>
+            <div class="product-price">$49.99</div>
+            <div class="product-condition">Condition: NM · High Potential</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="sp4" onclick="addToCart('sp4','Investor Lot 10 Singles',49.99,'pokemon','🃏')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('sp4','Investor Lot 10 Singles',49.99,'pokemon','🃏');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ GRADED CARDS CTA ══ -->
+    <div id="section-graded" style="background:linear-gradient(135deg,rgba(216,179,90,0.06),rgba(14,18,48,0.9));border:1px solid rgba(216,179,90,0.2);border-radius:20px;padding:3rem 2rem;text-align:center;margin-bottom:2rem">
+      <div style="font-size:2.5rem;margin-bottom:1rem">🏆</div>
+      <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:0.06em;color:var(--gold-light);margin-bottom:0.75rem">Graded Cards</h2>
+      <p style="font-size:0.95rem;color:var(--text-muted);max-width:480px;margin:0 auto 1.5rem;line-height:1.7">Investment-grade slabs professionally graded by PSA, BGS, and CGC. Each card authenticated, encased, and investment-ready.</p>
+      <a href="/graded-cards" class="btn-primary" style="text-decoration:none;font-size:1rem;padding:0.9rem 2.5rem">
+        <i class="fas fa-award" style="margin-right:0.5rem"></i> Browse Graded Collection
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+${getFooter()}
+${getCartScript()}
+
+<script>
+  const allTabs = ['all','boxes','packs','singles','graded'];
+  function switchTab(tab) {
+    allTabs.forEach(t => {
+      const btn = document.getElementById('tab-'+t);
+      if(btn) btn.classList.toggle('active', t === tab);
+    });
+    const sections = { boxes:'section-boxes', packs:'section-packs', singles:'section-singles', graded:'section-graded' };
+    if(tab === 'all') {
+      Object.values(sections).forEach(id => { const el=document.getElementById(id); if(el) el.style.display='block'; });
+    } else {
+      Object.entries(sections).forEach(([k,id]) => {
+        const el = document.getElementById(id);
+        if(el) el.style.display = (k===tab) ? 'block' : 'none';
+      });
+    }
+  }
+  // Read URL param
+  const shopParam = new URLSearchParams(window.location.search).get('cat');
+  if(shopParam) switchTab(shopParam);
 </script>
 </body></html>`
 }
@@ -2209,15 +2702,18 @@ function applyFilters() {
       <div class="product-info">
         <div class="product-name">\${card.name}</div>
         <div class="product-set">\${card.set} · \${card.rarity}</div>
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:0.5rem">
-          <div>
-            <div class="product-price">$\${card.price.toFixed(2)}</div>
-            <div class="product-condition">Condition: \${card.condition}</div>
-          </div>
+        <div class="product-price" style="margin-top:0.5rem">$\${card.price.toFixed(2)}</div>
+        <div class="product-condition">Condition: \${card.condition}</div>
+        <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+          <button class="btn-add-cart" style="flex:1" data-id="\${card.id}" onclick="addToCart('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}')">
+            <i class="fas fa-cart-plus"></i> Add to Cart
+          </button>
+          <button onclick="addToCart('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}');window.location.href='/checkout'"
+            style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0"
+            onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">
+            Buy Now
+          </button>
         </div>
-        <button class="btn-add-cart" data-id="\${card.id}" onclick="addToCart('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}')">
-          <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
       </div>
     </div>
   \`).join('');
@@ -2643,17 +3139,25 @@ function filterGraded() {
   const search = document.getElementById('graded-search').value.toLowerCase();
 
   let items = GRADED_CARDS.filter(c => {
-    if(game   !== 'all' && c.game   !== game)   return false;
-    if(grader !== 'all' && c.grader !== grader) return false;
+    if(gState.game    !== 'all' && c.game   !== gState.game)   return false;
+    if(gState.grader  !== 'all' && c.grader !== gState.grader) return false;
+    if(gState.minGrade !== '0'  && c.grade  <  parseInt(gState.minGrade)) return false;
+    if(gState.price   !== 'all') {
+      const [mn,mx] = gState.price.split('-').map(Number);
+      if(c.price < mn || c.price > mx) return false;
+    }
     if(search && !c.name.toLowerCase().includes(search) && !c.set.toLowerCase().includes(search)) return false;
     return true;
   });
 
-  if(sort === 'grade-desc')  items.sort((a,b) => b.grade - a.grade);
-  if(sort === 'price-asc')   items.sort((a,b) => a.price - b.price);
-  if(sort === 'price-desc')  items.sort((a,b) => b.price - a.price);
+  if(gState.sort === 'grade-desc') items.sort((a,b) => b.grade - a.grade);
+  if(gState.sort === 'grade-asc')  items.sort((a,b) => a.grade - b.grade);
+  if(gState.sort === 'price-asc')  items.sort((a,b) => a.price - b.price);
+  if(gState.sort === 'price-desc') items.sort((a,b) => b.price - a.price);
+  if(gState.sort === 'pop-desc')   items.sort((a,b) => a.pop   - b.pop);
 
   document.getElementById('graded-count').textContent = items.length;
+  renderGradedChips();
   const grid  = document.getElementById('graded-grid');
   const noRes = document.getElementById('graded-no-results');
   if(items.length === 0) { grid.innerHTML=''; noRes.style.display='block'; return; }
@@ -2699,12 +3203,20 @@ function filterGraded() {
             <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.1rem;color:\${gradeColor(c.grade)}">\${c.grader} \${c.grade}</div>
           </div>
         </div>
-        <button class="btn-add-cart" data-id="\${c.id}" onclick="addToCart('\${c.id}','\${c.name} (\${c.grader} \${c.grade})',\${c.price},'\${c.game}','\${c.emoji}')">
-          <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
+        <div style="display:flex;gap:0.5rem;margin-top:0.25rem">
+          <button class="btn-add-cart" style="flex:1" data-id="\${c.id}" onclick="addToCart('\${c.id}','\${c.name} (\${c.grader} \${c.grade})',\${c.price},'\${c.game}','\${c.emoji}')">
+            <i class="fas fa-cart-plus"></i> Add to Cart
+          </button>
+          <button onclick="addToCart('\${c.id}','\${c.name} (\${c.grader} \${c.grade})',\${c.price},'\${c.game}','\${c.emoji}');window.location.href='/checkout'"
+            style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0"
+            onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">
+            Buy Now
+          </button>
+        </div>
       </div>
     </div>
   \`).join('');
+}
 }
 
 // Pre-select grader or game from URL param
