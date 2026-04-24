@@ -3217,7 +3217,6 @@ function filterGraded() {
     </div>
   \`).join('');
 }
-}
 
 // Pre-select grader or game from URL param
 (function() {
