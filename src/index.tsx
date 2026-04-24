@@ -161,7 +161,6 @@ function getHead(title: string) {
       gap: 0.75rem;
       text-decoration: none;
     }
-    .nav-brand img { height: 52px; width: 52px; border-radius: 8px; object-fit: cover; }
     .nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
     .nav-brand-ctg {
       font-family: 'Orbitron', sans-serif;
