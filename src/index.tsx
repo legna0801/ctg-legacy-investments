@@ -1859,7 +1859,6 @@ ${getCartScript()}
           <div class="product-name">\${card.name}</div>
           <div class="product-set">\${card.set}</div>
           <div class="product-price">$\${card.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
-          <div class="product-condition">Condition: \${card.condition}</div>
           <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
             <button class="btn-add-cart" style="flex:1" data-id="\${card.id}" onclick="addToCart('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}')">
               <i class="fas fa-cart-plus"></i> Add to Cart
@@ -2724,7 +2723,6 @@ function applyFilters() {
         <div class="product-name">\${card.name}</div>
         <div class="product-set">\${card.set} · \${card.rarity}</div>
         <div class="product-price" style="margin-top:0.5rem">$\${card.price.toFixed(2)}</div>
-        <div class="product-condition">Condition: \${card.condition}</div>
         <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
           <button class="btn-add-cart" style="flex:1" data-id="\${card.id}" onclick="addToCart('\${card.id}','\${card.name}',\${card.price},'\${card.game}','\${card.emoji}')">
             <i class="fas fa-cart-plus"></i> Add to Cart
