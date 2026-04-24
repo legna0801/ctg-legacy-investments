@@ -1212,6 +1212,10 @@ function getNav(active: string) {
             <span class="dd-emoji">📦</span> All Slabs
             <span class="dd-badge ddb-all">ALL</span>
           </a>
+          <a href="/graded-cards?mingrade=9" class="nav-dd-item">
+            <span class="dd-emoji">💰</span> High Value Graded
+            <span class="dd-badge" style="background:rgba(216,179,90,0.2);color:var(--gold-light);border:1px solid rgba(216,179,90,0.4)">HV</span>
+          </a>
         </div>
       </div>
 
@@ -1260,6 +1264,7 @@ function getNav(active: string) {
       <a href="/graded-cards?grader=BGS" class="mob-sub-link"><span>💎</span> BGS Graded</a>
       <a href="/graded-cards?grader=CGC" class="mob-sub-link"><span>⭐</span> CGC Graded</a>
       <a href="/graded-cards"            class="mob-sub-link"><span>📦</span> All Slabs</a>
+      <a href="/graded-cards?mingrade=9" class="mob-sub-link"><span>💰</span> High Value Graded</a>
     </div>
   </div>
 
@@ -3234,20 +3239,27 @@ function filterGraded() {
   \`).join('');
 }
 
-// Pre-select grader or game from URL param
+// Pre-select grader, game, or mingrade from URL param
 (function() {
   const p = new URLSearchParams(window.location.search);
-  const graderParam = p.get('grader');
-  const gameParam   = p.get('game');
+  const graderParam   = p.get('grader');
+  const gameParam     = p.get('game');
+  const mingradeParam = p.get('mingrade');
   if (graderParam && ['PSA','BGS','CGC'].includes(graderParam)) {
     gPickGrader(graderParam, graderParam);
-    return; // filterGraded called inside gPickGrader
+    return;
   }
   if (gameParam) {
     const labelMap = { pokemon:'Pokémon', yugioh:'Yu-Gi-Oh!', mtg:'Magic: TG' };
     const iconMap  = { pokemon:'⚡', yugioh:'👁️', mtg:'🔮' };
     gPickGame(gameParam, iconMap[gameParam]||'🃏', labelMap[gameParam]||gameParam);
-    return; // filterGraded called inside gPickGame
+    return;
+  }
+  if (mingradeParam) {
+    const gradeLabels = { '10':'GEM MINT 10', '9':'Mint 9+', '8':'NM-Mint 8+', '7':'Near Mint 7+', '5':'Ex-Mint 5+' };
+    const label = gradeLabels[mingradeParam] || 'Grade ' + mingradeParam + '+';
+    gPickGrade(mingradeParam, label);
+    return;
   }
   filterGraded();
 })();
