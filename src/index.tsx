@@ -1156,7 +1156,7 @@ function getNav(active: string) {
         <div class="nav-dropdown-panel">
           <div class="nav-dd-section">Browse By Game</div>
           <a href="/tcg-cards?game=pokemon" class="nav-dd-item">
-            <span class="dd-emoji">🔥</span> Pokémon
+            <span class="dd-emoji">⚡</span> Pokémon
             <span class="dd-badge ddb-pokemon">TCG</span>
           </a>
           <a href="/tcg-cards?game=yugioh" class="nav-dd-item">
@@ -1164,13 +1164,21 @@ function getNav(active: string) {
             <span class="dd-badge ddb-yugioh">OCG</span>
           </a>
           <a href="/tcg-cards?game=mtg" class="nav-dd-item">
-            <span class="dd-emoji">✨</span> Magic: The Gathering
+            <span class="dd-emoji">🔮</span> Magic: The Gathering
             <span class="dd-badge ddb-mtg">MTG</span>
           </a>
-          <div class="nav-dd-section">Browse All</div>
-          <a href="/tcg-cards" class="nav-dd-item">
-            <span class="dd-emoji">🃏</span> All Singles
-            <span class="dd-badge ddb-all">ALL</span>
+          <div class="nav-dd-section">Pokémon Shop By Type</div>
+          <a href="/shop?cat=boxes" class="nav-dd-item">
+            <span class="dd-emoji">📦</span> Booster Boxes
+            <span class="dd-badge ddb-pokemon">SEALED</span>
+          </a>
+          <a href="/shop?cat=packs" class="nav-dd-item">
+            <span class="dd-emoji">🎴</span> Booster Packs
+            <span class="dd-badge ddb-pokemon">PACK</span>
+          </a>
+          <a href="/shop?cat=singles" class="nav-dd-item">
+            <span class="dd-emoji">🃏</span> Single Packs
+            <span class="dd-badge ddb-pokemon">SINGLE</span>
           </a>
         </div>
       </div>
@@ -1226,10 +1234,13 @@ function getNav(active: string) {
       <i class="fas fa-chevron-down mob-arrow"></i>
     </button>
     <div class="mob-accordion-panel" id="mob-panel-tcg">
-      <a href="/tcg-cards?game=pokemon" class="mob-sub-link"><span>🔥</span> Pokémon</a>
+      <a href="/tcg-cards?game=pokemon" class="mob-sub-link"><span>⚡</span> Pokémon</a>
       <a href="/tcg-cards?game=yugioh"  class="mob-sub-link"><span>🐉</span> Yu-Gi-Oh!</a>
-      <a href="/tcg-cards?game=mtg"     class="mob-sub-link"><span>✨</span> Magic: The Gathering</a>
-      <a href="/tcg-cards"              class="mob-sub-link"><span>🃏</span> All Singles</a>
+      <a href="/tcg-cards?game=mtg"     class="mob-sub-link"><span>🔮</span> Magic: The Gathering</a>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);padding:0.5rem 1rem 0.15rem;border-top:1px solid rgba(216,179,90,0.1);margin-top:0.25rem">Pokémon Shop By Type</div>
+      <a href="/shop?cat=boxes"   class="mob-sub-link" style="padding-left:2rem"><span>📦</span> Booster Boxes</a>
+      <a href="/shop?cat=packs"   class="mob-sub-link" style="padding-left:2rem"><span>🎴</span> Booster Packs</a>
+      <a href="/shop?cat=singles" class="mob-sub-link" style="padding-left:2rem"><span>🃏</span> Single Packs</a>
     </div>
   </div>
 
