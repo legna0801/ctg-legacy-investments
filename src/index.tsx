@@ -56,10 +56,10 @@ function getHead(title: string) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | CTG Legacy Investments</title>
-  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, graded cards (PSA, C3) and singles. Collect. Invest. Dominate the Game." />
-  <meta name="keywords" content="Pokemon cards, booster boxes, graded Pokemon cards, PSA cards, TCG investing, Charizard, buy Pokemon cards, booster packs, PSA graded, C3 graded, TCG singles, Pokemon booster box" />
+  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, graded cards (PSA, C3). Factory sealed & investment-grade. Collect. Invest. Dominate the Game." />
+  <meta name="keywords" content="Pokemon cards, booster boxes, graded Pokemon cards, PSA cards, TCG investing, Charizard, buy Pokemon cards, booster packs, PSA graded, C3 graded, factory sealed, Pokemon booster box" />
   <meta property="og:title" content="${title} | CTG Legacy Investments" />
-  <meta property="og:description" content="Premium Pokémon TCG booster boxes, packs, graded slabs and singles. Investment-grade collectibles. Collect. Invest. Dominate." />
+  <meta property="og:description" content="Premium Pokémon TCG booster boxes and packs, factory sealed. Investment-grade graded slabs. Collect. Invest. Dominate." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CTG Legacy Investments — Collect. Invest. Dominate." />
@@ -1293,7 +1293,7 @@ function getFooter() {
         <li><a href="/tcg-cards?game=yugioh">Yu-Gi-Oh! Cards</a></li>
         <li><a href="/tcg-cards?game=mtg">Magic: The Gathering</a></li>
         <li><a href="/graded-cards">Graded Cards</a></li>
-        <li><a href="/tcg-cards">All Singles</a></li>
+        <li><a href="/shop">Sealed Products</a></li>
       </ul>
     </div>
     <div>
@@ -1702,7 +1702,7 @@ ${getNav('home')}
         " onmouseover="this.style.transform='translateY(-8px)';this.style.borderColor='rgba(70,199,194,0.5)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.4),0 0 30px rgba(70,199,194,0.1)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(70,199,194,0.2)';this.style.boxShadow=''">
           <div style="font-size:4rem;margin-bottom:1rem">👁️</div>
           <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.08em;color:var(--teal);margin-bottom:0.5rem">YU-GI-OH!</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6">Blue-Eyes, Dark Magician, Ghost Rares, collector tins & investment singles</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6">Blue-Eyes, Dark Magician, Ghost Rares, collector tins & sealed booster products</p>
           <div style="margin-top:1.25rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal)">Shop Now →</div>
         </div>
       </a>
@@ -1858,7 +1858,7 @@ ${getNav('home')}
         <div style="background:rgba(76,203,255,0.06);border:1px solid rgba(76,203,255,0.2);border-radius:14px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(76,203,255,0.45)'" onmouseout="this.style.borderColor='rgba(76,203,255,0.2)'">
           <div style="font-size:2rem;margin-bottom:0.5rem">🔨</div>
           <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;color:var(--cyan);letter-spacing:0.05em">Live Auctions</div>
-          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem">Bid on high-value singles</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem">Bid on high-value sealed products</div>
         </div>
         <div style="background:rgba(216,179,90,0.06);border:1px solid rgba(216,179,90,0.2);border-radius:14px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(216,179,90,0.45)'" onmouseout="this.style.borderColor='rgba(216,179,90,0.2)'">
           <div style="font-size:2rem;margin-bottom:0.5rem">🚢</div>
@@ -2382,14 +2382,22 @@ ${getNav('tcg')}
   <!-- PAGE HEADER -->
   <div class="page-banner">
     <div style="position:relative;z-index:1">
-      <div class="section-sub">Singles & Collectibles</div>
-      <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">TCG Card Singles</h1>
+      <div class="section-sub">Factory Sealed Inventory</div>
+      <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Sealed TCG Products</h1>
       <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
-      <p style="color:var(--text-muted);font-size:0.95rem;max-width:500px;margin:0 auto">Browse our curated selection of Pokémon, Yu-Gi-Oh!, and Magic: The Gathering singles.</p>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:560px;margin:0 auto">Browse our selection of brand new, factory-sealed booster packs and boxes from Pokémon, Yu-Gi-Oh!, and Magic: The Gathering.</p>
     </div>
   </div>
 
   <div class="container section">
+
+    <!-- TRUST LINE -->
+    <div style="text-align:center;margin-bottom:1.25rem">
+      <span style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim)">
+        <i class="fas fa-shield-alt" style="color:var(--gold-light);margin-right:0.45rem"></i>
+        All products are brand new, factory sealed, and 100% authentic.
+      </span>
+    </div>
 
     <!-- ══ FILTER PANEL ══ -->
     <div style="background:linear-gradient(135deg,rgba(14,18,48,0.85),rgba(10,13,31,0.9));border:1px solid rgba(216,179,90,0.18);border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;">
@@ -2398,7 +2406,7 @@ ${getNav('tcg')}
       <div style="display:flex;gap:0.75rem;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;">
         <div style="position:relative;flex:1;min-width:200px;">
           <i class="fas fa-search" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.85rem;pointer-events:none"></i>
-          <input type="text" id="search-input" placeholder="Search cards by name or set..." oninput="applyFilters()"
+          <input type="text" id="search-input" placeholder="Search by product name or set..." oninput="applyFilters()"
             style="width:100%;background:rgba(5,8,24,0.85);border:1px solid rgba(216,179,90,0.2);border-radius:10px;color:var(--text-main);font-family:'Inter',sans-serif;font-size:0.9rem;padding:0.65rem 1rem 0.65rem 2.5rem;outline:none;transition:border-color 0.2s;"
             onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(216,179,90,0.2)'">
         </div>
@@ -2457,106 +2465,84 @@ ${getNav('tcg')}
           </div>
         </div>
 
-        <!-- CONDITION DROPDOWN -->
+        <!-- PRODUCT TYPE DROPDOWN -->
         <div class="filter-col">
-          <div class="filter-row-label"><i class="fas fa-star-half-alt" style="margin-right:4px;color:var(--gold-light)"></i>Condition</div>
-          <div class="ctg-dropdown" id="dd-cond">
-            <div class="ctg-dropdown-trigger" onclick="toggleDD('dd-cond')" id="dd-cond-trigger">
-              <span class="dd-icon"><i class="fas fa-award" style="font-size:0.85rem"></i></span>
-              <span class="dd-label" id="dd-cond-label">All Conditions</span>
+          <div class="filter-row-label"><i class="fas fa-box-open" style="margin-right:4px;color:var(--gold-light)"></i>Product Type</div>
+          <div class="ctg-dropdown" id="dd-type">
+            <div class="ctg-dropdown-trigger" onclick="toggleDD('dd-type')" id="dd-type-trigger">
+              <span class="dd-icon">📦</span>
+              <span class="dd-label" id="dd-type-label">All Types</span>
               <i class="fas fa-chevron-down dd-arrow"></i>
             </div>
-            <div class="ctg-dropdown-menu" id="dd-cond-menu">
-              <div class="dd-section-header">Card Condition</div>
-              <button class="dd-item selected" data-val="all" onclick="pickCond('all','All Conditions')">
-                <span class="dd-item-dot" style="background:#8892b0"></span> All Conditions
+            <div class="ctg-dropdown-menu" id="dd-type-menu">
+              <div class="dd-section-header">Product Type</div>
+              <button class="dd-item selected" data-val="all" onclick="pickType('all','All Types')">
+                <span class="dd-item-icon">📦</span> All Types
                 <i class="fas fa-check dd-item-check"></i>
               </button>
               <div class="dd-divider"></div>
-              <button class="dd-item" data-val="NM" onclick="pickCond('NM','NM — Near Mint')">
-                <span class="dd-item-dot" style="background:#46C7C2"></span>
-                <span><strong style="color:var(--teal)">NM</strong> — Near Mint</span>
+              <button class="dd-item" data-val="box" onclick="pickType('box','Booster Boxes')">
+                <span class="dd-item-icon">📦</span>
+                <span>Booster Boxes</span>
+                <span class="dd-item-badge" style="background:rgba(76,203,255,0.15);color:var(--cyan);border:1px solid rgba(76,203,255,0.3);">SEALED</span>
                 <i class="fas fa-check dd-item-check"></i>
               </button>
-              <button class="dd-item" data-val="LP" onclick="pickCond('LP','LP — Lightly Played')">
-                <span class="dd-item-dot" style="background:#4d8cff"></span>
-                <span><strong style="color:#4d8cff">LP</strong> — Lightly Played</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="MP" onclick="pickCond('MP','MP — Mod. Played')">
-                <span class="dd-item-dot" style="background:#A66BFF"></span>
-                <span><strong style="color:#A66BFF">MP</strong> — Mod. Played</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="VG" onclick="pickCond('VG','VG — Very Good')">
-                <span class="dd-item-dot" style="background:#D8B35A"></span>
-                <span><strong style="color:var(--gold-light)">VG</strong> — Very Good</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="HP" onclick="pickCond('HP','HP — Heavily Played')">
-                <span class="dd-item-dot" style="background:#D84A3A"></span>
-                <span><strong style="color:var(--red)">HP</strong> — Heavily Played</span>
+              <button class="dd-item" data-val="pack" onclick="pickType('pack','Booster Packs')">
+                <span class="dd-item-icon">🎴</span>
+                <span>Booster Packs</span>
+                <span class="dd-item-badge" style="background:rgba(216,179,90,0.15);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3);">PACK</span>
                 <i class="fas fa-check dd-item-check"></i>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- RARITY DROPDOWN -->
+        <!-- SET / SERIES DROPDOWN -->
         <div class="filter-col">
-          <div class="filter-row-label"><i class="fas fa-gem" style="margin-right:4px;color:var(--gold-light)"></i>Rarity</div>
-          <div class="ctg-dropdown" id="dd-rarity">
-            <div class="ctg-dropdown-trigger" onclick="toggleDD('dd-rarity')" id="dd-rarity-trigger">
-              <span class="dd-icon">✨</span>
-              <span class="dd-label" id="dd-rarity-label">All Rarities</span>
+          <div class="filter-row-label"><i class="fas fa-layer-group" style="margin-right:4px;color:var(--gold-light)"></i>Set / Series</div>
+          <div class="ctg-dropdown" id="dd-set">
+            <div class="ctg-dropdown-trigger" onclick="toggleDD('dd-set')" id="dd-set-trigger">
+              <span class="dd-icon">🗂️</span>
+              <span class="dd-label" id="dd-set-label">All Sets</span>
               <i class="fas fa-chevron-down dd-arrow"></i>
             </div>
-            <div class="ctg-dropdown-menu" id="dd-rarity-menu">
-              <div class="dd-section-header">Card Rarity</div>
-              <button class="dd-item selected" data-val="all" onclick="pickRarity('all','All Rarities')">
-                <span class="dd-item-icon">✨</span> All Rarities
+            <div class="ctg-dropdown-menu" id="dd-set-menu">
+              <div class="dd-section-header">Pokémon</div>
+              <button class="dd-item selected" data-val="all" onclick="pickSet('all','All Sets')">
+                <span class="dd-item-icon">🗂️</span> All Sets
                 <i class="fas fa-check dd-item-check"></i>
               </button>
               <div class="dd-divider"></div>
-              <div class="dd-section-header">Pokémon</div>
-              <button class="dd-item" data-val="Secret Rare" onclick="pickRarity('Secret Rare','Secret Rare')">
-                <span class="dd-item-icon" style="color:#FFD700">★</span> Secret Rare
+              <button class="dd-item" data-val="Scarlet & Violet" onclick="pickSet('Scarlet &amp; Violet','Scarlet &amp; Violet')">
+                <span class="dd-item-icon" style="color:#FFD700">⚡</span> Scarlet &amp; Violet
                 <i class="fas fa-check dd-item-check"></i>
               </button>
-              <button class="dd-item" data-val="Alt Art" onclick="pickRarity('Alt Art','Alt Art')">
-                <span class="dd-item-icon" style="color:#A66BFF">◈</span> Alt Art
+              <button class="dd-item" data-val="Obsidian Flames" onclick="pickSet('Obsidian Flames','Obsidian Flames')">
+                <span class="dd-item-icon" style="color:#D84A3A">🔥</span> Obsidian Flames
                 <i class="fas fa-check dd-item-check"></i>
               </button>
-              <button class="dd-item" data-val="Full Art" onclick="pickRarity('Full Art','Full Art')">
-                <span class="dd-item-icon" style="color:#4d8cff">▣</span> Full Art
+              <button class="dd-item" data-val="Twilight Masquerade" onclick="pickSet('Twilight Masquerade','Twilight Masquerade')">
+                <span class="dd-item-icon" style="color:#A66BFF">🎭</span> Twilight Masquerade
                 <i class="fas fa-check dd-item-check"></i>
               </button>
-              <button class="dd-item" data-val="Ultra Rare" onclick="pickRarity('Ultra Rare','Ultra Rare')">
-                <span class="dd-item-icon" style="color:#46C7C2">◆</span> Ultra Rare
+              <button class="dd-item" data-val="Temporal Forces" onclick="pickSet('Temporal Forces','Temporal Forces')">
+                <span class="dd-item-icon" style="color:#46C7C2">⏳</span> Temporal Forces
                 <i class="fas fa-check dd-item-check"></i>
               </button>
-              <button class="dd-item" data-val="Holo Rare" onclick="pickRarity('Holo Rare','Holo Rare')">
-                <span class="dd-item-icon" style="color:#D8B35A">◇</span> Holo Rare
+              <button class="dd-item" data-val="Pokémon 151" onclick="pickSet('Pokémon 151','Pokémon 151')">
+                <span class="dd-item-icon" style="color:#4d8cff">🔵</span> Pokémon 151
                 <i class="fas fa-check dd-item-check"></i>
               </button>
               <div class="dd-divider"></div>
               <div class="dd-section-header">Yu-Gi-Oh!</div>
-              <button class="dd-item" data-val="Ghost Rare" onclick="pickRarity('Ghost Rare','Ghost Rare')">
-                <span class="dd-item-icon" style="color:#EEF1F6">◈</span> Ghost Rare
+              <button class="dd-item" data-val="Legend of Blue Eyes" onclick="pickSet('Legend of Blue Eyes','Legend of Blue Eyes')">
+                <span class="dd-item-icon" style="color:#4d8cff">🐉</span> Legend of Blue Eyes
                 <i class="fas fa-check dd-item-check"></i>
               </button>
               <div class="dd-divider"></div>
-              <div class="dd-section-header">MTG</div>
-              <button class="dd-item" data-val="Power 9" onclick="pickRarity('Power 9','Power 9')">
-                <span class="dd-item-icon" style="color:#D84A3A">⬟</span> Power 9
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="Mythic Rare" onclick="pickRarity('Mythic Rare','Mythic Rare')">
-                <span class="dd-item-icon" style="color:#FF7A3D">◈</span> Mythic Rare
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="Dual Land" onclick="pickRarity('Dual Land','Dual Land')">
-                <span class="dd-item-icon" style="color:#46C7C2">⬡</span> Dual Land
+              <div class="dd-section-header">Magic: The Gathering</div>
+              <button class="dd-item" data-val="Alpha Edition" onclick="pickSet('Alpha Edition','Alpha Edition')">
+                <span class="dd-item-icon" style="color:var(--gold-light)">🌸</span> Alpha Edition
                 <i class="fas fa-check dd-item-check"></i>
               </button>
             </div>
@@ -2673,7 +2659,7 @@ const gameLabel = { pokemon:'Pokémon', yugioh:'Yu-Gi-Oh!', mtg:'MTG' };
 let currentView = 'grid';
 
 // ── FILTER STATE ──────────────────────────────────────────────────────────────
-let filterState = { game:'all', cond:'all', rarity:'all', price:'all', sort:'default' };
+let filterState = { game:'all', type:'all', set:'all', price:'all', sort:'default' };
 
 // ── DROPDOWN ENGINE ───────────────────────────────────────────────────────────
 function toggleDD(id) {
@@ -2714,17 +2700,18 @@ function pickGame(val, icon, label) {
   closeAllDD();
   applyFilters();
 }
-function pickCond(val, label) {
-  filterState.cond = val;
-  document.getElementById('dd-cond-label').textContent = label;
-  setDDSelected('dd-cond-menu', val);
+function pickType(val, label) {
+  filterState.type = val;
+  document.getElementById('dd-type-label').textContent = label;
+  document.getElementById('dd-type-trigger').querySelector('.dd-icon').textContent = val === 'box' ? '📦' : val === 'pack' ? '🎴' : '📦';
+  setDDSelected('dd-type-menu', val);
   closeAllDD();
   applyFilters();
 }
-function pickRarity(val, label) {
-  filterState.rarity = val;
-  document.getElementById('dd-rarity-label').textContent = label;
-  setDDSelected('dd-rarity-menu', val);
+function pickSet(val, label) {
+  filterState.set = val;
+  document.getElementById('dd-set-label').textContent = label;
+  setDDSelected('dd-set-menu', val);
   closeAllDD();
   applyFilters();
 }
@@ -2744,15 +2731,16 @@ function pickSort(val, label) {
 }
 
 function clearAllFilters() {
-  filterState = { game:'all', cond:'all', rarity:'all', price:'all', sort:'default' };
+  filterState = { game:'all', type:'all', set:'all', price:'all', sort:'default' };
   document.getElementById('dd-game-label').textContent   = 'All Games';
   document.getElementById('dd-game-trigger').querySelector('.dd-icon').textContent = '🃏';
-  document.getElementById('dd-cond-label').textContent   = 'All Conditions';
-  document.getElementById('dd-rarity-label').textContent = 'All Rarities';
+  document.getElementById('dd-type-label').textContent   = 'All Types';
+  document.getElementById('dd-type-trigger').querySelector('.dd-icon').textContent = '📦';
+  document.getElementById('dd-set-label').textContent    = 'All Sets';
   document.getElementById('dd-price-label').textContent  = 'Any Price';
   document.getElementById('dd-sort-label').textContent   = 'Featured';
   document.getElementById('search-input').value = '';
-  ['dd-game-menu','dd-cond-menu','dd-rarity-menu','dd-price-menu','dd-sort-menu'].forEach(id => setDDSelected(id,'all'));
+  ['dd-game-menu','dd-type-menu','dd-set-menu','dd-price-menu','dd-sort-menu'].forEach(id => setDDSelected(id,'all'));
   setDDSelected('dd-sort-menu','default');
   applyFilters();
 }
@@ -2761,11 +2749,11 @@ function clearAllFilters() {
 function renderChips() {
   const container = document.getElementById('active-chips');
   const chips = [];
-  if(filterState.game   !== 'all')     chips.push({ label: document.getElementById('dd-game-label').textContent,   clear: ()=>pickGame('all','🃏','All Games') });
-  if(filterState.cond   !== 'all')     chips.push({ label: document.getElementById('dd-cond-label').textContent,   clear: ()=>pickCond('all','All Conditions') });
-  if(filterState.rarity !== 'all')     chips.push({ label: document.getElementById('dd-rarity-label').textContent, clear: ()=>pickRarity('all','All Rarities') });
-  if(filterState.price  !== 'all')     chips.push({ label: document.getElementById('dd-price-label').textContent,  clear: ()=>pickPrice('all','Any Price') });
-  if(filterState.sort   !== 'default') chips.push({ label: 'Sort: '+document.getElementById('dd-sort-label').textContent, clear: ()=>pickSort('default','Featured') });
+  if(filterState.game  !== 'all')     chips.push({ label: document.getElementById('dd-game-label').textContent,  clear: ()=>pickGame('all','🃏','All Games') });
+  if(filterState.type  !== 'all')     chips.push({ label: document.getElementById('dd-type-label').textContent,  clear: ()=>pickType('all','All Types') });
+  if(filterState.set   !== 'all')     chips.push({ label: document.getElementById('dd-set-label').textContent,   clear: ()=>pickSet('all','All Sets') });
+  if(filterState.price !== 'all')     chips.push({ label: document.getElementById('dd-price-label').textContent, clear: ()=>pickPrice('all','Any Price') });
+  if(filterState.sort  !== 'default') chips.push({ label: 'Sort: '+document.getElementById('dd-sort-label').textContent, clear: ()=>pickSort('default','Featured') });
   const search = document.getElementById('search-input').value;
   if(search) chips.push({ label: 'Search: "'+search+'"', clear: ()=>{ document.getElementById('search-input').value=''; applyFilters(); } });
 
@@ -2801,10 +2789,13 @@ function setView(v) {
 function applyFilters() {
   const search = document.getElementById('search-input').value.toLowerCase();
   let filtered = ALL_CARDS.filter(c => {
-    if(filterState.game   !== 'all' && c.game      !== filterState.game)   return false;
-    if(filterState.cond   !== 'all' && c.condition !== filterState.cond)   return false;
-    if(filterState.rarity !== 'all' && c.rarity    !== filterState.rarity) return false;
-    if(filterState.price  !== 'all') {
+    if(filterState.game  !== 'all' && c.game !== filterState.game) return false;
+    if(filterState.type  !== 'all') {
+      if(filterState.type === 'box'  && !c.name.toLowerCase().includes('box'))  return false;
+      if(filterState.type === 'pack' && !c.name.toLowerCase().includes('pack')) return false;
+    }
+    if(filterState.set   !== 'all' && !c.set.includes(filterState.set)) return false;
+    if(filterState.price !== 'all') {
       const [mn,mx] = filterState.price.split('-').map(Number);
       if(c.price < mn || c.price > mx) return false;
     }
@@ -3382,7 +3373,7 @@ ${getNav('contact')}
       <div class="section-sub">We'd Love to Hear From You</div>
       <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Contact & Inquiries</h1>
       <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
-      <p style="color:var(--text-muted);font-size:0.95rem;max-width:500px;margin:0 auto">Questions about a card? Looking for a specific single? Submit an inquiry and we&#39;ll get back to you within 24 hours.</p>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:500px;margin:0 auto">Questions about our inventory? Looking for a specific product? Submit an inquiry and we&#39;ll get back to you within 24 hours.</p>
     </div>
   </div>
 
