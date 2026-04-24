@@ -56,14 +56,14 @@ function getHead(title: string) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | CTG Legacy Investments</title>
-  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, graded cards (PSA, CGC) and singles. Collect. Invest. Dominate the Game." />
-  <meta name="keywords" content="Pokemon cards, booster boxes, graded Pokemon cards, PSA cards, TCG investing, Charizard, buy Pokemon cards, booster packs, PSA graded, CGC graded, TCG singles, Pokemon booster box" />
+  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, graded cards (PSA, C3) and singles. Collect. Invest. Dominate the Game." />
+  <meta name="keywords" content="Pokemon cards, booster boxes, graded Pokemon cards, PSA cards, TCG investing, Charizard, buy Pokemon cards, booster packs, PSA graded, C3 graded, TCG singles, Pokemon booster box" />
   <meta property="og:title" content="${title} | CTG Legacy Investments" />
   <meta property="og:description" content="Premium Pokémon TCG booster boxes, packs, graded slabs and singles. Investment-grade collectibles. Collect. Invest. Dominate." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CTG Legacy Investments — Collect. Invest. Dominate." />
-  <meta name="twitter:description" content="Premium Pokémon TCG booster boxes, packs and graded cards (PSA/CGC)." />
+  <meta name="twitter:description" content="Premium Pokémon TCG booster boxes, packs and graded cards (PSA/C3)." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23050818'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F0C96A'/%3E%3Cstop offset='100%25' stop-color='%23D8B35A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='68' font-family='Arial Black' font-size='44' font-weight='900' text-anchor='middle' fill='url(%23g)'%3ECTG%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -403,7 +403,7 @@ function getHead(title: string) {
     .ddb-all     { background: rgba(216,179,90,0.15); color: var(--gold-light); border: 1px solid rgba(216,179,90,0.28); }
     .ddb-psa     { background: rgba(31,91,255,0.18); color: #4d8cff; border: 1px solid rgba(31,91,255,0.3); }
 
-    .ddb-cgc     { background: rgba(166,107,255,0.18); color: var(--purple); border: 1px solid rgba(166,107,255,0.3); }
+    .ddb-c3      { background: rgba(166,107,255,0.18); color: var(--purple); border: 1px solid rgba(166,107,255,0.3); }
 
     /* ── MOBILE ACCORDION ── */
     .mob-accordion {
@@ -1055,7 +1055,7 @@ function getHead(title: string) {
     }
     .tag-psa  { background: rgba(31,91,255,0.25); color: #4d8cff; border: 1px solid rgba(31,91,255,0.4); }
 
-    .tag-cgc  { background: rgba(166,107,255,0.25); color: var(--purple); border: 1px solid rgba(166,107,255,0.4); }
+    .tag-c3   { background: rgba(166,107,255,0.25); color: var(--purple); border: 1px solid rgba(166,107,255,0.4); }
 
     /* ── HERO PARTICLES ── */
     .particle {
@@ -1200,9 +1200,9 @@ function getNav(active: string) {
             <span class="dd-badge ddb-psa">PSA</span>
           </a>
 
-          <a href="/graded-cards?grader=CGC" class="nav-dd-item">
-            <span class="dd-emoji">⭐</span> CGC Graded
-            <span class="dd-badge ddb-cgc">CGC</span>
+          <a href="/graded-cards?grader=C3" class="nav-dd-item">
+            <span class="dd-emoji">⭐</span> C3 Graded
+            <span class="dd-badge ddb-c3">C3</span>
           </a>
           <div class="nav-dd-section">Browse All</div>
           <a href="/graded-cards" class="nav-dd-item">
@@ -1259,7 +1259,7 @@ function getNav(active: string) {
     <div class="mob-accordion-panel" id="mob-panel-graded">
       <a href="/graded-cards?grader=PSA" class="mob-sub-link"><span>🏆</span> PSA Graded</a>
 
-      <a href="/graded-cards?grader=CGC" class="mob-sub-link"><span>⭐</span> CGC Graded</a>
+      <a href="/graded-cards?grader=C3" class="mob-sub-link"><span>⭐</span> C3 Graded</a>
       <a href="/graded-cards"            class="mob-sub-link"><span>📦</span> All Slabs</a>
       <a href="/graded-cards?mingrade=9" class="mob-sub-link"><span>💰</span> High Value Graded</a>
     </div>
@@ -1538,7 +1538,7 @@ ${getNav('home')}
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem">Graded Slabs</div>
       </div>
       <div style="padding:1rem;border-left:1px solid rgba(216,179,90,0.1)">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:2rem;color:var(--teal)">PSA/CGC</div>
+        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:2rem;color:var(--teal)">PSA/C3</div>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem">Graders</div>
       </div>
     </div>
@@ -1622,7 +1622,7 @@ ${getNav('home')}
         " onmouseover="this.style.transform='translateY(-8px)';this.style.borderColor='rgba(216,179,90,0.5)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.4),0 0 30px rgba(216,179,90,0.1)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(216,179,90,0.2)';this.style.boxShadow=''">
           <div style="font-size:4rem;margin-bottom:1rem">🏆</div>
           <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.08em;color:var(--gold-light);margin-bottom:0.5rem">GRADED SLABS</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6">PSA & CGC graded investment-grade slabs across all TCGs</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6">PSA & C3 graded investment-grade slabs across all TCGs</p>
           <div style="margin-top:1.25rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light)">View Slabs →</div>
         </div>
       </a>
@@ -2193,7 +2193,7 @@ ${getNav('shop')}
     <div id="section-graded" style="background:linear-gradient(135deg,rgba(216,179,90,0.06),rgba(14,18,48,0.9));border:1px solid rgba(216,179,90,0.2);border-radius:20px;padding:3rem 2rem;text-align:center;margin-bottom:2rem">
       <div style="font-size:2.5rem;margin-bottom:1rem">🏆</div>
       <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:0.06em;color:var(--gold-light);margin-bottom:0.75rem">Graded Cards</h2>
-      <p style="font-size:0.95rem;color:var(--text-muted);max-width:480px;margin:0 auto 1.5rem;line-height:1.7">Investment-grade slabs professionally graded by PSA and CGC. Each card authenticated, encased, and investment-ready.</p>
+      <p style="font-size:0.95rem;color:var(--text-muted);max-width:480px;margin:0 auto 1.5rem;line-height:1.7">Investment-grade slabs professionally graded by PSA and C3. Each card authenticated, encased, and investment-ready.</p>
       <a href="/graded-cards" class="btn-primary" style="text-decoration:none;font-size:1rem;padding:0.9rem 2.5rem">
         <i class="fas fa-award" style="margin-right:0.5rem"></i> Browse Graded Collection
       </a>
@@ -2756,11 +2756,11 @@ function gradedCardsPage() {
     { id:'g2',  name:'Pikachu Illustrator',   set:'CoroCoro Promo',   game:'pokemon', emoji:'⚡', grade:7,  grader:'PSA', price:24999, pop:26  },
     { id:'g3',  name:'Blastoise Holo',        set:'Base Set 1st Ed',  game:'pokemon', emoji:'🌊', grade:8,  grader:'PSA', price:3200,  pop:88  },
     { id:'g4',  name:'Umbreon Gold Star',     set:'POP Series 5',     game:'pokemon', emoji:'🌙', grade:10, grader:'PSA', price:18000, pop:14  },
-    { id:'g5',  name:'Blue-Eyes White Dragon',set:'LOB 1st Edition',  game:'yugioh',  emoji:'🐉', grade:8,  grader:'CGC', price:4500,  pop:55  },
+    { id:'g5',  name:'Blue-Eyes White Dragon',set:'LOB 1st Edition',  game:'yugioh',  emoji:'🐉', grade:8,  grader:'C3', price:4500,  pop:55  },
     { id:'g6',  name:'Dark Magician',         set:'LOB 1st Edition',  game:'yugioh',  emoji:'✨', grade:9,  grader:'PSA', price:2200,  pop:73  },
-    { id:'g7',  name:'Exodia the Forbidden',  set:'LOB 1st Edition',  game:'yugioh',  emoji:'👁️', grade:7,  grader:'CGC', price:3800,  pop:42  },
+    { id:'g7',  name:'Exodia the Forbidden',  set:'LOB 1st Edition',  game:'yugioh',  emoji:'👁️', grade:7,  grader:'C3', price:3800,  pop:42  },
     { id:'g8',  name:'Black Lotus',           set:'Alpha Edition',    game:'mtg',     emoji:'🌸', grade:4,  grader:'PSA', price:75000, pop:8   },
-    { id:'g9',  name:'Underground Sea',       set:'Alpha Edition',    game:'mtg',     emoji:'🌊', grade:8,  grader:'CGC', price:9500,  pop:34  },
+    { id:'g9',  name:'Underground Sea',       set:'Alpha Edition',    game:'mtg',     emoji:'🌊', grade:8,  grader:'C3', price:9500,  pop:34  },
     { id:'g10', name:'Mox Emerald',           set:'Beta Edition',     game:'mtg',     emoji:'💚', grade:6,  grader:'PSA', price:8800,  pop:19  },
   ]
 
@@ -2774,10 +2774,10 @@ ${getNav('graded')}
   <!-- BANNER -->
   <div class="page-banner">
     <div style="position:relative;z-index:1">
-      <div class="section-sub">PSA · CGC</div>
+      <div class="section-sub">PSA · C3</div>
       <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Graded Card Collection</h1>
       <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
-      <p style="color:var(--text-muted);font-size:0.95rem;max-width:500px;margin:0 auto">Investment-grade slabs professionally graded by PSA and CGC.</p>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:500px;margin:0 auto">Investment-grade slabs professionally graded by PSA and C3.</p>
     </div>
   </div>
 
@@ -2791,8 +2791,8 @@ ${getNav('graded')}
       </div>
 
       <div style="background:linear-gradient(135deg,rgba(166,107,255,0.12),rgba(14,18,48,0.9));border:1px solid rgba(166,107,255,0.25);border-radius:14px;padding:1.5rem;text-align:center">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.4rem;color:var(--purple);margin-bottom:0.25rem">CGC</div>
-        <div style="font-size:0.8rem;color:var(--text-muted)">Certified Guaranty Company — Registry, 1–10 scale</div>
+        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.4rem;color:var(--purple);margin-bottom:0.25rem">C3</div>
+        <div style="font-size:0.8rem;color:var(--text-muted)">C3 Grading — Professional grading, 1–10 scale</div>
       </div>
       <div style="background:linear-gradient(135deg,rgba(70,199,194,0.12),rgba(14,18,48,0.9));border:1px solid rgba(70,199,194,0.25);border-radius:14px;padding:1.5rem;text-align:center">
         <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.4rem;color:var(--teal);margin-bottom:0.25rem">Why Grade?</div>
@@ -2881,9 +2881,9 @@ ${getNav('graded')}
                 <i class="fas fa-check dd-item-check"></i>
               </button>
 
-              <button class="dd-item" data-val="CGC" onclick="gPickGrader('CGC','CGC')">
-                <span class="dd-item-icon" style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:0.75rem;color:var(--purple)">CGC</span>
-                <span style="flex:1">Certified Guaranty Co.</span>
+              <button class="dd-item" data-val="C3" onclick="gPickGrader('C3','C3')">
+                <span class="dd-item-icon" style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:0.75rem;color:var(--purple)">C3</span>
+                <span style="flex:1">C3 Grading</span>
                 <span class="dd-item-badge" style="background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.3);">Registry</span>
                 <i class="fas fa-check dd-item-check"></i>
               </button>
@@ -3027,8 +3027,8 @@ ${getCartScript()}
 
 <script>
 const GRADED_CARDS = ${gradedJson};
-const graderClass = { PSA:'tag-psa', CGC:'tag-cgc' };
-const graderColor = { PSA:'#4d8cff', CGC:'#A66BFF' };
+const graderClass = { PSA:'tag-psa', C3:'tag-c3' };
+const graderColor = { PSA:'#4d8cff', C3:'#A66BFF' };
 const gameLabel   = { pokemon:'Pokémon', yugioh:'Yu-Gi-Oh!', mtg:'MTG' };
 const gameBadge   = { pokemon:'badge-pokemon', yugioh:'badge-yugioh', mtg:'badge-mtg' };
 
@@ -3232,7 +3232,7 @@ function filterGraded() {
   const graderParam   = p.get('grader');
   const gameParam     = p.get('game');
   const mingradeParam = p.get('mingrade');
-  if (graderParam && ['PSA','CGC'].includes(graderParam)) {
+  if (graderParam && ['PSA','C3'].includes(graderParam)) {
     gPickGrader(graderParam, graderParam);
     return;
   }
@@ -3403,7 +3403,7 @@ ${getNav('contact')}
               {q:'Do you ship internationally?', a:'Yes! We ship worldwide with full tracking.'},
               {q:'How do you grade condition?', a:'We use industry-standard TCG grading: NM, LP, MP, VG, HP.'},
               {q:'Can I sell my cards to you?', a:'Yes! Submit an inquiry with details and we\'ll make an offer.'},
-              {q:'Are your graded cards authentic?', a:'100%. All slabs are from PSA or CGC — no counterfeits.'},
+              {q:'Are your graded cards authentic?', a:'100%. All slabs are from PSA or C3 — no counterfeits.'},
             ].map(f => `
             <details style="border:1px solid rgba(216,179,90,0.12);border-radius:10px;overflow:hidden">
               <summary style="padding:0.85rem 1rem;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.9rem;color:var(--text-main);list-style:none;display:flex;justify-content:space-between;align-items:center">
