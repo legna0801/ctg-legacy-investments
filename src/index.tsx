@@ -1150,9 +1150,14 @@ function getNav(active: string) {
 
       <!-- TCG Cards Dropdown -->
       <div class="nav-dropdown" id="dd-tcg">
-        <button class="nav-dropdown-btn ${active === 'tcg' ? 'active' : ''}" onclick="toggleNavDD('dd-tcg')" aria-haspopup="true">
-          TCG Cards <i class="fas fa-chevron-down nav-dd-arrow"></i>
-        </button>
+        <div style="display:flex;align-items:center">
+          <a href="/tcg-cards" class="nav-dropdown-btn ${active === 'tcg' ? 'active' : ''}" style="text-decoration:none;border-radius:6px 0 0 6px;padding-right:0.35rem">
+            TCG Cards
+          </a>
+          <button onclick="toggleNavDD('dd-tcg')" aria-haspopup="true" style="background:none;border:none;cursor:pointer;padding:0.5rem 0.6rem 0.5rem 0.2rem;color:var(--silver);border-radius:0 6px 6px 0;transition:all 0.25s;line-height:1" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--silver)'">
+            <i class="fas fa-chevron-down nav-dd-arrow" style="font-size:0.7rem"></i>
+          </button>
+        </div>
         <div class="nav-dropdown-panel">
           <div class="nav-dd-section">Browse By Game</div>
           <a href="/tcg-cards?game=pokemon" class="nav-dd-item">
