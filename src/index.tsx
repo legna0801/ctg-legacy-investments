@@ -1138,7 +1138,6 @@ function getNav(active: string) {
 <nav class="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-brand">
-      <img src="https://www.genspark.ai/api/files/s/OmpL2UqN" alt="CTG Logo" />
       <div class="nav-brand-text">
         <span class="nav-brand-ctg">CTG Legacy</span>
         <span class="nav-brand-sub">Investments, LLC</span>
@@ -1466,7 +1465,7 @@ ${getNav('home')}
 
     <!-- Logo focal point -->
     <div style="position:relative;margin-bottom:2.5rem;animation:pulse-glow 3s ease-in-out infinite" class="holo-border" style="border-radius:24px">
-      <img src="https://www.genspark.ai/api/files/s/OmpL2UqN" alt="CTG Legacy Investments" style="
+      <img src="/static/ctg-logo.png" alt="CTG Legacy Investments" style="
         width: clamp(220px, 35vw, 380px);
         height: clamp(220px, 35vw, 380px);
         object-fit: cover;
