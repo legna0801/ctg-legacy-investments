@@ -1451,22 +1451,21 @@ ${getNav('home')}
   ">
     <!-- Background glow rays -->
     <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
-      <div style="position:absolute;top:50%;left:50%;width:800px;height:800px;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(31,91,255,0.12) 0%,transparent 70%);border-radius:50%"></div>
-      <div style="position:absolute;top:30%;right:10%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(216,179,90,0.08) 0%,transparent 70%);border-radius:50%"></div>
-      <div style="position:absolute;bottom:20%;left:10%;width:350px;height:350px;background:radial-gradient(ellipse,rgba(166,107,255,0.07) 0%,transparent 70%);border-radius:50%"></div>
-      <!-- Diagonal light streaks -->
-      <div style="position:absolute;top:0;left:20%;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(76,203,255,0.15),transparent);transform:skewX(-15deg)"></div>
-      <div style="position:absolute;top:0;right:30%;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(216,179,90,0.1),transparent);transform:skewX(10deg)"></div>
+      <div style="position:absolute;top:50%;left:50%;width:900px;height:900px;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(31,91,255,0.1) 0%,transparent 70%);border-radius:50%"></div>
+      <div style="position:absolute;top:25%;right:8%;width:420px;height:420px;background:radial-gradient(ellipse,rgba(216,179,90,0.07) 0%,transparent 70%);border-radius:50%"></div>
+      <div style="position:absolute;bottom:15%;left:8%;width:360px;height:360px;background:radial-gradient(ellipse,rgba(166,107,255,0.06) 0%,transparent 70%);border-radius:50%"></div>
+      <div style="position:absolute;top:0;left:20%;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(76,203,255,0.12),transparent);transform:skewX(-15deg)"></div>
+      <div style="position:absolute;top:0;right:30%;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(216,179,90,0.08),transparent);transform:skewX(10deg)"></div>
     </div>
 
     <!-- Floating particles -->
     <div id="particles-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden"></div>
 
-    <!-- Logo focal point -->
-    <div style="position:relative;margin-bottom:2.5rem;animation:pulse-glow 3s ease-in-out infinite" class="holo-border" style="border-radius:24px">
+    <!-- Logo -->
+    <div style="position:relative;margin-bottom:2.5rem;animation:pulse-glow 3s ease-in-out infinite;border-radius:24px" class="holo-border">
       <img src="/static/ctg-logo.png" alt="CTG Legacy Investments" style="
-        width: clamp(220px, 35vw, 380px);
-        height: clamp(220px, 35vw, 380px);
+        width: clamp(200px, 30vw, 340px);
+        height: clamp(200px, 30vw, 340px);
         object-fit: cover;
         border-radius: 24px;
         display: block;
@@ -1474,71 +1473,190 @@ ${getNav('home')}
       " />
     </div>
 
-    <!-- Brand title -->
-    <div style="margin-bottom:0.5rem">
-      <h1 style="
-        font-family:'Orbitron',sans-serif;
-        font-weight:900;
-        font-size:clamp(2rem,6vw,4rem);
-        letter-spacing:0.1em;
-        text-transform:uppercase;
-        line-height:1;
-        margin-bottom:0.25rem;
-      " class="shimmer-text">CTG Legacy Investments</h1>
-      <div style="font-family:'Rajdhani',sans-serif;font-size:clamp(0.85rem,2vw,1.1rem);letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-top:0.5rem">
-        LLC &nbsp;|&nbsp; Est. 2026
-      </div>
-    </div>
+    <!-- Headline -->
+    <h1 style="
+      font-family:'Orbitron',sans-serif;
+      font-weight:900;
+      font-size:clamp(1.8rem,5.5vw,3.8rem);
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      line-height:1;
+      margin:0 0 0.6rem;
+    " class="shimmer-text">CTG Legacy Investments</h1>
+
+    <!-- LLC | EST. 2026 -->
+    <div style="
+      font-family:'Rajdhani',sans-serif;
+      font-size:clamp(0.75rem,1.6vw,1rem);
+      font-weight:600;
+      letter-spacing:0.4em;
+      text-transform:uppercase;
+      color:var(--gold-dim);
+      margin-bottom:2rem;
+    ">LLC &nbsp;|&nbsp; EST. 2026</div>
+
+    <!-- Gold divider -->
+    <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 1.75rem"></div>
+
+    <!-- Subheadline -->
+    <p style="
+      font-family:'Rajdhani',sans-serif;
+      font-weight:700;
+      font-size:clamp(1rem,2.2vw,1.35rem);
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--gold-light);
+      margin:0 0 1.25rem;
+    ">Premium Sealed Products &amp; Graded Collectibles</p>
+
+    <!-- Description -->
+    <p style="
+      max-width:560px;
+      font-size:clamp(0.88rem,1.6vw,1.05rem);
+      color:var(--text-muted);
+      line-height:1.8;
+      margin:0 auto 2rem;
+      font-weight:300;
+    ">Your premier destination for factory-sealed booster packs and boxes, alongside investment-grade graded cards from <span style="color:var(--text-main);font-weight:400">Pokémon, Yu-Gi-Oh!, and Magic: The Gathering.</span></p>
 
     <!-- Tagline -->
-    <p style="max-width:580px;font-size:clamp(0.95rem,2vw,1.15rem);color:var(--text-muted);line-height:1.7;margin:1.5rem auto 2.5rem;font-weight:300">
-      Your premier destination for <span style="color:var(--gold-light);font-weight:600">investment-grade trading cards</span>. Raw singles & professionally graded collectibles — Pokémon, Yu-Gi-Oh!, and Magic: The Gathering.
-    </p>
-
-    <!-- Hero Tagline -->
-    <p style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1rem,2.5vw,1.5rem);letter-spacing:0.08em;text-transform:uppercase;color:var(--text-main);margin:0 auto 2rem;text-align:center">
-      Collect. <span style="color:var(--gold-light)">Invest.</span> <span style="color:var(--cyan)">Dominate the Game.</span>
-    </p>
+    <p style="
+      font-family:'Orbitron',sans-serif;
+      font-weight:800;
+      font-size:clamp(0.85rem,2vw,1.2rem);
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      margin:0 auto 2.5rem;
+    "><span style="color:var(--text-main)">Collect.</span> <span style="color:var(--gold-light)">Invest.</span> <span style="color:var(--cyan)">Dominate the Game.</span></p>
 
     <!-- CTA Buttons -->
     <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:4rem">
-      <a href="/tcg-cards" class="btn-primary" style="text-decoration:none;font-size:1.05rem;padding:1rem 2.5rem">
-        <i class="fas fa-layer-group" style="margin-right:0.5rem"></i> Shop Now
+      <a href="/shop?cat=packs" class="btn-primary" style="text-decoration:none;font-size:1rem;padding:0.95rem 2.2rem">
+        <i class="fas fa-layer-group" style="margin-right:0.5rem"></i> Shop Sealed Packs
       </a>
-      <a href="/shop" class="btn-secondary" style="text-decoration:none;font-size:1.05rem;padding:1rem 2.5rem">
-        <i class="fas fa-boxes" style="margin-right:0.5rem"></i> View Inventory
+      <a href="/shop?cat=boxes" class="btn-secondary" style="text-decoration:none;font-size:1rem;padding:0.95rem 2.2rem">
+        <i class="fas fa-box" style="margin-right:0.5rem"></i> Shop Booster Boxes
       </a>
-      <a href="/graded-cards" class="btn-secondary" style="font-size:1.05rem;padding:1rem 2.5rem">
-        <i class="fas fa-award" style="margin-right:0.5rem"></i> Graded Collection
+      <a href="/graded-cards" class="btn-secondary" style="text-decoration:none;font-size:1rem;padding:0.95rem 2.2rem">
+        <i class="fas fa-award" style="margin-right:0.5rem"></i> Shop Graded Cards
       </a>
     </div>
 
     <!-- Scroll indicator -->
-    <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;opacity:0.5">
-      <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">Scroll</span>
-      <div style="width:1px;height:40px;background:linear-gradient(180deg,rgba(216,179,90,0.6),transparent)"></div>
+    <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;opacity:0.4">
+      <span style="font-family:'Rajdhani',sans-serif;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted)">Scroll</span>
+      <div style="width:1px;height:36px;background:linear-gradient(180deg,rgba(216,179,90,0.6),transparent)"></div>
     </div>
   </section>
 
-  <!-- STATS STRIP -->
-  <section style="background:linear-gradient(135deg,rgba(14,18,48,0.9),rgba(10,13,31,0.95));border-top:1px solid rgba(216,179,90,0.15);border-bottom:1px solid rgba(216,179,90,0.15);padding:2rem 2rem">
-    <div class="container" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center">
-      <div style="padding:1rem">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:2rem;color:var(--gold-light)">500+</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem">Cards In Stock</div>
+  <!-- TRUST STRIP -->
+  <section style="background:linear-gradient(135deg,rgba(14,18,48,0.97),rgba(10,13,31,0.98));border-top:1px solid rgba(216,179,90,0.2);border-bottom:1px solid rgba(216,179,90,0.2);padding:1.5rem 2rem">
+    <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0;text-align:center">
+      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
+        <i class="fas fa-shield-alt" style="color:var(--gold-light);font-size:1.1rem"></i>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">100% Authentic Products</span>
       </div>
-      <div style="padding:1rem;border-left:1px solid rgba(216,179,90,0.1)">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:2rem;color:var(--cyan)">3</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem">TCG Games</div>
+      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
+        <i class="fas fa-box-open" style="color:var(--cyan);font-size:1.1rem"></i>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Factory Sealed Inventory</span>
       </div>
-      <div style="padding:1rem;border-left:1px solid rgba(216,179,90,0.1)">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:2rem;color:var(--purple)">100+</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem">Graded Slabs</div>
+      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
+        <i class="fas fa-award" style="color:var(--purple);font-size:1.1rem"></i>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Verified Graded Cards</span>
       </div>
-      <div style="padding:1rem;border-left:1px solid rgba(216,179,90,0.1)">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:2rem;color:var(--teal)">PSA/C3</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem">Graders</div>
+      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem">
+        <i class="fas fa-shipping-fast" style="color:var(--teal);font-size:1.1rem"></i>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Fast &amp; Secure Shipping</span>
       </div>
+    </div>
+  </section>
+
+  <!-- MAIN SECTIONS: SEALED + GRADED + NEW DROPS -->
+  <section class="section container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="section-sub">Browse Our Inventory</div>
+      <h2 class="section-title">Shop Collection</h2>
+      <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.75rem">Browse sealed inventory and high-value graded cards.</p>
+      <div class="gold-line" style="margin:1rem auto 0"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem">
+
+      <!-- Sealed Products -->
+      <a href="/shop" style="text-decoration:none">
+        <div style="
+          background:linear-gradient(135deg,rgba(76,203,255,0.05),rgba(14,18,48,0.95));
+          border:1px solid rgba(76,203,255,0.2);
+          border-radius:20px;
+          padding:2.5rem 2rem;
+          text-align:center;
+          transition:all 0.3s;
+          cursor:pointer;
+          height:100%;
+          box-sizing:border-box;
+        " onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(76,203,255,0.5)';this.style.boxShadow='0 24px 60px rgba(0,0,0,0.45),0 0 35px rgba(76,203,255,0.1)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(76,203,255,0.2)';this.style.boxShadow=''">
+          <div style="font-size:3.5rem;margin-bottom:1.25rem">📦</div>
+          <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:0.1em;color:var(--cyan);margin-bottom:0.75rem">Sealed Products</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem">Brand new, factory-sealed booster packs and boxes from the most sought-after sets.</p>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;margin-bottom:1.5rem">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(76,203,255,0.1);color:var(--cyan);border:1px solid rgba(76,203,255,0.3);padding:3px 10px;border-radius:4px">Booster Boxes</span>
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(76,203,255,0.1);color:var(--cyan);border:1px solid rgba(76,203,255,0.3);padding:3px 10px;border-radius:4px">Booster Packs</span>
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(76,203,255,0.1);color:var(--cyan);border:1px solid rgba(76,203,255,0.3);padding:3px 10px;border-radius:4px">Single Packs</span>
+          </div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan)">Browse Sealed →</div>
+        </div>
+      </a>
+
+      <!-- Graded Cards -->
+      <a href="/graded-cards" style="text-decoration:none">
+        <div style="
+          background:linear-gradient(135deg,rgba(216,179,90,0.07),rgba(14,18,48,0.95));
+          border:1px solid rgba(216,179,90,0.25);
+          border-radius:20px;
+          padding:2.5rem 2rem;
+          text-align:center;
+          transition:all 0.3s;
+          cursor:pointer;
+          height:100%;
+          box-sizing:border-box;
+          box-shadow:0 0 40px rgba(216,179,90,0.06);
+        " onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(216,179,90,0.6)';this.style.boxShadow='0 24px 60px rgba(0,0,0,0.45),0 0 45px rgba(216,179,90,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(216,179,90,0.25)';this.style.boxShadow='0 0 40px rgba(216,179,90,0.06)'">
+          <div style="font-size:3.5rem;margin-bottom:1.25rem">💎</div>
+          <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:0.1em;color:var(--gold-light);margin-bottom:0.75rem">Graded Cards</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem">Professionally graded cards (PSA &amp; C3) curated for serious collectors and investors.</p>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;margin-bottom:1.5rem">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(31,91,255,0.15);color:#4d8cff;border:1px solid rgba(31,91,255,0.35);padding:3px 10px;border-radius:4px">PSA</span>
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.35);padding:3px 10px;border-radius:4px">C3</span>
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(216,179,90,0.15);color:var(--gold-light);border:1px solid rgba(216,179,90,0.35);padding:3px 10px;border-radius:4px">Investment Grade</span>
+          </div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light)">Browse Graded →</div>
+        </div>
+      </a>
+
+      <!-- New Drops -->
+      <a href="/shop" style="text-decoration:none">
+        <div style="
+          background:linear-gradient(135deg,rgba(216,74,58,0.06),rgba(14,18,48,0.95));
+          border:1px solid rgba(216,74,58,0.2);
+          border-radius:20px;
+          padding:2.5rem 2rem;
+          text-align:center;
+          transition:all 0.3s;
+          cursor:pointer;
+          height:100%;
+          box-sizing:border-box;
+        " onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(216,74,58,0.5)';this.style.boxShadow='0 24px 60px rgba(0,0,0,0.45),0 0 35px rgba(216,74,58,0.1)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(216,74,58,0.2)';this.style.boxShadow=''">
+          <div style="font-size:3.5rem;margin-bottom:1.25rem">🔥</div>
+          <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:0.1em;color:var(--red);margin-bottom:0.75rem">New Drops</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem">Fresh inventory added regularly. Limited quantities available — don't miss out.</p>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;margin-bottom:1.5rem">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(216,74,58,0.12);color:var(--red);border:1px solid rgba(216,74,58,0.3);padding:3px 10px;border-radius:4px">🔴 Hot</span>
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(76,203,255,0.1);color:var(--cyan);border:1px solid rgba(76,203,255,0.3);padding:3px 10px;border-radius:4px">NEW</span>
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3);padding:3px 10px;border-radius:4px">Limited</span>
+          </div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--red)">Shop New Drops →</div>
+        </div>
+      </a>
+
     </div>
   </section>
 
