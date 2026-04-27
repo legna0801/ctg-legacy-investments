@@ -3305,38 +3305,41 @@ async function submitContact(e) {
   const form = document.getElementById('contact-form');
   const data = Object.fromEntries(new FormData(form));
 
-  // Build a mailto: link so submissions go directly to CTG email
-  const subject = encodeURIComponent('CTG Legacy Inquiry — ' + (data.type || 'General') + (data.game ? ' [' + data.game + ']' : ''));
-  const body = encodeURIComponent(
-    'Name: ' + (data.firstName || '') + ' ' + (data.lastName || '') + '\n' +
-    'Email: ' + (data.email || '') + '\n' +
-    'Phone: ' + (data.phone || 'N/A') + '\n' +
-    'Inquiry Type: ' + (data.type || 'N/A') + '\n' +
-    'Game: ' + (data.game || 'N/A') + '\n' +
-    'Card / Details: ' + (data.cardName || 'N/A') + '\n\n' +
-    'Message:\n' + (data.message || '')
-  );
-  const mailtoLink = 'mailto:ctg.investments2026@gmail.com?subject=' + subject + '&body=' + body;
+  // Build a human-readable subject for Formspree
+  const subject = 'CTG Legacy Inquiry — ' + (data.type || 'General') + (data.game ? ' [' + data.game + ']' : '');
 
   try {
-    // Also notify the API endpoint (best-effort)
-    await fetch('/api/contact', {
+    const res = await fetch('https://formspree.io/f/xdayrglj', {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(data)
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: subject,
+        name: (data.firstName || '') + ' ' + (data.lastName || ''),
+        email: data.email || '',
+        phone: data.phone || 'N/A',
+        inquiry_type: data.type || 'N/A',
+        game: data.game || 'N/A',
+        card_details: data.cardName || 'N/A',
+        message: data.message || ''
+      })
     });
-  } catch(err) { /* silent */ }
 
-  // Open the user's email client pre-filled
-  window.location.href = mailtoLink;
-
-  // Show success state
-  setTimeout(() => {
-    form.style.display = 'none';
-    document.getElementById('success-text').textContent = "Your email client has opened with your inquiry pre-filled. Send it to complete your request — we'll get back to you within 24 hours.";
-    document.getElementById('success-msg').style.display = 'block';
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('success-text').textContent = "Inquiry received! We'll get back to you within 24 hours.";
+      document.getElementById('success-msg').style.display = 'block';
+    } else {
+      const json = await res.json().catch(() => ({}));
+      const errMsg = (json.errors && json.errors.map(err => err.message).join(', ')) || 'Submission failed. Please email us directly at ctg.investments2026@gmail.com';
+      alert(errMsg);
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem"></i> Send Inquiry';
+    }
+  } catch(err) {
+    alert('Network error. Please email us directly at ctg.investments2026@gmail.com');
     btn.disabled = false;
-  }, 400);
+    btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem"></i> Send Inquiry';
+  }
 }
 
 function resetForm() {
