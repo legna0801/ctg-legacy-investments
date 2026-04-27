@@ -427,6 +427,9 @@ function getHead(title: string) {
       font-weight: 600;
       font-size: 0.92rem;
       letter-spacing: 0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      min-width: 0;
     }
     .dd-game-row-link:hover { color: var(--gold-light); }
     .dd-game-chevron {
@@ -1288,7 +1291,7 @@ function getNav(active: string) {
           <!-- MTG row -->
           <div class="dd-game-row">
             <a href="/tcg-cards?game=mtg" class="dd-game-row-link">
-              <span>🔮</span> Magic: The Gathering
+              <span>🔮</span> Magic: TG
               <span class="dd-badge ddb-mtg" style="margin-left:0.25rem">MTG</span>
             </a>
             <button class="dd-game-chevron" onclick="toggleDDSub('sub-mtg',this)" title="Show product types">
