@@ -1933,9 +1933,9 @@ ${getNav('home')}
           <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red)">Live Sales</span>
         </div>
         <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1.4rem,3vw,2rem);color:var(--text-main);letter-spacing:0.05em;margin-bottom:0.75rem">Rip &amp; Ship<br><span style="color:var(--purple)">Live Sales</span></h2>
-        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem">Join us live on <strong style="color:var(--purple)">Whatnot</strong> for real-time pack openings, auctions, and exclusive drops. Watch the pulls happen live and buy the cards you want on the spot. Find us at <a href="https://www.whatnot.com/ctglegacyinvestments" target="_blank" rel="noopener" style="color:var(--purple);text-decoration:underline;text-underline-offset:3px">whatnot.com/ctglegacyinvestments</a>.</p>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem">Join us live on <strong style="color:var(--purple)">Whatnot</strong> for real-time pack openings, auctions, and exclusive drops. Watch the pulls happen live and buy the cards you want on the spot. Find us at <a href="https://www.whatnot.com/user/ctglegacyinvestments" target="_blank" rel="noopener" style="color:var(--purple);text-decoration:underline;text-underline-offset:3px">whatnot.com/ctglegacyinvestments</a>.</p>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-          <a href="https://www.whatnot.com/ctglegacyinvestments" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;font-size:0.95rem;padding:0.85rem 2rem;background:linear-gradient(135deg,var(--purple),#7c3aff);box-shadow:0 0 20px rgba(166,107,255,0.35)">
+          <a href="https://www.whatnot.com/user/ctglegacyinvestments" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;font-size:0.95rem;padding:0.85rem 2rem;background:linear-gradient(135deg,var(--purple),#7c3aff);box-shadow:0 0 20px rgba(166,107,255,0.35)">
             <i class="fas fa-play-circle" style="margin-right:0.5rem"></i> Watch on Whatnot
           </a>
           <a href="/contact" class="btn-secondary" style="font-size:0.95rem;padding:0.85rem 1.75rem">
