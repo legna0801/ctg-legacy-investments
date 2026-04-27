@@ -1427,7 +1427,7 @@ function getFooter() {
     <div>
       <div class="footer-heading">Contact</div>
       <ul class="footer-links" style="gap:0.75rem;">
-        <li style="color:var(--text-muted);font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start;"><i class="fas fa-envelope" style="color:var(--gold-light);margin-top:2px;font-size:0.8rem;flex-shrink:0"></i><span>info@ctglegacy.com</span></li>
+        <li style="color:var(--text-muted);font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start;"><i class="fas fa-envelope" style="color:var(--gold-light);margin-top:2px;font-size:0.8rem;flex-shrink:0"></i><a href="mailto:ctg.investments2026@gmail.com" style="color:var(--text-muted);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'">ctg.investments2026@gmail.com</a></li>
         <li style="color:var(--text-muted);font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start;"><i class="fas fa-map-marker-alt" style="color:var(--gold-light);margin-top:2px;font-size:0.8rem;flex-shrink:0"></i><span>United States</span></li>
         <li style="color:var(--text-muted);font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start;"><i class="fas fa-clock" style="color:var(--gold-light);margin-top:2px;font-size:0.8rem;flex-shrink:0"></i><span>Mon–Sat: 9AM–7PM EST</span></li>
       </ul>
@@ -3225,7 +3225,7 @@ ${getNav('contact')}
               </div>
               <div>
                 <div style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Email</div>
-                <div style="color:var(--text-main);font-size:0.9rem">info@ctglegacy.com</div>
+                <a href="mailto:ctg.investments2026@gmail.com" style="color:var(--gold-light);font-size:0.9rem;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--gold-light)'">ctg.investments2026@gmail.com</a>
               </div>
             </div>
             <div style="display:flex;gap:1rem;align-items:flex-start">
@@ -3305,23 +3305,38 @@ async function submitContact(e) {
   const form = document.getElementById('contact-form');
   const data = Object.fromEntries(new FormData(form));
 
+  // Build a mailto: link so submissions go directly to CTG email
+  const subject = encodeURIComponent('CTG Legacy Inquiry — ' + (data.type || 'General') + (data.game ? ' [' + data.game + ']' : ''));
+  const body = encodeURIComponent(
+    'Name: ' + (data.firstName || '') + ' ' + (data.lastName || '') + '\n' +
+    'Email: ' + (data.email || '') + '\n' +
+    'Phone: ' + (data.phone || 'N/A') + '\n' +
+    'Inquiry Type: ' + (data.type || 'N/A') + '\n' +
+    'Game: ' + (data.game || 'N/A') + '\n' +
+    'Card / Details: ' + (data.cardName || 'N/A') + '\n\n' +
+    'Message:\n' + (data.message || '')
+  );
+  const mailtoLink = 'mailto:ctg.investments2026@gmail.com?subject=' + subject + '&body=' + body;
+
   try {
-    const res = await fetch('/api/contact', {
+    // Also notify the API endpoint (best-effort)
+    await fetch('/api/contact', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(data)
     });
-    const json = await res.json();
-    if(json.success) {
-      form.style.display = 'none';
-      document.getElementById('success-text').textContent = json.message;
-      document.getElementById('success-msg').style.display = 'block';
-    }
-  } catch(err) {
-    // Fallback for demo
+  } catch(err) { /* silent */ }
+
+  // Open the user's email client pre-filled
+  window.location.href = mailtoLink;
+
+  // Show success state
+  setTimeout(() => {
     form.style.display = 'none';
+    document.getElementById('success-text').textContent = "Your email client has opened with your inquiry pre-filled. Send it to complete your request — we'll get back to you within 24 hours.";
     document.getElementById('success-msg').style.display = 'block';
-  }
+    btn.disabled = false;
+  }, 400);
 }
 
 function resetForm() {
