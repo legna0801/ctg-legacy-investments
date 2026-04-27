@@ -404,6 +404,78 @@ function getHead(title: string) {
 
     .ddb-c3      { background: rgba(166,107,255,0.18); color: var(--purple); border: 1px solid rgba(166,107,255,0.3); }
 
+    /* ── NAV GAME SUB-ROWS ── */
+    .dd-game-row {
+      display: flex;
+      align-items: center;
+      padding: 0.45rem 1rem;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: background 0.18s;
+      border-radius: 6px;
+      margin: 1px 4px;
+    }
+    .dd-game-row:hover { background: rgba(216,179,90,0.08); }
+    .dd-game-row-link {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+    }
+    .dd-game-row-link:hover { color: var(--gold-light); }
+    .dd-game-chevron {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .dd-game-chevron:hover { color: var(--gold-light); background: rgba(216,179,90,0.1); }
+    .dd-game-chevron.open { transform: rotate(180deg); color: var(--gold-light); }
+    .dd-sub-panel {
+      display: none;
+      flex-direction: column;
+      background: rgba(5,8,24,0.6);
+      border-left: 2px solid rgba(216,179,90,0.2);
+      margin: 0 4px 2px 28px;
+      border-radius: 0 6px 6px 0;
+      overflow: hidden;
+    }
+    .dd-sub-panel.open { display: flex; }
+    .dd-sub-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.85rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      transition: all 0.18s;
+    }
+    .dd-sub-item:hover { color: var(--gold-light); background: rgba(216,179,90,0.07); }
+    .dd-sub-item span.sub-badge {
+      margin-left: auto;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
     /* ── MOBILE ACCORDION ── */
     .mob-accordion {
       display: flex;
@@ -1156,33 +1228,88 @@ function getNav(active: string) {
             <i class="fas fa-chevron-down nav-dd-arrow" style="font-size:0.7rem"></i>
           </button>
         </div>
-        <div class="nav-dropdown-panel">
+        <div class="nav-dropdown-panel" style="min-width:240px;padding:0.5rem 0">
           <div class="nav-dd-section">Browse By Game</div>
-          <a href="/tcg-cards?game=pokemon" class="nav-dd-item">
-            <span class="dd-emoji">⚡</span> Pokémon
-            <span class="dd-badge ddb-pokemon">TCG</span>
-          </a>
-          <a href="/tcg-cards?game=yugioh" class="nav-dd-item">
-            <span class="dd-emoji">🐉</span> Yu-Gi-Oh!
-            <span class="dd-badge ddb-yugioh">OCG</span>
-          </a>
-          <a href="/tcg-cards?game=mtg" class="nav-dd-item">
-            <span class="dd-emoji">🔮</span> Magic: The Gathering
-            <span class="dd-badge ddb-mtg">MTG</span>
-          </a>
-          <div class="nav-dd-section">Pokémon Shop By Type</div>
-          <a href="/shop?cat=boxes" class="nav-dd-item">
-            <span class="dd-emoji">📦</span> Booster Boxes
-            <span class="dd-badge ddb-pokemon">SEALED</span>
-          </a>
-          <a href="/shop?cat=packs" class="nav-dd-item">
-            <span class="dd-emoji">🎴</span> Booster Packs
-            <span class="dd-badge ddb-pokemon">PACK</span>
-          </a>
-          <a href="/shop?cat=singles" class="nav-dd-item">
-            <span class="dd-emoji">🃏</span> Single Packs
-            <span class="dd-badge ddb-pokemon">SINGLE</span>
-          </a>
+
+          <!-- Pokémon row -->
+          <div class="dd-game-row">
+            <a href="/tcg-cards?game=pokemon" class="dd-game-row-link">
+              <span>⚡</span> Pokémon
+              <span class="dd-badge ddb-pokemon" style="margin-left:0.25rem">TCG</span>
+            </a>
+            <button class="dd-game-chevron" onclick="toggleDDSub('sub-pokemon',this)" title="Show product types">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="dd-sub-panel" id="sub-pokemon">
+            <a href="/shop?cat=boxes" class="dd-sub-item">
+              <span>📦</span> Booster Boxes
+              <span class="sub-badge" style="background:rgba(76,203,255,0.15);color:var(--cyan);border:1px solid rgba(76,203,255,0.3)">SEALED</span>
+            </a>
+            <a href="/shop?cat=elite" class="dd-sub-item">
+              <span>🏆</span> Elite Trainer Boxes
+              <span class="sub-badge" style="background:rgba(216,179,90,0.18);color:var(--gold-light);border:1px solid rgba(216,179,90,0.4)">ELITE</span>
+            </a>
+            <a href="/shop?cat=collector" class="dd-sub-item">
+              <span>💎</span> Collector Boxes
+              <span class="sub-badge" style="background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.35)">COLLECTOR</span>
+            </a>
+            <a href="/shop?cat=packs" class="dd-sub-item">
+              <span>🎴</span> Booster Packs
+              <span class="sub-badge" style="background:rgba(255,199,0,0.12);color:#FFD700;border:1px solid rgba(255,199,0,0.3)">PACK</span>
+            </a>
+          </div>
+
+          <!-- Yu-Gi-Oh! row -->
+          <div class="dd-game-row">
+            <a href="/tcg-cards?game=yugioh" class="dd-game-row-link">
+              <span>🐉</span> Yu-Gi-Oh!
+              <span class="dd-badge ddb-yugioh" style="margin-left:0.25rem">OCG</span>
+            </a>
+            <button class="dd-game-chevron" onclick="toggleDDSub('sub-yugioh',this)" title="Show product types">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="dd-sub-panel" id="sub-yugioh">
+            <a href="/shop?cat=boxes&game=yugioh" class="dd-sub-item">
+              <span>📦</span> Booster Boxes
+              <span class="sub-badge" style="background:rgba(76,203,255,0.15);color:var(--cyan);border:1px solid rgba(76,203,255,0.3)">SEALED</span>
+            </a>
+            <a href="/shop?cat=packs&game=yugioh" class="dd-sub-item">
+              <span>🎴</span> Booster Packs
+              <span class="sub-badge" style="background:rgba(70,199,194,0.12);color:var(--teal);border:1px solid rgba(70,199,194,0.3)">PACK</span>
+            </a>
+            <a href="/shop?cat=singles&game=yugioh" class="dd-sub-item">
+              <span>🃏</span> Single Packs
+              <span class="sub-badge" style="background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3)">SINGLE</span>
+            </a>
+          </div>
+
+          <!-- MTG row -->
+          <div class="dd-game-row">
+            <a href="/tcg-cards?game=mtg" class="dd-game-row-link">
+              <span>🔮</span> Magic: The Gathering
+              <span class="dd-badge ddb-mtg" style="margin-left:0.25rem">MTG</span>
+            </a>
+            <button class="dd-game-chevron" onclick="toggleDDSub('sub-mtg',this)" title="Show product types">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="dd-sub-panel" id="sub-mtg">
+            <a href="/shop?cat=boxes&game=mtg" class="dd-sub-item">
+              <span>📦</span> Booster Boxes
+              <span class="sub-badge" style="background:rgba(76,203,255,0.15);color:var(--cyan);border:1px solid rgba(76,203,255,0.3)">SEALED</span>
+            </a>
+            <a href="/shop?cat=packs&game=mtg" class="dd-sub-item">
+              <span>🎴</span> Booster Packs
+              <span class="sub-badge" style="background:rgba(166,107,255,0.12);color:var(--purple);border:1px solid rgba(166,107,255,0.3)">PACK</span>
+            </a>
+            <a href="/shop?cat=singles&game=mtg" class="dd-sub-item">
+              <span>🃏</span> Single Packs
+              <span class="sub-badge" style="background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3)">SINGLE</span>
+            </a>
+          </div>
+
         </div>
       </div>
 
@@ -1241,13 +1368,47 @@ function getNav(active: string) {
       <i class="fas fa-chevron-down mob-arrow"></i>
     </button>
     <div class="mob-accordion-panel" id="mob-panel-tcg">
-      <a href="/tcg-cards?game=pokemon" class="mob-sub-link"><span>⚡</span> Pokémon</a>
-      <a href="/tcg-cards?game=yugioh"  class="mob-sub-link"><span>🐉</span> Yu-Gi-Oh!</a>
-      <a href="/tcg-cards?game=mtg"     class="mob-sub-link"><span>🔮</span> Magic: The Gathering</a>
-      <div style="font-family:'Rajdhani',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);padding:0.5rem 1rem 0.15rem;border-top:1px solid rgba(216,179,90,0.1);margin-top:0.25rem">Pokémon Shop By Type</div>
-      <a href="/shop?cat=boxes"   class="mob-sub-link" style="padding-left:2rem"><span>📦</span> Booster Boxes</a>
-      <a href="/shop?cat=packs"   class="mob-sub-link" style="padding-left:2rem"><span>🎴</span> Booster Packs</a>
-      <a href="/shop?cat=singles" class="mob-sub-link" style="padding-left:2rem"><span>🃏</span> Single Packs</a>
+
+      <!-- Pokémon + sub -->
+      <div style="display:flex;align-items:center">
+        <a href="/tcg-cards?game=pokemon" class="mob-sub-link" style="flex:1"><span>⚡</span> Pokémon</a>
+        <button onclick="toggleMobSub('mob-sub-pokemon',this)" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0.4rem 0.75rem;font-size:0.65rem;transition:all 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+      <div id="mob-sub-pokemon" style="display:none;flex-direction:column;border-left:2px solid rgba(255,199,0,0.2);margin-left:1.5rem">
+        <a href="/shop?cat=boxes"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
+        <a href="/shop?cat=elite"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🏆</span> Elite Trainer Boxes</a>
+        <a href="/shop?cat=collector" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>💎</span> Collector Boxes</a>
+        <a href="/shop?cat=packs"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
+      </div>
+
+      <!-- Yu-Gi-Oh! + sub -->
+      <div style="display:flex;align-items:center">
+        <a href="/tcg-cards?game=yugioh" class="mob-sub-link" style="flex:1"><span>🐉</span> Yu-Gi-Oh!</a>
+        <button onclick="toggleMobSub('mob-sub-yugioh',this)" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0.4rem 0.75rem;font-size:0.65rem;transition:all 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+      <div id="mob-sub-yugioh" style="display:none;flex-direction:column;border-left:2px solid rgba(70,199,194,0.2);margin-left:1.5rem">
+        <a href="/shop?cat=boxes&game=yugioh"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
+        <a href="/shop?cat=packs&game=yugioh"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
+        <a href="/shop?cat=singles&game=yugioh" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🃏</span> Single Packs</a>
+      </div>
+
+      <!-- Magic + sub -->
+      <div style="display:flex;align-items:center">
+        <a href="/tcg-cards?game=mtg" class="mob-sub-link" style="flex:1"><span>🔮</span> Magic: The Gathering</a>
+        <button onclick="toggleMobSub('mob-sub-mtg',this)" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0.4rem 0.75rem;font-size:0.65rem;transition:all 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+      <div id="mob-sub-mtg" style="display:none;flex-direction:column;border-left:2px solid rgba(166,107,255,0.2);margin-left:1.5rem">
+        <a href="/shop?cat=boxes&game=mtg"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
+        <a href="/shop?cat=packs&game=mtg"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
+        <a href="/shop?cat=singles&game=mtg" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🃏</span> Single Packs</a>
+      </div>
+
     </div>
   </div>
 
@@ -1381,6 +1542,22 @@ function getCartScript() {
       d.classList.remove('open');
     });
     if (!isOpen) el.classList.add('open');
+  }
+  function toggleDDSub(panelId, chevronBtn) {
+    const panel = document.getElementById(panelId);
+    if (!panel) return;
+    const isOpen = panel.classList.contains('open');
+    // Close all other sub-panels and reset their chevrons
+    document.querySelectorAll('.dd-sub-panel.open').forEach(function(p) {
+      p.classList.remove('open');
+    });
+    document.querySelectorAll('.dd-game-chevron.open').forEach(function(b) {
+      b.classList.remove('open');
+    });
+    if (!isOpen) {
+      panel.classList.add('open');
+      if (chevronBtn) chevronBtn.classList.add('open');
+    }
   }
   // Close dropdowns when clicking outside
   document.addEventListener('click', function(e) {
@@ -2149,6 +2326,170 @@ ${getNav('shop')}
             <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
               <button class="btn-add-cart" style="flex:1" data-id="box4" onclick="addToCart('box4','Temporal Forces Box',129.99,'pokemon','📦')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
               <button onclick="addToCart('box4','Temporal Forces Box',129.99,'pokemon','📦');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══ ELITE TRAINER BOXES ══ -->
+      <div style="display:flex;align-items:center;gap:0.75rem;margin:2.5rem 0 1.5rem">
+        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--gold-light),var(--gold));border-radius:2px"></div>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Elite Trainer Boxes</h2>
+        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light)">— Pokémon Elite</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(216,179,90,0.15),rgba(14,18,48,0.95))">
+            <span>🏆</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(216,179,90,0.25);color:var(--gold-light);border:1px solid rgba(216,179,90,0.5);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">ELITE</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Scarlet &amp; Violet Elite Trainer Box</div>
+            <div class="product-set">Scarlet &amp; Violet Base · 9 Packs + Accessories</div>
+            <div class="product-price">$49.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="etb1" onclick="addToCart('etb1','S&V Elite Trainer Box',49.99,'pokemon','🏆')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('etb1','S&V Elite Trainer Box',49.99,'pokemon','🏆');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(216,179,90,0.15),rgba(14,18,48,0.95))">
+            <span>🏆</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(216,74,58,0.2);color:var(--red);border:1px solid rgba(216,74,58,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">🔴 HOT</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Obsidian Flames Elite Trainer Box</div>
+            <div class="product-set">Obsidian Flames · 9 Packs + Accessories</div>
+            <div class="product-price">$54.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="etb2" onclick="addToCart('etb2','Obsidian Flames ETB',54.99,'pokemon','🏆')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('etb2','Obsidian Flames ETB',54.99,'pokemon','🏆');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(216,179,90,0.15),rgba(14,18,48,0.95))">
+            <span>🏆</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(76,203,255,0.2);color:var(--cyan);border:1px solid rgba(76,203,255,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">NEW</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Twilight Masquerade Elite Trainer Box</div>
+            <div class="product-set">Twilight Masquerade · 9 Packs + Accessories</div>
+            <div class="product-price">$44.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="etb3" onclick="addToCart('etb3','Twilight Masquerade ETB',44.99,'pokemon','🏆')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('etb3','Twilight Masquerade ETB',44.99,'pokemon','🏆');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(216,179,90,0.15),rgba(14,18,48,0.95))">
+            <span>🏆</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(216,179,90,0.25);color:var(--gold-light);border:1px solid rgba(216,179,90,0.5);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">ELITE</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Temporal Forces Elite Trainer Box</div>
+            <div class="product-set">Temporal Forces · 9 Packs + Accessories</div>
+            <div class="product-price">$42.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="etb4" onclick="addToCart('etb4','Temporal Forces ETB',42.99,'pokemon','🏆')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('etb4','Temporal Forces ETB',42.99,'pokemon','🏆');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══ COLLECTOR BOXES ══ -->
+      <div style="display:flex;align-items:center;gap:0.75rem;margin:2.5rem 0 1.5rem">
+        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--purple),rgba(166,107,255,0.5));border-radius:2px"></div>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Collector Boxes</h2>
+        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple)">— Premium Collections</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.12),rgba(14,18,48,0.95))">
+            <span>💎</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(166,107,255,0.2);color:var(--purple);border:1px solid rgba(166,107,255,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">COLLECTOR</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Charizard ex Super Premium Collection</div>
+            <div class="product-set">Scarlet &amp; Violet Era · Promo + 11 Packs</div>
+            <div class="product-price">$79.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="cb1" onclick="addToCart('cb1','Charizard ex Super Premium Collection',79.99,'pokemon','💎')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('cb1','Charizard ex Super Premium Collection',79.99,'pokemon','💎');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.12),rgba(14,18,48,0.95))">
+            <span>💎</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(216,74,58,0.2);color:var(--red);border:1px solid rgba(216,74,58,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">🔴 HOT</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mew ex Premium Collection</div>
+            <div class="product-set">Pokémon 151 · Promo + 8 Packs</div>
+            <div class="product-price">$39.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="cb2" onclick="addToCart('cb2','Mew ex Premium Collection',39.99,'pokemon','💎')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('cb2','Mew ex Premium Collection',39.99,'pokemon','💎');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.12),rgba(14,18,48,0.95))">
+            <span>💎</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(76,203,255,0.2);color:var(--cyan);border:1px solid rgba(76,203,255,0.4);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">NEW</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Temporal Forces Collector Chest</div>
+            <div class="product-set">Temporal Forces · 6 Packs + Promo Cards</div>
+            <div class="product-price">$34.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="cb3" onclick="addToCart('cb3','Temporal Forces Collector Chest',34.99,'pokemon','💎')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('cb3','Temporal Forces Collector Chest',34.99,'pokemon','💎');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.12),rgba(14,18,48,0.95))">
+            <span>💎</span>
+            <span class="game-badge badge-pokemon">Pokémon</span>
+            <span style="position:absolute;top:10px;right:10px;background:rgba(216,179,90,0.25);color:var(--gold-light);border:1px solid rgba(216,179,90,0.5);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px">COLLECTOR</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Pikachu ex Super Premium Collection</div>
+            <div class="product-set">Scarlet &amp; Violet Era · Promo + 9 Packs</div>
+            <div class="product-price">$59.99</div>
+            <div class="product-condition">Condition: Factory Sealed</div>
+            <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+              <button class="btn-add-cart" style="flex:1" data-id="cb4" onclick="addToCart('cb4','Pikachu ex Super Premium Collection',59.99,'pokemon','💎')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button onclick="addToCart('cb4','Pikachu ex Super Premium Collection',59.99,'pokemon','💎');window.location.href='/checkout'" style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">Buy Now</button>
             </div>
           </div>
         </div>
