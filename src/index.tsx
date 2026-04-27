@@ -1092,13 +1092,23 @@ function getHead(title: string) {
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
-      .hamburger { display: flex; }
+      .hamburger { display: flex !important; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .rip-ship-grid { grid-template-columns: 1fr !important; gap: 2rem !important; padding: 2rem 1.5rem !important; }
     }
     @media (max-width: 600px) {
+      .nav-inner { padding: 0 1rem; }
       .footer-inner { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-      .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .container { padding: 0 1rem; }
+      .section { padding: 2.5rem 0; }
+      .page-banner { padding: 2rem 1rem; }
+      .filter-btn { font-size: 0.78rem; padding: 0.45rem 0.85rem; letter-spacing: 0.04em; }
+      .mobile-menu { padding: 0.75rem 1rem 1.5rem; }
+      .trust-strip-item { border-right: none !important; border-bottom: 1px solid rgba(216,179,90,0.12); }
+      .trust-strip-item:last-child { border-bottom: none; }
+      .hero-section { padding: 4rem 1rem 3rem !important; }
     }
 
     /* ── GRADED CARD SPECIAL ── */
@@ -1312,7 +1322,7 @@ function getNav(active: string) {
       </a>
     </div>
 
-    <div class="hamburger" onclick="toggleMobileMenu()" style="display:none" id="hamburger">
+    <div class="hamburger" onclick="toggleMobileMenu()" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -1539,15 +1549,28 @@ function getCartScript() {
     }
   }
 
-  // Responsive hamburger show/hide
+  // ── MOBILE SUB-MENU TOGGLE ────────────────────────────────────────────────
+  function toggleMobSub(panelId, btn) {
+    const panel = document.getElementById(panelId);
+    if (!panel) return;
+    const isOpen = panel.style.display === 'flex';
+    panel.style.display = isOpen ? 'none' : 'flex';
+    if (btn) {
+      btn.style.transform = isOpen ? '' : 'rotate(180deg)';
+      btn.style.color = isOpen ? 'var(--text-muted)' : 'var(--gold-light)';
+    }
+  }
+
+  // Close mobile menu when resizing to desktop
   function handleResize() {
-    const h = document.getElementById('hamburger');
-    if(h) h.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
+    if (window.innerWidth > 900) {
+      const m = document.getElementById('mobile-menu');
+      if (m) m.classList.remove('open');
+    }
   }
   window.addEventListener('resize', handleResize);
   document.addEventListener('DOMContentLoaded', function() {
     updateCartUI();
-    handleResize();
   });
 </script>
 `
@@ -1562,7 +1585,7 @@ ${getNav('home')}
 <div class="page-wrap">
 
   <!-- HERO -->
-  <section style="
+  <section class="hero-section" style="
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -1671,17 +1694,17 @@ ${getNav('home')}
   </section>
 
   <!-- TRUST STRIP -->
-  <section style="background:linear-gradient(135deg,rgba(14,18,48,0.97),rgba(10,13,31,0.98));border-top:1px solid rgba(216,179,90,0.2);border-bottom:1px solid rgba(216,179,90,0.2);padding:1.5rem 2rem">
+  <section style="background:linear-gradient(135deg,rgba(14,18,48,0.97),rgba(10,13,31,0.98));border-top:1px solid rgba(216,179,90,0.2);border-bottom:1px solid rgba(216,179,90,0.2);padding:1.5rem 1rem">
     <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0;text-align:center">
-      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
+      <div class="trust-strip-item" style="padding:0.75rem 1.5rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
         <i class="fas fa-shield-alt" style="color:var(--gold-light);font-size:1.1rem"></i>
         <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">100% Authentic Products</span>
       </div>
-      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
+      <div class="trust-strip-item" style="padding:0.75rem 1.5rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
         <i class="fas fa-box-open" style="color:var(--cyan);font-size:1.1rem"></i>
         <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Factory Sealed Inventory</span>
       </div>
-      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem">
+      <div class="trust-strip-item" style="padding:0.75rem 1.5rem;display:flex;align-items:center;gap:0.65rem">
         <i class="fas fa-shipping-fast" style="color:var(--teal);font-size:1.1rem"></i>
         <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Fast &amp; Secure Shipping</span>
       </div>
@@ -1842,10 +1865,9 @@ ${getNav('home')}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem">
       ${[
-        {icon:'fa-shield-alt', color:'var(--gold-light)', title:'Authentic Only', desc:'Every card is verified for authenticity. No fakes, no reprints — only genuine collectibles.'},
+        {icon:'fa-shield-alt', color:'var(--gold-light)', title:'Authentic Only', desc:'Every card is verified for authenticity.'},
         {icon:'fa-box-open', color:'var(--cyan)', title:'Factory Sealed', desc:'All products are 100% factory sealed directly from the manufacturer — never opened.'},
         {icon:'fa-shipping-fast', color:'var(--purple)', title:'Fast Shipping', desc:'Orders ship within 1-2 business days. Tracking provided on every order.'},
-        {icon:'fa-award', color:'var(--teal)', title:'Investment Grade', desc:'Curated selection of high-value, appreciating cards for serious collectors & investors.'},
       ].map(f => `
       <div style="background:linear-gradient(145deg,var(--bg-card),var(--bg-card2));border:1px solid rgba(216,179,90,0.1);border-radius:16px;padding:2rem 1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(216,179,90,0.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(216,179,90,0.1)';this.style.transform=''">
         <div style="width:56px;height:56px;border-radius:14px;background:rgba(216,179,90,0.08);border:1px solid rgba(216,179,90,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem">
@@ -1904,7 +1926,7 @@ ${getNav('home')}
 
   <!-- ══ RIP & SHIP / WHATNOT ══ -->
   <section class="section container">
-    <div style="background:linear-gradient(135deg,rgba(166,107,255,0.08),rgba(76,203,255,0.04),rgba(14,18,48,0.95));border:1px solid rgba(166,107,255,0.25);border-radius:20px;padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+    <div class="rip-ship-grid" style="background:linear-gradient(135deg,rgba(166,107,255,0.08),rgba(76,203,255,0.04),rgba(14,18,48,0.95));border:1px solid rgba(166,107,255,0.25);border-radius:20px;padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
       <div>
         <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(216,74,58,0.12);border:1px solid rgba(216,74,58,0.3);border-radius:20px;padding:0.35rem 0.9rem;margin-bottom:1.25rem">
           <span style="width:8px;height:8px;background:var(--red);border-radius:50%;box-shadow:0 0 8px var(--red)"></span>
