@@ -21,11 +21,6 @@ app.get('/tcg-cards', (c) => {
   return c.html(tcgCardsPage())
 })
 
-// ─── GRADED CARDS PAGE ───────────────────────────────────────────────────────
-app.get('/graded-cards', (c) => {
-  return c.html(gradedCardsPage())
-})
-
 // ─── CONTACT PAGE ────────────────────────────────────────────────────────────
 app.get('/contact', (c) => {
   return c.html(contactPage())
@@ -56,14 +51,14 @@ function getHead(title: string) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | CTG Legacy Investments</title>
-  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, graded cards (PSA, C3). Factory sealed & investment-grade. Collect. Invest. Dominate the Game." />
-  <meta name="keywords" content="Pokemon cards, booster boxes, graded Pokemon cards, PSA cards, TCG investing, Charizard, buy Pokemon cards, booster packs, PSA graded, C3 graded, factory sealed, Pokemon booster box" />
+  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, Elite Trainer Boxes and Collector Boxes. Factory sealed. Collect. Invest. Dominate the Game." />
+  <meta name="keywords" content="Pokemon cards, booster boxes, Elite Trainer Box, Collector Box, TCG, Charizard, buy Pokemon cards, booster packs, factory sealed, Pokemon booster box, Yu-Gi-Oh, Magic The Gathering" />
   <meta property="og:title" content="${title} | CTG Legacy Investments" />
-  <meta property="og:description" content="Premium Pokémon TCG booster boxes and packs, factory sealed. Investment-grade graded slabs. Collect. Invest. Dominate." />
+  <meta property="og:description" content="Premium Pokémon TCG booster boxes, packs, Elite Trainer Boxes and Collector Boxes — all factory sealed. Collect. Invest. Dominate." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CTG Legacy Investments — Collect. Invest. Dominate." />
-  <meta name="twitter:description" content="Premium Pokémon TCG booster boxes, packs and graded cards (PSA/C3)." />
+  <meta name="twitter:description" content="Premium Pokémon TCG booster boxes, packs, Elite Trainer Boxes and Collector Boxes — factory sealed." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23050818'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F0C96A'/%3E%3Cstop offset='100%25' stop-color='%23D8B35A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='68' font-family='Arial Black' font-size='44' font-weight='900' text-anchor='middle' fill='url(%23g)'%3ECTG%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -400,9 +395,7 @@ function getHead(title: string) {
     .ddb-yugioh  { background: rgba(70,199,194,0.18); color: #46C7C2; border: 1px solid rgba(70,199,194,0.3); }
     .ddb-mtg     { background: rgba(166,107,255,0.18); color: #A66BFF; border: 1px solid rgba(166,107,255,0.3); }
     .ddb-all     { background: rgba(216,179,90,0.15); color: var(--gold-light); border: 1px solid rgba(216,179,90,0.28); }
-    .ddb-psa     { background: rgba(31,91,255,0.18); color: #4d8cff; border: 1px solid rgba(31,91,255,0.3); }
 
-    .ddb-c3      { background: rgba(166,107,255,0.18); color: var(--purple); border: 1px solid rgba(166,107,255,0.3); }
 
     /* ── NAV GAME SUB-ROWS ── */
     .dd-game-row {
@@ -630,7 +623,6 @@ function getHead(title: string) {
     .badge-pokemon { background: rgba(255,199,0,0.25); color: #FFD700; border: 1px solid rgba(255,199,0,0.4); }
     .badge-yugioh  { background: rgba(70,199,194,0.25); color: #46C7C2; border: 1px solid rgba(70,199,194,0.4); }
     .badge-mtg     { background: rgba(166,107,255,0.25); color: #A66BFF; border: 1px solid rgba(166,107,255,0.4); }
-    .badge-graded  { background: rgba(216,179,90,0.25); color: #D8B35A; border: 1px solid rgba(216,179,90,0.4); }
 
     .product-info { padding: 1rem; }
     .product-name {
@@ -1117,7 +1109,7 @@ function getHead(title: string) {
       color: var(--gold-light);
       text-shadow: 0 0 20px rgba(216,179,90,0.5);
     }
-    .grader-tag {
+    .UNUSED_REMOVED {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 4px;
@@ -1127,9 +1119,7 @@ function getHead(title: string) {
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-    .tag-psa  { background: rgba(31,91,255,0.25); color: #4d8cff; border: 1px solid rgba(31,91,255,0.4); }
 
-    .tag-c3   { background: rgba(166,107,255,0.25); color: var(--purple); border: 1px solid rgba(166,107,255,0.4); }
 
     /* ── HERO PARTICLES ── */
     .particle {
@@ -1316,36 +1306,6 @@ function getNav(active: string) {
         </div>
       </div>
 
-      <!-- Graded Cards Dropdown -->
-      <div class="nav-dropdown" id="dd-graded">
-        <div style="display:flex;align-items:center">
-          <a href="/graded-cards" class="nav-link ${active === 'graded' ? 'active' : ''}" style="padding-right:0.25rem">Graded Cards</a>
-          <button class="nav-dropdown-btn" onclick="toggleNavDD('dd-graded')" aria-haspopup="true" style="padding:0.25rem 0.4rem;min-width:unset;background:transparent;border:none">
-            <i class="fas fa-chevron-down nav-dd-arrow"></i>
-          </button>
-        </div>
-        <div class="nav-dropdown-panel">
-          <div class="nav-dd-section">Browse By Grader</div>
-          <a href="/graded-cards?grader=PSA" class="nav-dd-item">
-            <span class="dd-emoji">🏆</span> PSA Graded
-            <span class="dd-badge ddb-psa">PSA</span>
-          </a>
-
-          <a href="/graded-cards?grader=C3" class="nav-dd-item">
-            <span class="dd-emoji">⭐</span> C3 Graded
-            <span class="dd-badge ddb-c3">C3</span>
-          </a>
-          <div class="nav-dd-section">Browse All</div>
-          <a href="/graded-cards" class="nav-dd-item">
-            <span class="dd-emoji">📦</span> All Slabs
-            <span class="dd-badge ddb-all">ALL</span>
-          </a>
-          <a href="/graded-cards?mingrade=9" class="nav-dd-item">
-            <span class="dd-emoji">💰</span> High Value Graded
-            <span class="dd-badge" style="background:rgba(216,179,90,0.2);color:var(--gold-light);border:1px solid rgba(216,179,90,0.4)">HV</span>
-          </a>
-        </div>
-      </div>
 
       <a href="/shop" class="nav-link ${active === 'shop' ? 'active' : ''}">Shop</a>
       <a href="/contact" class="nav-link ${active === 'contact' ? 'active' : ''}">Contact</a>
@@ -1415,20 +1375,6 @@ function getNav(active: string) {
     </div>
   </div>
 
-  <!-- Mobile Graded Accordion -->
-  <div class="mob-accordion">
-    <button class="mob-accordion-btn" id="mob-btn-graded" onclick="toggleMobAccordion('mob-btn-graded','mob-panel-graded')">
-      <span><i class="fas fa-star" style="margin-right:0.5rem;font-size:0.8rem;color:var(--gold-dim)"></i>Graded Cards</span>
-      <i class="fas fa-chevron-down mob-arrow"></i>
-    </button>
-    <div class="mob-accordion-panel" id="mob-panel-graded">
-      <a href="/graded-cards?grader=PSA" class="mob-sub-link"><span>🏆</span> PSA Graded</a>
-
-      <a href="/graded-cards?grader=C3" class="mob-sub-link"><span>⭐</span> C3 Graded</a>
-      <a href="/graded-cards"            class="mob-sub-link"><span>📦</span> All Slabs</a>
-      <a href="/graded-cards?mingrade=9" class="mob-sub-link"><span>💰</span> High Value Graded</a>
-    </div>
-  </div>
 
   <a href="/shop" class="nav-link">Shop</a>
   <a href="/contact" class="nav-link">Contact</a>
@@ -1445,7 +1391,7 @@ function getFooter() {
     <div>
       <div class="footer-brand-name">CTG LEGACY INVESTMENTS, LLC</div>
       <div style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.15em;color:var(--cyan);text-transform:uppercase;">EST. 2026 | Legacy Investments</div>
-      <p class="footer-desc">Your premier source for investment-grade trading cards. We specialize in Pokémon, Yu-Gi-Oh!, and Magic: The Gathering — raw and professionally graded.</p>
+      <p class="footer-desc">Your premier source for factory-sealed trading cards. We specialize in Pokémon, Yu-Gi-Oh!, and Magic: The Gathering booster boxes and packs.</p>
       <div style="display:flex;gap:0.75rem;margin-top:1.25rem;">
         <a href="#" style="width:36px;height:36px;border-radius:8px;background:rgba(216,179,90,0.1);border:1px solid rgba(216,179,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold-light);text-decoration:none;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(216,179,90,0.25)'" onmouseout="this.style.background='rgba(216,179,90,0.1)'"><i class="fab fa-instagram"></i></a>
         <a href="#" style="width:36px;height:36px;border-radius:8px;background:rgba(216,179,90,0.1);border:1px solid rgba(216,179,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold-light);text-decoration:none;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(216,179,90,0.25)'" onmouseout="this.style.background='rgba(216,179,90,0.1)'"><i class="fab fa-tiktok"></i></a>
@@ -1459,7 +1405,6 @@ function getFooter() {
         <li><a href="/tcg-cards?game=pokemon">Pokémon Cards</a></li>
         <li><a href="/tcg-cards?game=yugioh">Yu-Gi-Oh! Cards</a></li>
         <li><a href="/tcg-cards?game=mtg">Magic: The Gathering</a></li>
-        <li><a href="/graded-cards">Graded Cards</a></li>
         <li><a href="/shop">Sealed Products</a></li>
       </ul>
     </div>
@@ -1690,7 +1635,7 @@ ${getNav('home')}
       text-transform:uppercase;
       color:var(--gold-light);
       margin:0 0 1.25rem;
-    ">Premium Sealed Products &amp; Graded Collectibles</p>
+    ">Premium Factory-Sealed TCG Products</p>
 
     <!-- Description -->
     <p style="
@@ -1700,7 +1645,7 @@ ${getNav('home')}
       line-height:1.8;
       margin:0 auto 2rem;
       font-weight:300;
-    ">Your premier destination for factory-sealed booster packs and boxes, alongside investment-grade graded cards from <span style="color:var(--text-main);font-weight:400">Pokémon, Yu-Gi-Oh!, and Magic: The Gathering.</span></p>
+    ">Your premier destination for factory-sealed booster packs and boxes from <span style="color:var(--text-main);font-weight:400">Pokémon, Yu-Gi-Oh!, and Magic: The Gathering.</span></p>
 
     <!-- Tagline -->
     <p style="
@@ -1719,9 +1664,6 @@ ${getNav('home')}
       </a>
       <a href="/shop?cat=boxes" class="btn-secondary" style="text-decoration:none;font-size:1rem;padding:0.95rem 2.2rem">
         <i class="fas fa-box" style="margin-right:0.5rem"></i> Shop Booster Boxes
-      </a>
-      <a href="/graded-cards" class="btn-secondary" style="text-decoration:none;font-size:1rem;padding:0.95rem 2.2rem">
-        <i class="fas fa-award" style="margin-right:0.5rem"></i> Shop Graded Cards
       </a>
     </div>
 
@@ -1743,10 +1685,6 @@ ${getNav('home')}
         <i class="fas fa-box-open" style="color:var(--cyan);font-size:1.1rem"></i>
         <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Factory Sealed Inventory</span>
       </div>
-      <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem;border-right:1px solid rgba(216,179,90,0.12)">
-        <i class="fas fa-award" style="color:var(--purple);font-size:1.1rem"></i>
-        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Verified Graded Cards</span>
-      </div>
       <div style="padding:1rem 2rem;display:flex;align-items:center;gap:0.65rem">
         <i class="fas fa-shipping-fast" style="color:var(--teal);font-size:1.1rem"></i>
         <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-main)">Fast &amp; Secure Shipping</span>
@@ -1759,7 +1697,7 @@ ${getNav('home')}
     <div style="text-align:center;margin-bottom:3rem">
       <div class="section-sub">Browse Our Inventory</div>
       <h2 class="section-title">Shop Collection</h2>
-      <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.75rem">Browse sealed inventory and high-value graded cards.</p>
+      <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.75rem">Browse our full selection of factory-sealed booster boxes and packs.</p>
       <div class="gold-line" style="margin:1rem auto 0"></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem">
@@ -1786,32 +1724,6 @@ ${getNav('home')}
             <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(76,203,255,0.1);color:var(--cyan);border:1px solid rgba(76,203,255,0.3);padding:3px 10px;border-radius:4px">Single Packs</span>
           </div>
           <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan)">Browse Sealed →</div>
-        </div>
-      </a>
-
-      <!-- Graded Cards -->
-      <a href="/graded-cards" style="text-decoration:none">
-        <div style="
-          background:linear-gradient(135deg,rgba(216,179,90,0.07),rgba(14,18,48,0.95));
-          border:1px solid rgba(216,179,90,0.25);
-          border-radius:20px;
-          padding:2.5rem 2rem;
-          text-align:center;
-          transition:all 0.3s;
-          cursor:pointer;
-          height:100%;
-          box-sizing:border-box;
-          box-shadow:0 0 40px rgba(216,179,90,0.06);
-        " onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(216,179,90,0.6)';this.style.boxShadow='0 24px 60px rgba(0,0,0,0.45),0 0 45px rgba(216,179,90,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(216,179,90,0.25)';this.style.boxShadow='0 0 40px rgba(216,179,90,0.06)'">
-          <div style="font-size:3.5rem;margin-bottom:1.25rem">💎</div>
-          <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:0.1em;color:var(--gold-light);margin-bottom:0.75rem">Graded Cards</h3>
-          <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem">Professionally graded cards (PSA &amp; C3) curated for serious collectors and investors.</p>
-          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;margin-bottom:1.5rem">
-            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(31,91,255,0.15);color:#4d8cff;border:1px solid rgba(31,91,255,0.35);padding:3px 10px;border-radius:4px">PSA</span>
-            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.35);padding:3px 10px;border-radius:4px">C3</span>
-            <span style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(216,179,90,0.15);color:var(--gold-light);border:1px solid rgba(216,179,90,0.35);padding:3px 10px;border-radius:4px">Investment Grade</span>
-          </div>
-          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light)">Browse Graded →</div>
         </div>
       </a>
 
@@ -1905,24 +1817,6 @@ ${getNav('home')}
           <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.08em;color:var(--purple);margin-bottom:0.5rem">MAGIC: THE GATHERING</h3>
           <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6">Black Lotus, dual lands, foils, reserved list & modern staples</p>
           <div style="margin-top:1.25rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple)">Shop Now →</div>
-        </div>
-      </a>
-
-      <!-- Graded -->
-      <a href="/graded-cards" style="text-decoration:none">
-        <div style="
-          background:linear-gradient(135deg,rgba(216,179,90,0.06),rgba(14,18,48,0.9));
-          border:1px solid rgba(216,179,90,0.2);
-          border-radius:20px;
-          padding:2.5rem 2rem;
-          text-align:center;
-          transition:all 0.3s;
-          cursor:pointer;
-        " onmouseover="this.style.transform='translateY(-8px)';this.style.borderColor='rgba(216,179,90,0.5)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.4),0 0 30px rgba(216,179,90,0.1)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(216,179,90,0.2)';this.style.boxShadow=''">
-          <div style="font-size:4rem;margin-bottom:1rem">🏆</div>
-          <h3 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.08em;color:var(--gold-light);margin-bottom:0.5rem">GRADED SLABS</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6">PSA & C3 graded investment-grade slabs across all TCGs</p>
-          <div style="margin-top:1.25rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light)">View Slabs →</div>
         </div>
       </a>
 
@@ -2126,10 +2020,10 @@ ${getCartScript()}
 
   // ── HIGH VALUE CARDS data ─────────────────────────────────────────────────
   const highValueCards = [
-    { id:'hv1', name:'Pikachu Illustrator',         set:'CoroCoro Promo',    price:14999.99, game:'pokemon', condition:'PSA 7',  emoji:'⚡', holo:true },
-    { id:'hv2', name:'Charizard Holo 1st Ed',       set:'Base Set',          price:12500.00, game:'pokemon', condition:'PSA 9',  emoji:'🔥', holo:true },
-    { id:'hv3', name:'Black Lotus',                 set:'Alpha Edition',     price:9999.99,  game:'mtg',     condition:'HP',     emoji:'🌸', holo:false },
-    { id:'hv4', name:'Blue-Eyes White Dragon 1st',  set:'LOB 1st Edition',   price:3800.00,  game:'yugioh',  condition:'PSA 8',  emoji:'🐉', holo:false },
+    { id:'hv1', name:'Scarlet & Violet Booster Box',    set:'Scarlet & Violet Base', price:149.99, game:'pokemon', condition:'Sealed', emoji:'📦', holo:false },
+    { id:'hv2', name:'Obsidian Flames Booster Box',      set:'Obsidian Flames',       price:164.99, game:'pokemon', condition:'Sealed', emoji:'📦', holo:false },
+    { id:'hv3', name:'Black Lotus Alpha Booster',        set:'Alpha Edition',         price:9999.99, game:'mtg',    condition:'Sealed', emoji:'🌸', holo:false },
+    { id:'hv4', name:'Blue-Eyes White Dragon Tin',       set:'LOB Collector Tin',     price:89.99,  game:'yugioh',  condition:'Sealed', emoji:'🐉', holo:false },
   ];
 
   const gameBadge = { pokemon:'badge-pokemon', yugioh:'badge-yugioh', mtg:'badge-mtg' };
@@ -2238,7 +2132,7 @@ ${getNav('shop')}
       <div class="section-sub">Full Inventory</div>
       <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Shop All Products</h1>
       <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
-      <p style="color:var(--text-muted);font-size:0.95rem;max-width:520px;margin:0 auto">Booster Boxes, Booster Packs, Single Packs, and Graded Slabs — all in one place.</p>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:520px;margin:0 auto">Booster Boxes, Booster Packs, Elite Trainer Boxes, and Collector Boxes — all in one place.</p>
     </div>
   </div>
 
@@ -2250,7 +2144,7 @@ ${getNav('shop')}
       <button class="filter-btn"        id="tab-boxes"    onclick="switchTab('boxes')"  ><i class="fas fa-box"         style="margin-right:6px"></i>Booster Boxes</button>
       <button class="filter-btn"        id="tab-packs"    onclick="switchTab('packs')"  ><i class="fas fa-layer-group" style="margin-right:6px"></i>Booster Packs</button>
       <button class="filter-btn"        id="tab-singles"  onclick="switchTab('singles')"><i class="fas fa-id-card"     style="margin-right:6px"></i>Single Packs</button>
-      <button class="filter-btn"        id="tab-graded"   onclick="switchTab('graded')" ><i class="fas fa-award"       style="margin-right:6px"></i>Graded Cards</button>
+
     </div>
 
     <!-- ══ BOOSTER BOXES ══ -->
@@ -2652,15 +2546,6 @@ ${getNav('shop')}
       </div>
     </div>
 
-    <!-- ══ GRADED CARDS CTA ══ -->
-    <div id="section-graded" style="background:linear-gradient(135deg,rgba(216,179,90,0.06),rgba(14,18,48,0.9));border:1px solid rgba(216,179,90,0.2);border-radius:20px;padding:3rem 2rem;text-align:center;margin-bottom:2rem">
-      <div style="font-size:2.5rem;margin-bottom:1rem">🏆</div>
-      <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:0.06em;color:var(--gold-light);margin-bottom:0.75rem">Graded Cards</h2>
-      <p style="font-size:0.95rem;color:var(--text-muted);max-width:480px;margin:0 auto 1.5rem;line-height:1.7">Investment-grade slabs professionally graded by PSA and C3. Each card authenticated, encased, and investment-ready.</p>
-      <a href="/graded-cards" class="btn-primary" style="text-decoration:none;font-size:1rem;padding:0.9rem 2.5rem">
-        <i class="fas fa-award" style="margin-right:0.5rem"></i> Browse Graded Collection
-      </a>
-    </div>
 
   </div>
 
@@ -2670,13 +2555,13 @@ ${getFooter()}
 ${getCartScript()}
 
 <script>
-  const allTabs = ['all','boxes','packs','singles','graded'];
+  const allTabs = ['all','boxes','packs','singles'];
   function switchTab(tab) {
     allTabs.forEach(t => {
       const btn = document.getElementById('tab-'+t);
       if(btn) btn.classList.toggle('active', t === tab);
     });
-    const sections = { boxes:'section-boxes', packs:'section-packs', singles:'section-singles', graded:'section-graded' };
+    const sections = { boxes:'section-boxes', packs:'section-packs', singles:'section-singles' };
     if(tab === 'all') {
       Object.values(sections).forEach(id => { const el=document.getElementById(id); if(el) el.style.display='block'; });
     } else {
@@ -3203,510 +3088,6 @@ if(gameParam) {
 </body></html>`
 }
 
-// ─── GRADED CARDS PAGE ───────────────────────────────────────────────────────
-function gradedCardsPage() {
-  const graded = [
-    { id:'g1',  name:'Charizard Holo 1st Ed', set:'Base Set',         game:'pokemon', emoji:'🔥', grade:9,  grader:'PSA', price:12500, pop:120 },
-    { id:'g2',  name:'Pikachu Illustrator',   set:'CoroCoro Promo',   game:'pokemon', emoji:'⚡', grade:7,  grader:'PSA', price:24999, pop:26  },
-    { id:'g3',  name:'Blastoise Holo',        set:'Base Set 1st Ed',  game:'pokemon', emoji:'🌊', grade:8,  grader:'PSA', price:3200,  pop:88  },
-    { id:'g4',  name:'Umbreon Gold Star',     set:'POP Series 5',     game:'pokemon', emoji:'🌙', grade:10, grader:'PSA', price:18000, pop:14  },
-    { id:'g5',  name:'Blue-Eyes White Dragon',set:'LOB 1st Edition',  game:'yugioh',  emoji:'🐉', grade:8,  grader:'C3', price:4500,  pop:55  },
-    { id:'g6',  name:'Dark Magician',         set:'LOB 1st Edition',  game:'yugioh',  emoji:'✨', grade:9,  grader:'PSA', price:2200,  pop:73  },
-    { id:'g7',  name:'Exodia the Forbidden',  set:'LOB 1st Edition',  game:'yugioh',  emoji:'👁️', grade:7,  grader:'C3', price:3800,  pop:42  },
-    { id:'g8',  name:'Black Lotus',           set:'Alpha Edition',    game:'mtg',     emoji:'🌸', grade:4,  grader:'PSA', price:75000, pop:8   },
-    { id:'g9',  name:'Underground Sea',       set:'Alpha Edition',    game:'mtg',     emoji:'🌊', grade:8,  grader:'C3', price:9500,  pop:34  },
-    { id:'g10', name:'Mox Emerald',           set:'Beta Edition',     game:'mtg',     emoji:'💚', grade:6,  grader:'PSA', price:8800,  pop:19  },
-  ]
-
-  const gradedJson = JSON.stringify(graded)
-
-  return `${getHead('Graded Cards')}
-<body>
-${getNav('graded')}
-<div class="page-wrap">
-
-  <!-- BANNER -->
-  <div class="page-banner">
-    <div style="position:relative;z-index:1">
-      <div class="section-sub">PSA · C3</div>
-      <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Graded Card Collection</h1>
-      <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
-      <p style="color:var(--text-muted);font-size:0.95rem;max-width:500px;margin:0 auto">Investment-grade slabs professionally graded by PSA and C3.</p>
-    </div>
-  </div>
-
-  <div class="container section">
-
-    <!-- GRADE EXPLAINED -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2.5rem">
-      <div style="background:linear-gradient(135deg,rgba(31,91,255,0.12),rgba(14,18,48,0.9));border:1px solid rgba(31,91,255,0.25);border-radius:14px;padding:1.5rem;text-align:center">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.4rem;color:#4d8cff;margin-bottom:0.25rem">PSA</div>
-        <div style="font-size:0.8rem;color:var(--text-muted)">Professional Sports Authenticator — Gold standard, 1–10 scale</div>
-      </div>
-
-      <div style="background:linear-gradient(135deg,rgba(166,107,255,0.12),rgba(14,18,48,0.9));border:1px solid rgba(166,107,255,0.25);border-radius:14px;padding:1.5rem;text-align:center">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.4rem;color:var(--purple);margin-bottom:0.25rem">C3</div>
-        <div style="font-size:0.8rem;color:var(--text-muted)">C3 Grading — Professional grading, 1–10 scale</div>
-      </div>
-      <div style="background:linear-gradient(135deg,rgba(70,199,194,0.12),rgba(14,18,48,0.9));border:1px solid rgba(70,199,194,0.25);border-radius:14px;padding:1.5rem;text-align:center">
-        <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.4rem;color:var(--teal);margin-bottom:0.25rem">Why Grade?</div>
-        <div style="font-size:0.8rem;color:var(--text-muted)">Authentication + condition lock = investment certainty</div>
-      </div>
-    </div>
-
-    <!-- ══ GRADED FILTER PANEL ══ -->
-    <div style="background:linear-gradient(135deg,rgba(14,18,48,0.85),rgba(10,13,31,0.9));border:1px solid rgba(216,179,90,0.18);border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;">
-
-      <!-- Search + Clear row -->
-      <div style="display:flex;gap:0.75rem;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;">
-        <div style="position:relative;flex:1;min-width:200px;">
-          <i class="fas fa-search" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.85rem;pointer-events:none"></i>
-          <input type="text" id="graded-search" placeholder="Search slabs by name or set..." oninput="filterGraded()"
-            style="width:100%;background:rgba(5,8,24,0.85);border:1px solid rgba(216,179,90,0.2);border-radius:10px;color:var(--text-main);font-family:'Inter',sans-serif;font-size:0.9rem;padding:0.65rem 1rem 0.65rem 2.5rem;outline:none;transition:border-color 0.2s;"
-            onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(216,179,90,0.2)'">
-        </div>
-        <button onclick="clearGradedFilters()"
-          style="height:38px;padding:0 0.9rem;border-radius:8px;background:rgba(216,74,58,0.1);border:1px solid rgba(216,74,58,0.2);cursor:pointer;color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;transition:all 0.2s;flex-shrink:0;"
-          onmouseover="this.style.background='rgba(216,74,58,0.2)'" onmouseout="this.style.background='rgba(216,74,58,0.1)'">
-          <i class="fas fa-times" style="margin-right:4px"></i>Clear All
-        </button>
-      </div>
-
-      <!-- Dropdown row -->
-      <div class="filter-row" style="margin-bottom:0;">
-
-        <!-- GAME DROPDOWN -->
-        <div class="filter-col">
-          <div class="filter-row-label"><i class="fas fa-gamepad" style="margin-right:4px;color:var(--gold-light)"></i>Game</div>
-          <div class="ctg-dropdown" id="gdd-game">
-            <div class="ctg-dropdown-trigger" onclick="toggleGDD('gdd-game')" id="gdd-game-trigger">
-              <span class="dd-icon">🃏</span>
-              <span class="dd-label" id="gdd-game-label">All Games</span>
-              <i class="fas fa-chevron-down dd-arrow"></i>
-            </div>
-            <div class="ctg-dropdown-menu" id="gdd-game-menu">
-              <div class="dd-section-header">Select Game</div>
-              <button class="dd-item selected" data-val="all" onclick="gPickGame('all','🃏','All Games')">
-                <span class="dd-item-icon">🃏</span> All Games <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <div class="dd-divider"></div>
-              <button class="dd-item" data-val="pokemon" onclick="gPickGame('pokemon','⚡','Pokémon')">
-                <span class="dd-item-icon">⚡</span>
-                <span>Pokémon</span>
-                <span class="dd-item-badge" style="background:rgba(255,199,0,0.15);color:#FFD700;border:1px solid rgba(255,199,0,0.3);">TCG</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="yugioh" onclick="gPickGame('yugioh','👁️','Yu-Gi-Oh!')">
-                <span class="dd-item-icon">👁️</span>
-                <span>Yu-Gi-Oh!</span>
-                <span class="dd-item-badge" style="background:rgba(70,199,194,0.15);color:var(--teal);border:1px solid rgba(70,199,194,0.3);">OCG</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="mtg" onclick="gPickGame('mtg','🔮','Magic: TG')">
-                <span class="dd-item-icon">🔮</span>
-                <span>Magic: The Gathering</span>
-                <span class="dd-item-badge" style="background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.3);">MTG</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- GRADER DROPDOWN -->
-        <div class="filter-col">
-          <div class="filter-row-label"><i class="fas fa-certificate" style="margin-right:4px;color:var(--gold-light)"></i>Grader</div>
-          <div class="ctg-dropdown" id="gdd-grader">
-            <div class="ctg-dropdown-trigger" onclick="toggleGDD('gdd-grader')" id="gdd-grader-trigger">
-              <span class="dd-icon"><i class="fas fa-shield-alt" style="font-size:0.85rem"></i></span>
-              <span class="dd-label" id="gdd-grader-label">All Graders</span>
-              <i class="fas fa-chevron-down dd-arrow"></i>
-            </div>
-            <div class="ctg-dropdown-menu" id="gdd-grader-menu">
-              <div class="dd-section-header">Grading Company</div>
-              <button class="dd-item selected" data-val="all" onclick="gPickGrader('all','All Graders')">
-                <span class="dd-item-icon"><i class="fas fa-shield-alt" style="font-size:0.8rem"></i></span> All Graders
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <div class="dd-divider"></div>
-              <button class="dd-item" data-val="PSA" onclick="gPickGrader('PSA','PSA')">
-                <span class="dd-item-icon" style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:0.75rem;color:#4d8cff">PSA</span>
-                <span style="flex:1">Professional Sports Auth.</span>
-                <span class="dd-item-badge" style="background:rgba(31,91,255,0.15);color:#4d8cff;border:1px solid rgba(31,91,255,0.3);">Gold Std</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-
-              <button class="dd-item" data-val="C3" onclick="gPickGrader('C3','C3')">
-                <span class="dd-item-icon" style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:0.75rem;color:var(--purple)">C3</span>
-                <span style="flex:1">C3 Grading</span>
-                <span class="dd-item-badge" style="background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.3);">Registry</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- GRADE SCORE DROPDOWN -->
-        <div class="filter-col">
-          <div class="filter-row-label"><i class="fas fa-star" style="margin-right:4px;color:var(--gold-light)"></i>Min Grade</div>
-          <div class="ctg-dropdown" id="gdd-grade">
-            <div class="ctg-dropdown-trigger" onclick="toggleGDD('gdd-grade')" id="gdd-grade-trigger">
-              <span class="dd-icon">⭐</span>
-              <span class="dd-label" id="gdd-grade-label">Any Grade</span>
-              <i class="fas fa-chevron-down dd-arrow"></i>
-            </div>
-            <div class="ctg-dropdown-menu" id="gdd-grade-menu">
-              <div class="dd-section-header">Minimum Grade Score</div>
-              <button class="dd-item selected" data-val="0" onclick="gPickGrade('0','Any Grade')">
-                <span class="dd-item-icon">⭐</span> Any Grade <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <div class="dd-divider"></div>
-              <button class="dd-item" data-val="10" onclick="gPickGrade('10','GEM MINT 10')">
-                <span class="dd-item-dot" style="background:#FFD700"></span>
-                <span style="flex:1"><strong style="color:#FFD700">10</strong> — Gem Mint</span>
-                <span class="dd-item-badge" style="background:rgba(255,215,0,0.15);color:#FFD700;border:1px solid rgba(255,215,0,0.3);">Perfect</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="9" onclick="gPickGrade('9','Mint 9+')">
-                <span class="dd-item-dot" style="background:#4d8cff"></span>
-                <span style="flex:1"><strong style="color:#4d8cff">9+</strong> — Mint</span>
-                <span class="dd-item-badge" style="background:rgba(77,140,255,0.15);color:#4d8cff;border:1px solid rgba(77,140,255,0.3);">Invest.</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="8" onclick="gPickGrade('8','NM-Mint 8+')">
-                <span class="dd-item-dot" style="background:#46C7C2"></span>
-                <span style="flex:1"><strong style="color:#46C7C2">8+</strong> — NM-Mint</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="7" onclick="gPickGrade('7','Near Mint 7+')">
-                <span class="dd-item-dot" style="background:#A66BFF"></span>
-                <span style="flex:1"><strong style="color:#A66BFF">7+</strong> — Near Mint</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="5" onclick="gPickGrade('5','Ex-Mint 5+')">
-                <span class="dd-item-dot" style="background:#D8B35A"></span>
-                <span style="flex:1"><strong style="color:var(--gold-light)">5+</strong> — Ex-Mint</span>
-                <i class="fas fa-check dd-item-check"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- PRICE RANGE DROPDOWN -->
-        <div class="filter-col">
-          <div class="filter-row-label"><i class="fas fa-dollar-sign" style="margin-right:4px;color:var(--gold-light)"></i>Price Range</div>
-          <div class="ctg-dropdown" id="gdd-price">
-            <div class="ctg-dropdown-trigger" onclick="toggleGDD('gdd-price')" id="gdd-price-trigger">
-              <span class="dd-icon"><i class="fas fa-tag" style="font-size:0.85rem"></i></span>
-              <span class="dd-label" id="gdd-price-label">Any Price</span>
-              <i class="fas fa-chevron-down dd-arrow"></i>
-            </div>
-            <div class="ctg-dropdown-menu" id="gdd-price-menu">
-              <div class="dd-section-header">Slab Price Range</div>
-              <button class="dd-item selected" data-val="all" onclick="gPickPrice('all','Any Price')">
-                <span class="dd-item-icon">💰</span> Any Price <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <div class="dd-divider"></div>
-              <button class="dd-item" data-val="0-2500" onclick="gPickPrice('0-2500','Under $2,500')">
-                <span class="dd-item-icon" style="color:var(--teal)">$</span> Under $2,500 <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="2500-10000" onclick="gPickPrice('2500-10000','$2,500 – $10K')">
-                <span class="dd-item-icon" style="color:#4d8cff">$$</span> $2,500 – $10,000 <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="10000-25000" onclick="gPickPrice('10000-25000','$10K – $25K')">
-                <span class="dd-item-icon" style="color:var(--gold-light)">$$$</span> $10,000 – $25,000 <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="25000-999999" onclick="gPickPrice('25000-999999','$25,000+')">
-                <span class="dd-item-icon" style="color:var(--red)">$$$$</span> $25,000+ <i class="fas fa-check dd-item-check"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- SORT DROPDOWN -->
-        <div class="filter-col">
-          <div class="filter-row-label"><i class="fas fa-sort" style="margin-right:4px;color:var(--gold-light)"></i>Sort By</div>
-          <div class="ctg-dropdown" id="gdd-sort">
-            <div class="ctg-dropdown-trigger" onclick="toggleGDD('gdd-sort')" id="gdd-sort-trigger">
-              <span class="dd-icon"><i class="fas fa-sort-amount-down" style="font-size:0.85rem"></i></span>
-              <span class="dd-label" id="gdd-sort-label">Featured</span>
-              <i class="fas fa-chevron-down dd-arrow"></i>
-            </div>
-            <div class="ctg-dropdown-menu" id="gdd-sort-menu">
-              <div class="dd-section-header">Sort Order</div>
-              <button class="dd-item selected" data-val="default" onclick="gPickSort('default','Featured')">
-                <span class="dd-item-icon">⭐</span> Featured <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="grade-desc" onclick="gPickSort('grade-desc','Grade: High → Low')">
-                <span class="dd-item-icon" style="color:#FFD700">▲</span> Grade: High → Low <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="grade-asc" onclick="gPickSort('grade-asc','Grade: Low → High')">
-                <span class="dd-item-icon" style="color:#46C7C2">▼</span> Grade: Low → High <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="price-asc" onclick="gPickSort('price-asc','Price: Low → High')">
-                <span class="dd-item-icon"><i class="fas fa-sort-amount-up" style="font-size:0.8rem"></i></span> Price: Low → High <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="price-desc" onclick="gPickSort('price-desc','Price: High → Low')">
-                <span class="dd-item-icon"><i class="fas fa-sort-amount-down" style="font-size:0.8rem"></i></span> Price: High → Low <i class="fas fa-check dd-item-check"></i>
-              </button>
-              <button class="dd-item" data-val="pop-desc" onclick="gPickSort('pop-desc','Pop: Rarest First')">
-                <span class="dd-item-icon" style="color:var(--purple)">◈</span> Pop: Rarest First <i class="fas fa-check dd-item-check"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- end filter-row -->
-    </div><!-- end graded filter panel -->
-
-    <!-- ACTIVE CHIPS + COUNT -->
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;margin-bottom:1.25rem;">
-      <div class="active-filters" id="graded-chips" style="margin-bottom:0;flex:1;"></div>
-      <span style="font-family:'Rajdhani',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);flex-shrink:0;">
-        Showing <span id="graded-count" style="color:var(--gold-light);font-weight:700;">0</span> slabs
-      </span>
-    </div>
-
-    <!-- GRADED GRID -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.75rem" id="graded-grid"></div>
-    <div id="graded-no-results" style="display:none;text-align:center;padding:4rem;color:var(--text-muted)">
-      <i class="fas fa-search" style="font-size:3rem;opacity:0.3;margin-bottom:1rem"></i>
-      <p style="font-family:'Rajdhani',sans-serif;letter-spacing:0.1em">No slabs match your filters.</p>
-    </div>
-
-  </div>
-</div>
-
-${getFooter()}
-${getCartScript()}
-
-<script>
-const GRADED_CARDS = ${gradedJson};
-const graderClass = { PSA:'tag-psa', C3:'tag-c3' };
-const graderColor = { PSA:'#4d8cff', C3:'#A66BFF' };
-const gameLabel   = { pokemon:'Pokémon', yugioh:'Yu-Gi-Oh!', mtg:'MTG' };
-const gameBadge   = { pokemon:'badge-pokemon', yugioh:'badge-yugioh', mtg:'badge-mtg' };
-
-// ── GRADED FILTER STATE ───────────────────────────────────────────────────────
-let gState = { game:'all', grader:'all', minGrade:'0', price:'all', sort:'default' };
-
-// ── DROPDOWN ENGINE (Graded) ──────────────────────────────────────────────────
-function toggleGDD(id) {
-  const menu    = document.getElementById(id+'-menu');
-  const trigger = document.getElementById(id+'-trigger');
-  document.querySelectorAll('.ctg-dropdown-menu').forEach(m => { if(m.id!==id+'-menu') m.classList.remove('open'); });
-  document.querySelectorAll('.ctg-dropdown-trigger').forEach(t => { if(t.id!==id+'-trigger') t.classList.remove('open'); });
-  menu.classList.toggle('open');
-  trigger.classList.toggle('open');
-}
-function setGDDSelected(menuId, val) {
-  document.querySelectorAll('#'+menuId+' .dd-item').forEach(item => {
-    const sel = item.dataset.val === val;
-    item.classList.toggle('selected', sel);
-    const ch = item.querySelector('.dd-item-check');
-    if(ch) ch.style.opacity = sel ? '1' : '0';
-  });
-}
-document.addEventListener('click', e => {
-  if(!e.target.closest('.ctg-dropdown')) {
-    document.querySelectorAll('.ctg-dropdown-menu').forEach(m => m.classList.remove('open'));
-    document.querySelectorAll('.ctg-dropdown-trigger').forEach(t => t.classList.remove('open'));
-  }
-});
-
-function gPickGame(val, icon, label) {
-  gState.game = val;
-  document.getElementById('gdd-game-label').textContent = label;
-  document.getElementById('gdd-game-trigger').querySelector('.dd-icon').textContent = icon;
-  setGDDSelected('gdd-game-menu', val);
-  document.querySelectorAll('.ctg-dropdown-menu').forEach(m => m.classList.remove('open'));
-  document.querySelectorAll('.ctg-dropdown-trigger').forEach(t => t.classList.remove('open'));
-  filterGraded();
-}
-function gPickGrader(val, label) {
-  gState.grader = val;
-  document.getElementById('gdd-grader-label').textContent = label;
-  setGDDSelected('gdd-grader-menu', val);
-  document.querySelectorAll('.ctg-dropdown-menu').forEach(m => m.classList.remove('open'));
-  document.querySelectorAll('.ctg-dropdown-trigger').forEach(t => t.classList.remove('open'));
-  filterGraded();
-}
-function gPickGrade(val, label) {
-  gState.minGrade = val;
-  document.getElementById('gdd-grade-label').textContent = label;
-  setGDDSelected('gdd-grade-menu', val);
-  document.querySelectorAll('.ctg-dropdown-menu').forEach(m => m.classList.remove('open'));
-  document.querySelectorAll('.ctg-dropdown-trigger').forEach(t => t.classList.remove('open'));
-  filterGraded();
-}
-function gPickPrice(val, label) {
-  gState.price = val;
-  document.getElementById('gdd-price-label').textContent = label;
-  setGDDSelected('gdd-price-menu', val);
-  document.querySelectorAll('.ctg-dropdown-menu').forEach(m => m.classList.remove('open'));
-  document.querySelectorAll('.ctg-dropdown-trigger').forEach(t => t.classList.remove('open'));
-  filterGraded();
-}
-function gPickSort(val, label) {
-  gState.sort = val;
-  document.getElementById('gdd-sort-label').textContent = label;
-  setGDDSelected('gdd-sort-menu', val);
-  document.querySelectorAll('.ctg-dropdown-menu').forEach(m => m.classList.remove('open'));
-  document.querySelectorAll('.ctg-dropdown-trigger').forEach(t => t.classList.remove('open'));
-  filterGraded();
-}
-function clearGradedFilters() {
-  gState = { game:'all', grader:'all', minGrade:'0', price:'all', sort:'default' };
-  document.getElementById('gdd-game-label').textContent   = 'All Games';
-  document.getElementById('gdd-game-trigger').querySelector('.dd-icon').textContent = '🃏';
-  document.getElementById('gdd-grader-label').textContent = 'All Graders';
-  document.getElementById('gdd-grade-label').textContent  = 'Any Grade';
-  document.getElementById('gdd-price-label').textContent  = 'Any Price';
-  document.getElementById('gdd-sort-label').textContent   = 'Featured';
-  document.getElementById('graded-search').value = '';
-  ['gdd-game-menu','gdd-grader-menu','gdd-price-menu'].forEach(id => setGDDSelected(id,'all'));
-  setGDDSelected('gdd-grade-menu','0');
-  setGDDSelected('gdd-sort-menu','default');
-  filterGraded();
-}
-
-// ── GRADED CHIPS ──────────────────────────────────────────────────────────────
-function renderGradedChips() {
-  const container = document.getElementById('graded-chips');
-  if(!container) return;
-  const chips = [];
-  if(gState.game    !== 'all')     chips.push({ label: document.getElementById('gdd-game-label').textContent,   clear: ()=>gPickGame('all','🃏','All Games') });
-  if(gState.grader  !== 'all')     chips.push({ label: 'Grader: '+document.getElementById('gdd-grader-label').textContent, clear: ()=>gPickGrader('all','All Graders') });
-  if(gState.minGrade !== '0')      chips.push({ label: 'Grade: '+document.getElementById('gdd-grade-label').textContent,   clear: ()=>gPickGrade('0','Any Grade') });
-  if(gState.price   !== 'all')     chips.push({ label: document.getElementById('gdd-price-label').textContent,  clear: ()=>gPickPrice('all','Any Price') });
-  if(gState.sort    !== 'default') chips.push({ label: 'Sort: '+document.getElementById('gdd-sort-label').textContent,     clear: ()=>gPickSort('default','Featured') });
-  const search = document.getElementById('graded-search').value;
-  if(search) chips.push({ label: 'Search: "'+search+'"', clear: ()=>{ document.getElementById('graded-search').value=''; filterGraded(); } });
-  if(chips.length === 0) { container.innerHTML=''; return; }
-  container.innerHTML = chips.map((ch,i) => \`
-    <span class="filter-chip" onclick="gChips_\${i}_clear()">
-      \${ch.label} <i class="fas fa-times filter-chip-x"></i>
-    </span>\`).join('');
-  chips.forEach((ch,i) => { window['gChips_'+i+'_clear'] = ch.clear; });
-}
-
-function gradeColor(g) {
-  if(g >= 10) return '#FFD700';
-  if(g >= 9)  return '#4d8cff';
-  if(g >= 8)  return '#46C7C2';
-  if(g >= 7)  return '#A66BFF';
-  return '#D84A3A';
-}
-
-function filterGraded() {
-  const search = document.getElementById('graded-search').value.toLowerCase();
-
-  let items = GRADED_CARDS.filter(c => {
-    if(gState.game    !== 'all' && c.game   !== gState.game)   return false;
-    if(gState.grader  !== 'all' && c.grader !== gState.grader) return false;
-    if(gState.minGrade !== '0'  && c.grade  <  parseInt(gState.minGrade)) return false;
-    if(gState.price   !== 'all') {
-      const [mn,mx] = gState.price.split('-').map(Number);
-      if(c.price < mn || c.price > mx) return false;
-    }
-    if(search && !c.name.toLowerCase().includes(search) && !c.set.toLowerCase().includes(search)) return false;
-    return true;
-  });
-
-  if(gState.sort === 'grade-desc') items.sort((a,b) => b.grade - a.grade);
-  if(gState.sort === 'grade-asc')  items.sort((a,b) => a.grade - b.grade);
-  if(gState.sort === 'price-asc')  items.sort((a,b) => a.price - b.price);
-  if(gState.sort === 'price-desc') items.sort((a,b) => b.price - a.price);
-  if(gState.sort === 'pop-desc')   items.sort((a,b) => a.pop   - b.pop);
-
-  document.getElementById('graded-count').textContent = items.length;
-  renderGradedChips();
-  const grid  = document.getElementById('graded-grid');
-  const noRes = document.getElementById('graded-no-results');
-  if(items.length === 0) { grid.innerHTML=''; noRes.style.display='block'; return; }
-  noRes.style.display='none';
-
-  grid.innerHTML = items.map(c => \`
-    <div class="product-card" style="border-radius:18px;overflow:hidden">
-      <!-- Top slab frame -->
-      <div style="background:linear-gradient(135deg,rgba(14,18,48,0.95),rgba(5,8,24,0.98));padding:1.75rem 1.5rem;text-align:center;border-bottom:1px solid rgba(216,179,90,0.15);position:relative">
-        <div style="position:absolute;top:12px;left:12px">
-          <span class="grader-tag \${graderClass[c.grader]}">\${c.grader}</span>
-        </div>
-        <div style="position:absolute;top:12px;right:12px">
-          <span class="game-badge \${gameBadge[c.game]}" style="position:relative;inset:auto">\${gameLabel[c.game]}</span>
-        </div>
-        <div style="font-size:3rem;margin:0.5rem 0 0.75rem">\${c.emoji}</div>
-        <!-- Grade circle -->
-        <div style="
-          width:72px;height:72px;border-radius:50%;
-          background:conic-gradient(\${graderColor[c.grader]} \${c.grade*10}%, rgba(255,255,255,0.05) 0);
-          display:flex;align-items:center;justify-content:center;
-          margin:0 auto 0.75rem;
-          position:relative;
-          box-shadow:0 0 20px \${graderColor[c.grader]}40;
-        ">
-          <div style="width:58px;height:58px;border-radius:50%;background:var(--bg-deep);display:flex;flex-direction:column;align-items:center;justify-content:center">
-            <span class="grade-badge" style="font-size:1.3rem;color:\${gradeColor(c.grade)}">\${c.grade}</span>
-          </div>
-        </div>
-        <div style="font-size:0.65rem;font-family:'Rajdhani',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">POP: \${c.pop} known</div>
-      </div>
-      <!-- Card info -->
-      <div class="product-info">
-        <div class="product-name" style="font-size:1.05rem">\${c.name}</div>
-        <div class="product-set" style="margin-bottom:0.85rem">\${c.set}</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(216,179,90,0.05);border:1px solid rgba(216,179,90,0.1);border-radius:8px;padding:0.6rem 0.85rem;margin-bottom:0.85rem">
-          <div>
-            <div style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Asking Price</div>
-            <div class="product-price">$\${c.price.toLocaleString()}</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Grade</div>
-            <div style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.1rem;color:\${gradeColor(c.grade)}">\${c.grader} \${c.grade}</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:0.5rem;margin-top:0.25rem">
-          <button class="btn-add-cart" style="flex:1" data-id="\${c.id}" onclick="addToCart('\${c.id}','\${c.name} (\${c.grader} \${c.grade})',\${c.price},'\${c.game}','\${c.emoji}')">
-            <i class="fas fa-cart-plus"></i> Add to Cart
-          </button>
-          <button onclick="addToCart('\${c.id}','\${c.name} (\${c.grader} \${c.grade})',\${c.price},'\${c.game}','\${c.emoji}');window.location.href='/checkout'"
-            style="padding:0.6rem 0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:none;border-radius:8px;color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.2s;flex-shrink:0"
-            onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">
-            Buy Now
-          </button>
-        </div>
-      </div>
-    </div>
-  \`).join('');
-}
-
-// Pre-select grader, game, or mingrade from URL param
-(function() {
-  const p = new URLSearchParams(window.location.search);
-  const graderParam   = p.get('grader');
-  const gameParam     = p.get('game');
-  const mingradeParam = p.get('mingrade');
-  if (graderParam && ['PSA','C3'].includes(graderParam)) {
-    gPickGrader(graderParam, graderParam);
-    return;
-  }
-  if (gameParam) {
-    const labelMap = { pokemon:'Pokémon', yugioh:'Yu-Gi-Oh!', mtg:'Magic: TG' };
-    const iconMap  = { pokemon:'⚡', yugioh:'👁️', mtg:'🔮' };
-    gPickGame(gameParam, iconMap[gameParam]||'🃏', labelMap[gameParam]||gameParam);
-    return;
-  }
-  if (mingradeParam) {
-    const gradeLabels = { '10':'GEM MINT 10', '9':'Mint 9+', '8':'NM-Mint 8+', '7':'Near Mint 7+', '5':'Ex-Mint 5+' };
-    const label = gradeLabels[mingradeParam] || 'Grade ' + mingradeParam + '+';
-    gPickGrade(mingradeParam, label);
-    return;
-  }
-  filterGraded();
-})();
-</script>
-</body></html>`
-}
 
 // ─── CONTACT PAGE ────────────────────────────────────────────────────────────
 function contactPage() {
@@ -3760,7 +3141,7 @@ ${getNav('contact')}
               <option value="">Select an inquiry type...</option>
               <option value="purchase">Purchasing a Card</option>
               <option value="selling">Selling My Cards</option>
-              <option value="graded">Graded Card Inquiry</option>
+
               <option value="specific">Looking for a Specific Card</option>
               <option value="bulk">Bulk / Collection Purchase</option>
               <option value="trade">Trade Offer</option>
@@ -3857,7 +3238,7 @@ ${getNav('contact')}
               {q:'Do you ship internationally?', a:'Yes! We ship worldwide with full tracking.'},
               {q:'How do you grade condition?', a:'We use industry-standard TCG grading: NM, LP, MP, VG, HP.'},
               {q:'Can I sell my cards to you?', a:'Yes! Submit an inquiry with details and we\'ll make an offer.'},
-              {q:'Are your graded cards authentic?', a:'100%. All slabs are from PSA or C3 — no counterfeits.'},
+              {q:'Do you sell sealed products only?', a:'Yes! All our products are brand new, factory-sealed booster boxes, packs, Elite Trainer Boxes, and Collector Boxes.'},
             ].map(f => `
             <details style="border:1px solid rgba(216,179,90,0.12);border-radius:10px;overflow:hidden">
               <summary style="padding:0.85rem 1rem;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.9rem;color:var(--text-main);list-style:none;display:flex;justify-content:space-between;align-items:center">
