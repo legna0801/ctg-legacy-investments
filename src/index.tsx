@@ -1253,17 +1253,17 @@ function getNav(active: string) {
               <span>🏆</span> Elite Trainer Boxes
               <span class="sub-badge" style="background:rgba(216,179,90,0.18);color:var(--gold-light);border:1px solid rgba(216,179,90,0.4)">ELITE</span>
             </a>
-            <a href="/shop?cat=collector" class="dd-sub-item">
-              <span>💎</span> Collector Boxes
-              <span class="sub-badge" style="background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.35)">COLLECTOR</span>
+            <a href="/shop?cat=bundles" class="dd-sub-item">
+              <span>🎁</span> Booster Bundles
+              <span class="sub-badge" style="background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3)">BUNDLE</span>
             </a>
             <a href="/shop?cat=packs" class="dd-sub-item">
               <span>🎴</span> Booster Packs
               <span class="sub-badge" style="background:rgba(255,199,0,0.12);color:#FFD700;border:1px solid rgba(255,199,0,0.3)">PACK</span>
             </a>
-            <a href="/shop?cat=singles" class="dd-sub-item">
-              <span>🃏</span> Single Packs
-              <span class="sub-badge" style="background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3)">SINGLE</span>
+            <a href="/shop?cat=bundles" class="dd-sub-item">
+              <span>🎁</span> Booster Bundles
+              <span class="sub-badge" style="background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3)">BUNDLE</span>
             </a>
           </div>
 
@@ -1348,7 +1348,7 @@ function getNav(active: string) {
       <div id="mob-sub-pokemon" style="display:none;flex-direction:column;border-left:2px solid rgba(255,199,0,0.2);margin-left:1.5rem">
         <a href="/shop?cat=boxes"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
         <a href="/shop?cat=elite"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🏆</span> Elite Trainer Boxes</a>
-        <a href="/shop?cat=collector" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>💎</span> Collector Boxes</a>
+        <a href="/shop?cat=bundles" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎁</span> Booster Bundles</a>
         <a href="/shop?cat=packs"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
       </div>
 
@@ -1362,7 +1362,7 @@ function getNav(active: string) {
       <div id="mob-sub-yugioh" style="display:none;flex-direction:column;border-left:2px solid rgba(70,199,194,0.2);margin-left:1.5rem">
         <a href="/shop?cat=boxes&game=yugioh"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
         <a href="/shop?cat=packs&game=yugioh"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
-        <a href="/shop?cat=singles&game=yugioh" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🃏</span> Single Packs</a>
+        <a href="/shop?cat=bundles&game=yugioh" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎁</span> Booster Bundles</a>
       </div>
 
       <!-- Magic + sub -->
@@ -1375,7 +1375,7 @@ function getNav(active: string) {
       <div id="mob-sub-mtg" style="display:none;flex-direction:column;border-left:2px solid rgba(166,107,255,0.2);margin-left:1.5rem">
         <a href="/shop?cat=boxes&game=mtg"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
         <a href="/shop?cat=packs&game=mtg"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
-        <a href="/shop?cat=singles&game=mtg" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🃏</span> Single Packs</a>
+        <a href="/shop?cat=bundles&game=mtg" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎁</span> Booster Bundles</a>
       </div>
 
     </div>
@@ -2159,8 +2159,9 @@ ${getNav('shop')}
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2.5rem">
       <button class="filter-btn active" id="tab-all"      onclick="switchTab('all')"    ><i class="fas fa-th-large"    style="margin-right:6px"></i>All Products</button>
       <button class="filter-btn"        id="tab-boxes"    onclick="switchTab('boxes')"  ><i class="fas fa-box"         style="margin-right:6px"></i>Booster Boxes</button>
-      <button class="filter-btn"        id="tab-packs"    onclick="switchTab('packs')"  ><i class="fas fa-layer-group" style="margin-right:6px"></i>Booster Packs</button>
-      <button class="filter-btn"        id="tab-singles"  onclick="switchTab('singles')"><i class="fas fa-id-card"     style="margin-right:6px"></i>Single Packs</button>
+      <button class="filter-btn"        id="tab-elite"    onclick="switchTab('elite')"  ><i class="fas fa-trophy"      style="margin-right:6px"></i>Elite Trainer Boxes</button>
+      <button class="filter-btn"        id="tab-bundles"  onclick="switchTab('bundles')"><i class="fas fa-layer-group" style="margin-right:6px"></i>Booster Bundles</button>
+      <button class="filter-btn"        id="tab-packs"    onclick="switchTab('packs')"  ><i class="fas fa-id-card"     style="margin-right:6px"></i>Booster Packs</button>
 
     </div>
 
@@ -2246,8 +2247,11 @@ ${getNav('shop')}
 
       </div>
 
-      <!-- ══ ELITE TRAINER BOXES ══ -->
-      <div style="display:flex;align-items:center;gap:0.75rem;margin:2.5rem 0 1.5rem">
+    </div>
+
+    <!-- ══ ELITE TRAINER BOXES ══ -->
+    <div id="section-elite">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
         <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--gold-light),var(--gold));border-radius:2px"></div>
         <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Elite Trainer Boxes</h2>
         <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light)">— Pokémon Elite</span>
@@ -2328,8 +2332,11 @@ ${getNav('shop')}
 
       </div>
 
-      <!-- ══ COLLECTOR BOXES ══ -->
-      <div style="display:flex;align-items:center;gap:0.75rem;margin:2.5rem 0 1.5rem">
+    </div>
+
+    <!-- ══ COLLECTOR BOXES (part of Booster Boxes view) ══ -->
+    <div id="section-collector">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
         <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--purple),rgba(166,107,255,0.5));border-radius:2px"></div>
         <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Collector Boxes</h2>
         <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple)">— Premium Collections</span>
@@ -2411,12 +2418,12 @@ ${getNav('shop')}
       </div>
     </div>
 
-    <!-- ══ BOOSTER PACKS ══ -->
-    <div id="section-packs">
+    <!-- ══ BOOSTER BUNDLES ══ -->
+    <div id="section-bundles">
       <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
         <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--cyan),var(--purple));border-radius:2px"></div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Packs</h2>
-        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Individual Packs</span>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Bundles</h2>
+        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Multi-Pack Bundles</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
 
@@ -2487,12 +2494,11 @@ ${getNav('shop')}
       </div>
     </div>
 
-    <!-- ══ SINGLE PACKS ══ -->
-    <!-- ══ SINGLE PACKS ══ -->
-    <div id="section-singles">
+    <!-- ══ BOOSTER PACKS ══ -->
+    <div id="section-packs">
       <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
         <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--purple),var(--gold));border-radius:2px"></div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Single Packs</h2>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Packs</h2>
         <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Individual Booster Packs</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
@@ -2576,20 +2582,24 @@ ${getFooter()}
 ${getCartScript()}
 
 <script>
-  const allTabs = ['all','boxes','packs','singles'];
+  const allTabs = ['all','boxes','elite','bundles','packs'];
   function switchTab(tab) {
     allTabs.forEach(t => {
       const btn = document.getElementById('tab-'+t);
       if(btn) btn.classList.toggle('active', t === tab);
     });
-    const sections = { boxes:'section-boxes', packs:'section-packs', singles:'section-singles' };
+    const sections = { boxes:'section-boxes', elite:'section-elite', bundles:'section-bundles', packs:'section-packs' };
+    // collector boxes travel with boxes tab
+    const collectorEl = document.getElementById('section-collector');
     if(tab === 'all') {
       Object.values(sections).forEach(id => { const el=document.getElementById(id); if(el) el.style.display='block'; });
+      if(collectorEl) collectorEl.style.display='block';
     } else {
       Object.entries(sections).forEach(([k,id]) => {
         const el = document.getElementById(id);
         if(el) el.style.display = (k===tab) ? 'block' : 'none';
       });
+      if(collectorEl) collectorEl.style.display = (tab==='boxes') ? 'block' : 'none';
     }
   }
   // Read URL param
