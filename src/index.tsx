@@ -1213,20 +1213,8 @@ function getNav(active: string) {
         </div>
       </div>
 
-      <!-- Shop dropdown -->
-      <div class="nav-dropdown" id="dd-shop">
-        <button class="nav-dropdown-btn ${active === 'shop' ? 'active' : ''}" onclick="toggleNavDD('dd-shop')">
-          Shop <i class="fas fa-chevron-down nav-dd-arrow"></i>
-        </button>
-        <div class="nav-dropdown-panel">
-          <div class="nav-dd-section">All Products</div>
-          <a href="/shop" class="nav-dd-item"><span>🛍️</span> All Products</a>
-          <a href="/shop?cat=boxes" class="nav-dd-item"><span>📦</span> Booster Boxes <span class="dd-badge ddb-all" style="margin-left:auto">SEALED</span></a>
-          <a href="/shop?cat=elite" class="nav-dd-item"><span>🏆</span> Elite Trainer Boxes <span class="dd-badge" style="margin-left:auto;background:rgba(216,179,90,0.18);color:var(--gold-light);border:1px solid rgba(216,179,90,0.4)">ELITE</span></a>
-          <a href="/shop?cat=bundles" class="nav-dd-item"><span>🎁</span> Booster Bundles <span class="dd-badge" style="margin-left:auto;background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.3)">BUNDLE</span></a>
-          <a href="/shop?cat=packs" class="nav-dd-item"><span>🎴</span> Booster Packs <span class="dd-badge ddb-pokemon" style="margin-left:auto">PACK</span></a>
-        </div>
-      </div>
+      <!-- Shop link (plain, no sub-items yet) -->
+      <a href="/shop" class="nav-link ${active === 'shop' ? 'active' : ''}">Shop</a>
 
       <!-- Contact dropdown -->
       <div class="nav-dropdown" id="dd-contact">
@@ -1303,20 +1291,8 @@ function getNav(active: string) {
     </div>
   </div>
 
-  <!-- Shop accordion -->
-  <div class="mob-accordion">
-    <button class="mob-accordion-btn" id="mob-btn-shop" onclick="toggleMobAccordion('mob-btn-shop','mob-panel-shop')">
-      <span><i class="fas fa-store" style="margin-right:0.5rem;font-size:0.8rem;color:var(--gold-dim)"></i>Shop</span>
-      <i class="fas fa-chevron-down mob-arrow"></i>
-    </button>
-    <div class="mob-accordion-panel" id="mob-panel-shop">
-      <a href="/shop" class="mob-sub-link"><span>🛍️</span> All Products</a>
-      <a href="/shop?cat=boxes" class="mob-sub-link"><span>📦</span> Booster Boxes</a>
-      <a href="/shop?cat=elite" class="mob-sub-link"><span>🏆</span> Elite Trainer Boxes</a>
-      <a href="/shop?cat=bundles" class="mob-sub-link"><span>🎁</span> Booster Bundles</a>
-      <a href="/shop?cat=packs" class="mob-sub-link"><span>🎴</span> Booster Packs</a>
-    </div>
-  </div>
+  <!-- Shop plain link -->
+  <a href="/shop" class="nav-link">🛍️ Shop</a>
 
   <!-- Contact accordion -->
   <div class="mob-accordion">
@@ -2129,162 +2105,113 @@ ${getCartScript()}
 </body></html>`
 }
 
-// ─── SHOP PAGE (Booster Boxes, Packs, Singles) ───────────────────────────────
+// ─── SHOP PAGE ───────────────────────────────────────────────────────────────
 function shopPage() {
   return `${getHead('Shop')}
 <body>
 ${getNav('shop')}
 <div class="page-wrap">
 
+  <!-- PAGE HEADER -->
   <div class="page-banner">
     <div style="position:relative;z-index:1">
-      <div class="section-sub">Full Inventory</div>
-      <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Shop All Products</h1>
+      <div class="section-sub">CTG Legacy Investments</div>
+      <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Shop</h1>
       <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
-      <p style="color:var(--text-muted);font-size:0.95rem;max-width:520px;margin:0 auto">Booster Boxes, Elite Trainer Boxes, Booster Bundles, and Booster Packs — all factory sealed. More products coming soon!</p>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:520px;margin:0 auto">More products coming soon. Check back for new inventory drops.</p>
     </div>
   </div>
 
   <div class="container section">
 
-    <!-- ══ COMING SOON NOTICE ══ -->
-    <div style="text-align:center;padding:1rem 0 2rem">
-      <span style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim)">
-        <i class="fas fa-tools" style="color:var(--gold-light);margin-right:0.45rem"></i>
-        Full shop coming soon — browse by game in TCG Cards
-      </span>
-    </div>
+    <!-- ══ COMING SOON HERO ══ -->
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 1rem 4rem;text-align:center">
 
-    <!-- ══ CATEGORY TABS ══ -->
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2.5rem">
-      <button class="filter-btn active" id="tab-all"      onclick="switchTab('all')"    ><i class="fas fa-th-large"    style="margin-right:6px"></i>All Products</button>
-      <button class="filter-btn"        id="tab-boxes"    onclick="switchTab('boxes')"  ><i class="fas fa-box"         style="margin-right:6px"></i>Booster Boxes</button>
-      <button class="filter-btn"        id="tab-elite"    onclick="switchTab('elite')"  ><i class="fas fa-trophy"      style="margin-right:6px"></i>Elite Trainer Boxes</button>
-      <button class="filter-btn"        id="tab-bundles"  onclick="switchTab('bundles')"><i class="fas fa-layer-group" style="margin-right:6px"></i>Booster Bundles</button>
-      <button class="filter-btn"        id="tab-packs"    onclick="switchTab('packs')"  ><i class="fas fa-id-card"     style="margin-right:6px"></i>Booster Packs</button>
-    </div>
+      <!-- Icon -->
+      <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(216,179,90,0.12),rgba(76,203,255,0.08));border:1px solid rgba(216,179,90,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:2rem;box-shadow:0 0 40px rgba(216,179,90,0.1)">
+        <i class="fas fa-store" style="font-size:2.2rem;color:var(--gold-light)"></i>
+      </div>
 
-    <!-- ══ BOOSTER BOXES ══ -->
-    <div id="section-boxes">
-      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
-        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--gold),var(--cyan));border-radius:2px"></div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Boxes</h2>
-        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Sealed Product</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
-        <!-- PLACEHOLDER: Booster Box products will be added here -->
-        <div class="product-card" style="opacity:0.45;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.06),rgba(14,18,48,0.9))"><span>📦</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-set"  style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:70%"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-        <div class="product-card" style="opacity:0.28;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.06),rgba(14,18,48,0.9))"><span>📦</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-set"  style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:60%"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-        <div class="product-card" style="opacity:0.15;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.06),rgba(14,18,48,0.9))"><span>📦</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-set"  style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:50%"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══ ELITE TRAINER BOXES ══ -->
-    <div id="section-elite">
-      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
-        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--gold-light),var(--gold));border-radius:2px"></div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Elite Trainer Boxes</h2>
-        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light)">— Pokémon Only</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
-        <div class="product-card" style="opacity:0.45;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(216,179,90,0.1),rgba(14,18,48,0.95))"><span>🏆</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-        <div class="product-card" style="opacity:0.25;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(216,179,90,0.1),rgba(14,18,48,0.95))"><span>🏆</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ BOOSTER BUNDLES ══ -->
-    <div id="section-bundles">
-      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
-        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--cyan),var(--purple));border-radius:2px"></div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Bundles</h2>
-        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Multi-Pack Bundles</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
-        <div class="product-card" style="opacity:0.45;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(76,203,255,0.06),rgba(14,18,48,0.9))"><span>🎁</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-        <div class="product-card" style="opacity:0.25;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(76,203,255,0.06),rgba(14,18,48,0.9))"><span>🎁</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ BOOSTER PACKS ══ -->
-    <div id="section-packs">
-      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
-        <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--purple),var(--gold));border-radius:2px"></div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Packs</h2>
-        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">— Individual Booster Packs</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
-        <div class="product-card" style="opacity:0.45;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.06),rgba(14,18,48,0.9))"><span>🎴</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-        <div class="product-card" style="opacity:0.25;pointer-events:none">
-          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(255,199,0,0.06),rgba(14,18,48,0.9))"><span>🎴</span></div>
-          <div class="product-info">
-            <div class="product-name" style="background:rgba(255,255,255,0.06);height:1rem;border-radius:6px;margin-bottom:0.5rem"></div>
-            <div class="product-price" style="margin-top:0.75rem;color:var(--gold-dim)">— Coming Soon —</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA to TCG Cards -->
-    <div style="text-align:center;padding:2rem 0 3rem">
-      <p style="font-family:'Rajdhani',sans-serif;color:var(--text-muted);font-size:0.95rem;margin-bottom:1.25rem">
-        Browse our current sealed inventory by game in the TCG Cards section
+      <!-- Heading -->
+      <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:0.06em;color:var(--text-main);margin-bottom:0.75rem">New Products Coming Soon</h2>
+      <div class="gold-line" style="margin:0 auto 1.5rem;width:60px"></div>
+      <p style="font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text-muted);max-width:440px;line-height:1.7;margin-bottom:2.5rem">
+        We're working on expanding our inventory beyond TCG cards. New products will be listed here — stay tuned and check back soon.
       </p>
-      <a href="/tcg-cards" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 2rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:1rem;letter-spacing:0.08em;text-transform:uppercase;border-radius:10px;text-decoration:none;transition:all 0.2s"
-        onmouseover="this.style.boxShadow='0 0 24px rgba(216,179,90,0.5)'" onmouseout="this.style.boxShadow=''">
-        <i class="fas fa-layer-group"></i> Browse TCG Cards
-      </a>
+
+      <!-- Trust pills -->
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-bottom:3rem">
+        <span style="display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 1rem;background:rgba(216,179,90,0.08);border:1px solid rgba(216,179,90,0.22);border-radius:20px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dim)">
+          <i class="fas fa-shield-alt" style="color:var(--gold-light)"></i> 100% Authentic
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 1rem;background:rgba(76,203,255,0.07);border:1px solid rgba(76,203,255,0.2);border-radius:20px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">
+          <i class="fas fa-bolt" style="color:var(--cyan)"></i> Fast Shipping
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 1rem;background:rgba(166,107,255,0.07);border:1px solid rgba(166,107,255,0.2);border-radius:20px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">
+          <i class="fas fa-star" style="color:var(--purple)"></i> Top Rated Seller
+        </span>
+      </div>
+
+      <!-- ── PRODUCT GRID PLACEHOLDER ── -->
+      <!-- ADD PRODUCTS HERE: copy a product-card block below and fill in the details -->
+      <div id="shop-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;width:100%;max-width:1100px;margin-bottom:3rem">
+
+        <!-- PLACEHOLDER CARD 1 — replace with real product -->
+        <div class="product-card" style="opacity:0.4;pointer-events:none">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(216,179,90,0.06),rgba(14,18,48,0.9))">
+            <span>🛍️</span>
+          </div>
+          <div class="product-info">
+            <div style="background:rgba(255,255,255,0.07);height:1rem;border-radius:6px;margin-bottom:0.6rem"></div>
+            <div style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:65%;margin-bottom:0.4rem"></div>
+            <div style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:40%"></div>
+            <div style="margin-top:0.85rem;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.08em">— Coming Soon —</div>
+          </div>
+        </div>
+
+        <!-- PLACEHOLDER CARD 2 -->
+        <div class="product-card" style="opacity:0.25;pointer-events:none">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(76,203,255,0.05),rgba(14,18,48,0.9))">
+            <span>🛍️</span>
+          </div>
+          <div class="product-info">
+            <div style="background:rgba(255,255,255,0.07);height:1rem;border-radius:6px;margin-bottom:0.6rem"></div>
+            <div style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:55%;margin-bottom:0.4rem"></div>
+            <div style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:35%"></div>
+            <div style="margin-top:0.85rem;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.08em">— Coming Soon —</div>
+          </div>
+        </div>
+
+        <!-- PLACEHOLDER CARD 3 -->
+        <div class="product-card" style="opacity:0.12;pointer-events:none">
+          <div class="product-card-img" style="font-size:3rem;background:linear-gradient(135deg,rgba(166,107,255,0.05),rgba(14,18,48,0.9))">
+            <span>🛍️</span>
+          </div>
+          <div class="product-info">
+            <div style="background:rgba(255,255,255,0.07);height:1rem;border-radius:6px;margin-bottom:0.6rem"></div>
+            <div style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:70%;margin-bottom:0.4rem"></div>
+            <div style="background:rgba(255,255,255,0.04);height:0.75rem;border-radius:6px;width:45%"></div>
+            <div style="margin-top:0.85rem;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.08em">— Coming Soon —</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- END PRODUCT GRID -->
+
+      <!-- Notify CTA -->
+      <div style="background:linear-gradient(135deg,rgba(216,179,90,0.06),rgba(76,203,255,0.04));border:1px solid rgba(216,179,90,0.18);border-radius:16px;padding:2rem 2.5rem;max-width:480px;width:100%">
+        <div style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:0.06em;color:var(--gold-light);margin-bottom:0.4rem">
+          <i class="fas fa-bell" style="margin-right:0.5rem"></i>Get Notified
+        </div>
+        <p style="font-family:'Rajdhani',sans-serif;font-size:0.9rem;color:var(--text-muted);margin-bottom:1.25rem">
+          Have a question or want to know when new products drop? Reach out and we'll keep you in the loop.
+        </p>
+        <a href="/contact" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.75rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--bg-deep);font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;border-radius:10px;text-decoration:none;transition:all 0.2s"
+          onmouseover="this.style.boxShadow='0 0 20px rgba(216,179,90,0.45)'" onmouseout="this.style.boxShadow=''">
+          <i class="fas fa-envelope"></i> Contact Us
+        </a>
+      </div>
+
     </div>
 
   </div>
@@ -2293,27 +2220,6 @@ ${getNav('shop')}
 
 ${getFooter()}
 ${getCartScript()}
-
-<script>
-  const allTabs = ['all','boxes','elite','bundles','packs'];
-  function switchTab(tab) {
-    allTabs.forEach(t => {
-      const btn = document.getElementById('tab-'+t);
-      if(btn) btn.classList.toggle('active', t === tab);
-    });
-    const sections = { boxes:'section-boxes', elite:'section-elite', bundles:'section-bundles', packs:'section-packs' };
-    if(tab === 'all') {
-      Object.values(sections).forEach(id => { const el=document.getElementById(id); if(el) el.style.display='block'; });
-    } else {
-      Object.entries(sections).forEach(([k,id]) => {
-        const el = document.getElementById(id);
-        if(el) el.style.display = (k===tab) ? 'block' : 'none';
-      });
-    }
-  }
-  const shopParam = new URLSearchParams(window.location.search).get('cat');
-  if(shopParam) switchTab(shopParam);
-</script>
 </body></html>`
 }
 
