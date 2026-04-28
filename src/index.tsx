@@ -51,14 +51,14 @@ function getHead(title: string) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | CTG Legacy Investments</title>
-  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, Elite Trainer Boxes and Collector Boxes. Factory sealed. Collect. Invest. Dominate the Game." />
+  <meta name="description" content="CTG Legacy Investments LLC — Premium Pokémon TCG booster boxes, booster packs, Elite Trainer Boxes and Booster Bundles. Factory sealed. Collect. Invest. Dominate the Game." />
   <meta name="keywords" content="Pokemon cards, booster boxes, Elite Trainer Box, Collector Box, TCG, Charizard, buy Pokemon cards, booster packs, factory sealed, Pokemon booster box, Yu-Gi-Oh, Magic The Gathering" />
   <meta property="og:title" content="${title} | CTG Legacy Investments" />
-  <meta property="og:description" content="Premium Pokémon TCG booster boxes, packs, Elite Trainer Boxes and Collector Boxes — all factory sealed. Collect. Invest. Dominate." />
+  <meta property="og:description" content="Premium Pokémon TCG booster boxes, packs, Elite Trainer Boxes and Booster Bundles — all factory sealed. Collect. Invest. Dominate." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CTG Legacy Investments — Collect. Invest. Dominate." />
-  <meta name="twitter:description" content="Premium Pokémon TCG booster boxes, packs, Elite Trainer Boxes and Collector Boxes — factory sealed." />
+  <meta name="twitter:description" content="Premium Pokémon TCG booster boxes, packs, Elite Trainer Boxes and Booster Bundles — factory sealed." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23050818'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F0C96A'/%3E%3Cstop offset='100%25' stop-color='%23D8B35A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='68' font-family='Arial Black' font-size='44' font-weight='900' text-anchor='middle' fill='url(%23g)'%3ECTG%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -2149,7 +2149,7 @@ ${getNav('shop')}
       <div class="section-sub">Full Inventory</div>
       <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0.25rem">Shop All Products</h1>
       <div class="gold-line" style="margin:0.75rem auto 0.75rem"></div>
-      <p style="color:var(--text-muted);font-size:0.95rem;max-width:520px;margin:0 auto">Booster Boxes, Elite Trainer Boxes, Collector Boxes, and Booster Packs — all factory sealed.</p>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:520px;margin:0 auto">Booster Boxes, Elite Trainer Boxes, Booster Bundles, and Booster Packs — all factory sealed.</p>
     </div>
   </div>
 
@@ -2338,8 +2338,8 @@ ${getNav('shop')}
     <div id="section-collector">
       <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
         <div style="width:4px;height:28px;background:linear-gradient(180deg,var(--purple),rgba(166,107,255,0.5));border-radius:2px"></div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Collector Boxes</h2>
-        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple)">— Premium Collections</span>
+        <h2 style="font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.06em;color:var(--text-main)">Booster Bundles</h2>
+        <span style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple)">— Multi-Pack Bundles</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem">
 
@@ -3269,7 +3269,7 @@ ${getNav('contact')}
               {q:'Do you ship internationally?', a:'Yes! We ship worldwide with full tracking.'},
               {q:'How do you grade condition?', a:'We use industry-standard TCG grading: NM, LP, MP, VG, HP.'},
               {q:'Can I sell my cards to you?', a:'Yes! Submit an inquiry with details and we\'ll make an offer.'},
-              {q:'Do you sell sealed products only?', a:'Yes! All our products are brand new, factory-sealed booster boxes, packs, Elite Trainer Boxes, and Collector Boxes.'},
+              {q:'Do you sell sealed products only?', a:'Yes! All our products are brand new, factory-sealed booster boxes, packs, Elite Trainer Boxes, and Booster Bundles.'},
             ].map(f => `
             <details style="border:1px solid rgba(216,179,90,0.12);border-radius:10px;overflow:hidden">
               <summary style="padding:0.85rem 1rem;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.9rem;color:var(--text-main);list-style:none;display:flex;justify-content:space-between;align-items:center">
