@@ -388,22 +388,45 @@ function getHead(title: string) {
     .ddb-all     { background: rgba(216,179,90,0.15); color: var(--gold-light); border: 1px solid rgba(216,179,90,0.28); }
 
 
-    /* ── GAME DIVIDER inside dropdown ── */
-    .dd-game-label {
+    /* ── GAME ACCORDION inside TCG dropdown ── */
+    .dd-game-row {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.3rem 1rem 0.1rem;
+      justify-content: space-between;
+      padding: 0.52rem 1rem;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
+      color: var(--silver);
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      transition: all 0.15s;
       border-top: 1px solid rgba(255,255,255,0.05);
     }
-    .dd-game-label:first-of-type { border-top: none; margin-top: 0; }
+    .dd-game-row:first-of-type { border-top: none; }
+    .dd-game-row:hover { background: rgba(216,179,90,0.07); color: var(--gold-light); }
+    .dd-game-row.open { color: var(--gold-light); background: rgba(216,179,90,0.06); }
+    .dd-game-row .dd-gr-arrow {
+      font-size: 0.58rem;
+      color: var(--gold-dim);
+      transition: transform 0.22s;
+    }
+    .dd-game-row.open .dd-gr-arrow { transform: rotate(180deg); color: var(--gold-light); }
+    .dd-game-sub {
+      display: none;
+      flex-direction: column;
+      background: rgba(0,0,0,0.18);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding: 0.2rem 0;
+    }
+    .dd-game-sub.open { display: flex; }
+    .dd-game-sub .nav-dd-item { padding-left: 1.6rem; font-size: 0.85rem; }
+    .dd-game-sub .nav-dd-item:hover { padding-left: 1.85rem; }
 
     /* ── MOBILE ACCORDION ── */
     .mob-accordion { display: flex; flex-direction: column; }
@@ -1152,25 +1175,41 @@ function getNav(active: string) {
         <button class="nav-dropdown-btn ${active === 'tcg' ? 'active' : ''}" onclick="toggleNavDD('dd-tcg')">
           TCG Cards <i class="fas fa-chevron-down nav-dd-arrow"></i>
         </button>
-        <div class="nav-dropdown-panel" style="min-width:260px">
+        <div class="nav-dropdown-panel" style="min-width:270px">
           <div class="nav-dd-section">Browse By Game</div>
           <a href="/tcg-cards" class="nav-dd-item"><span>🃏</span> All TCG Cards</a>
 
-          <div class="dd-game-label"><span style="color:#FFD700">⚡</span> Pokémon</div>
-          <a href="/tcg-cards?game=pokemon&cat=boxes" class="nav-dd-item" style="padding-left:1.5rem"><span>📦</span> Booster Boxes</a>
-          <a href="/tcg-cards?game=pokemon&cat=elite" class="nav-dd-item" style="padding-left:1.5rem"><span>🏆</span> Elite Trainer Boxes</a>
-          <a href="/tcg-cards?game=pokemon&cat=bundles" class="nav-dd-item" style="padding-left:1.5rem"><span>🎁</span> Booster Bundles</a>
-          <a href="/tcg-cards?game=pokemon&cat=packs" class="nav-dd-item" style="padding-left:1.5rem"><span>🎴</span> Booster Packs</a>
+          <!-- ⚡ Pokémon row + sub -->
+          <button class="dd-game-row" id="dd-gr-pokemon" onclick="toggleGameRow('pokemon')">
+            <span style="display:flex;align-items:center;gap:0.5rem"><span style="color:#FFD700">⚡</span> Pokémon</span>
+            <i class="fas fa-chevron-down dd-gr-arrow"></i>
+          </button>
+          <div class="dd-game-sub" id="dd-gs-pokemon">
+            <a href="/tcg-cards?game=pokemon&cat=boxes"   class="nav-dd-item"><span>📦</span> Booster Boxes</a>
+            <a href="/tcg-cards?game=pokemon&cat=elite"   class="nav-dd-item"><span>🏆</span> Elite Trainer Boxes</a>
+            <a href="/tcg-cards?game=pokemon&cat=bundles" class="nav-dd-item"><span>🎁</span> Booster Bundles</a>
+            <a href="/tcg-cards?game=pokemon&cat=packs"   class="nav-dd-item"><span>🎴</span> Booster Packs</a>
+          </div>
 
-          <div class="dd-game-label"><span style="color:#46C7C2">🐉</span> Yu-Gi-Oh!</div>
-          <a href="/tcg-cards?game=yugioh&cat=boxes" class="nav-dd-item" style="padding-left:1.5rem"><span>📦</span> Booster Boxes</a>
-          <a href="/tcg-cards?game=yugioh&cat=bundles" class="nav-dd-item" style="padding-left:1.5rem"><span>🎁</span> Booster Bundles</a>
-          <a href="/tcg-cards?game=yugioh&cat=packs" class="nav-dd-item" style="padding-left:1.5rem"><span>🎴</span> Booster Packs</a>
+          <!-- 🐉 Yu-Gi-Oh! row + sub -->
+          <button class="dd-game-row" id="dd-gr-yugioh" onclick="toggleGameRow('yugioh')">
+            <span style="display:flex;align-items:center;gap:0.5rem"><span style="color:#46C7C2">🐉</span> Yu-Gi-Oh!</span>
+            <i class="fas fa-chevron-down dd-gr-arrow"></i>
+          </button>
+          <div class="dd-game-sub" id="dd-gs-yugioh">
+            <a href="/tcg-cards?game=yugioh&cat=boxes" class="nav-dd-item"><span>📦</span> Booster Boxes</a>
+            <a href="/tcg-cards?game=yugioh&cat=packs" class="nav-dd-item"><span>🎴</span> Booster Packs</a>
+          </div>
 
-          <div class="dd-game-label"><span style="color:#A66BFF">🔮</span> Magic: The Gathering</div>
-          <a href="/tcg-cards?game=mtg&cat=boxes" class="nav-dd-item" style="padding-left:1.5rem"><span>📦</span> Booster Boxes</a>
-          <a href="/tcg-cards?game=mtg&cat=bundles" class="nav-dd-item" style="padding-left:1.5rem"><span>🎁</span> Booster Bundles</a>
-          <a href="/tcg-cards?game=mtg&cat=packs" class="nav-dd-item" style="padding-left:1.5rem"><span>🎴</span> Booster Packs</a>
+          <!-- 🔮 Magic row + sub -->
+          <button class="dd-game-row" id="dd-gr-mtg" onclick="toggleGameRow('mtg')">
+            <span style="display:flex;align-items:center;gap:0.5rem"><span style="color:#A66BFF">🔮</span> Magic: The Gathering</span>
+            <i class="fas fa-chevron-down dd-gr-arrow"></i>
+          </button>
+          <div class="dd-game-sub" id="dd-gs-mtg">
+            <a href="/tcg-cards?game=mtg&cat=boxes" class="nav-dd-item"><span>📦</span> Booster Boxes</a>
+            <a href="/tcg-cards?game=mtg&cat=packs" class="nav-dd-item"><span>🎴</span> Booster Packs</a>
+          </div>
         </div>
       </div>
 
@@ -1230,21 +1269,37 @@ function getNav(active: string) {
     <div class="mob-accordion-panel" id="mob-panel-tcg">
       <a href="/tcg-cards" class="mob-sub-link"><span>🃏</span> All TCG Cards</a>
 
-      <div style="padding:0.3rem 1rem 0.1rem;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700">⚡ Pokémon</div>
-      <a href="/tcg-cards?game=pokemon&cat=boxes"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
-      <a href="/tcg-cards?game=pokemon&cat=elite"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🏆</span> Elite Trainer Boxes</a>
-      <a href="/tcg-cards?game=pokemon&cat=bundles" class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎁</span> Booster Bundles</a>
-      <a href="/tcg-cards?game=pokemon&cat=packs"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
+      <!-- ⚡ Pokémon sub-accordion -->
+      <button class="mob-accordion-btn" id="mob-btn-pok" onclick="toggleMobAccordion('mob-btn-pok','mob-panel-pok')" style="padding:0.55rem 1rem 0.55rem 1.4rem;font-size:0.78rem;border-top:1px solid rgba(255,255,255,0.05)">
+        <span><span style="color:#FFD700;margin-right:0.4rem">⚡</span>Pokémon</span>
+        <i class="fas fa-chevron-down mob-arrow"></i>
+      </button>
+      <div class="mob-accordion-panel" id="mob-panel-pok">
+        <a href="/tcg-cards?game=pokemon&cat=boxes"   class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
+        <a href="/tcg-cards?game=pokemon&cat=elite"   class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>🏆</span> Elite Trainer Boxes</a>
+        <a href="/tcg-cards?game=pokemon&cat=bundles" class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>🎁</span> Booster Bundles</a>
+        <a href="/tcg-cards?game=pokemon&cat=packs"   class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
+      </div>
 
-      <div style="padding:0.3rem 1rem 0.1rem;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700;border-top:1px solid rgba(255,255,255,0.05);margin-top:0.25rem">🐉 Yu-Gi-Oh!</div>
-      <a href="/tcg-cards?game=yugioh&cat=boxes"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
-      <a href="/tcg-cards?game=yugioh&cat=bundles" class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎁</span> Booster Bundles</a>
-      <a href="/tcg-cards?game=yugioh&cat=packs"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
+      <!-- 🐉 Yu-Gi-Oh! sub-accordion -->
+      <button class="mob-accordion-btn" id="mob-btn-ygo" onclick="toggleMobAccordion('mob-btn-ygo','mob-panel-ygo')" style="padding:0.55rem 1rem 0.55rem 1.4rem;font-size:0.78rem;border-top:1px solid rgba(255,255,255,0.05)">
+        <span><span style="color:#46C7C2;margin-right:0.4rem">🐉</span>Yu-Gi-Oh!</span>
+        <i class="fas fa-chevron-down mob-arrow"></i>
+      </button>
+      <div class="mob-accordion-panel" id="mob-panel-ygo">
+        <a href="/tcg-cards?game=yugioh&cat=boxes" class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
+        <a href="/tcg-cards?game=yugioh&cat=packs" class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
+      </div>
 
-      <div style="padding:0.3rem 1rem 0.1rem;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700;border-top:1px solid rgba(255,255,255,0.05);margin-top:0.25rem">🔮 Magic: TG</div>
-      <a href="/tcg-cards?game=mtg&cat=boxes"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
-      <a href="/tcg-cards?game=mtg&cat=bundles" class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎁</span> Booster Bundles</a>
-      <a href="/tcg-cards?game=mtg&cat=packs"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
+      <!-- 🔮 Magic sub-accordion -->
+      <button class="mob-accordion-btn" id="mob-btn-mtgm" onclick="toggleMobAccordion('mob-btn-mtgm','mob-panel-mtgm')" style="padding:0.55rem 1rem 0.55rem 1.4rem;font-size:0.78rem;border-top:1px solid rgba(255,255,255,0.05)">
+        <span><span style="color:#A66BFF;margin-right:0.4rem">🔮</span>Magic: The Gathering</span>
+        <i class="fas fa-chevron-down mob-arrow"></i>
+      </button>
+      <div class="mob-accordion-panel" id="mob-panel-mtgm">
+        <a href="/tcg-cards?game=mtg&cat=boxes" class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
+        <a href="/tcg-cards?game=mtg&cat=packs" class="mob-sub-link" style="padding-left:2.2rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
+      </div>
     </div>
   </div>
 
@@ -1393,10 +1448,9 @@ function getCartScript() {
     if (!isOpen) el.classList.add('open');
   }
   function toggleDDSub(panelId, chevronBtn) {
-    const panel = document.getElementById(panelId);
+    var panel = document.getElementById(panelId);
     if (!panel) return;
-    const isOpen = panel.classList.contains('open');
-    // Close all other sub-panels and reset their chevrons
+    var isOpen = panel.classList.contains('open');
     document.querySelectorAll('.dd-sub-panel.open').forEach(function(p) {
       p.classList.remove('open');
     });
@@ -1406,6 +1460,26 @@ function getCartScript() {
     if (!isOpen) {
       panel.classList.add('open');
       if (chevronBtn) chevronBtn.classList.add('open');
+    }
+  }
+
+  // ── TCG NAV GAME ROW ACCORDION (desktop dropdown) ─────────────────────────
+  function toggleGameRow(game) {
+    var rowEl = document.getElementById('dd-gr-' + game);
+    var subEl = document.getElementById('dd-gs-' + game);
+    if (!rowEl || !subEl) return;
+    var isOpen = rowEl.classList.contains('open');
+    // Close all game rows
+    ['pokemon','yugioh','mtg'].forEach(function(g) {
+      var r = document.getElementById('dd-gr-' + g);
+      var s = document.getElementById('dd-gs-' + g);
+      if (r) r.classList.remove('open');
+      if (s) s.classList.remove('open');
+    });
+    // Open the clicked one if it was closed
+    if (!isOpen) {
+      rowEl.classList.add('open');
+      subEl.classList.add('open');
     }
   }
   // Close dropdowns when clicking outside
@@ -1426,18 +1500,41 @@ function getCartScript() {
   });
 
   // ── MOBILE ACCORDION ─────────────────────────────────────────────────────
+  // Sub-panel IDs that live inside TCG panel (should not close parent)
+  var TCG_SUB_PANELS = ['mob-panel-pok','mob-panel-ygo','mob-panel-mtgm'];
+  var TCG_SUB_BTNS   = ['mob-btn-pok','mob-btn-ygo','mob-btn-mtgm'];
+
   function toggleMobAccordion(btnId, panelId) {
-    const btn   = document.getElementById(btnId);
-    const panel = document.getElementById(panelId);
+    var btn   = document.getElementById(btnId);
+    var panel = document.getElementById(panelId);
     if (!btn || !panel) return;
-    const isOpen = panel.classList.contains('open');
-    // Close all accordion panels first
-    document.querySelectorAll('.mob-accordion-panel.open').forEach(function(p) {
-      p.classList.remove('open');
-    });
-    document.querySelectorAll('.mob-accordion-btn.open').forEach(function(b) {
-      b.classList.remove('open');
-    });
+    var isOpen = panel.classList.contains('open');
+    var isSub  = TCG_SUB_PANELS.indexOf(panelId) !== -1;
+
+    if (isSub) {
+      // Only close sibling sub-panels, not the parent TCG panel
+      TCG_SUB_PANELS.forEach(function(sid) {
+        if (sid !== panelId) {
+          var sp = document.getElementById(sid);
+          if (sp) sp.classList.remove('open');
+        }
+      });
+      TCG_SUB_BTNS.forEach(function(sbid) {
+        if (sbid !== btnId) {
+          var sb = document.getElementById(sbid);
+          if (sb) sb.classList.remove('open');
+        }
+      });
+    } else {
+      // Top-level: close all panels including sub-panels
+      document.querySelectorAll('.mob-accordion-panel.open').forEach(function(p) {
+        p.classList.remove('open');
+      });
+      document.querySelectorAll('.mob-accordion-btn.open').forEach(function(b) {
+        b.classList.remove('open');
+      });
+    }
+
     if (!isOpen) {
       panel.classList.add('open');
       btn.classList.add('open');
