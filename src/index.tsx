@@ -1324,12 +1324,7 @@ function getFooter() {
       <div class="footer-brand-name">CTG LEGACY INVESTMENTS, LLC</div>
       <div style="font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.15em;color:var(--cyan);text-transform:uppercase;">EST. 2026 | Legacy Investments</div>
       <p class="footer-desc">Your premier source for factory-sealed trading cards. We specialize in Pokémon, Yu-Gi-Oh!, and Magic: The Gathering booster boxes and packs.</p>
-      <div style="display:flex;gap:0.75rem;margin-top:1.25rem;">
-        <a href="#" style="width:36px;height:36px;border-radius:8px;background:rgba(216,179,90,0.1);border:1px solid rgba(216,179,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold-light);text-decoration:none;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(216,179,90,0.25)'" onmouseout="this.style.background='rgba(216,179,90,0.1)'"><i class="fab fa-instagram"></i></a>
-        <a href="#" style="width:36px;height:36px;border-radius:8px;background:rgba(216,179,90,0.1);border:1px solid rgba(216,179,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold-light);text-decoration:none;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(216,179,90,0.25)'" onmouseout="this.style.background='rgba(216,179,90,0.1)'"><i class="fab fa-tiktok"></i></a>
-        <a href="#" style="width:36px;height:36px;border-radius:8px;background:rgba(216,179,90,0.1);border:1px solid rgba(216,179,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold-light);text-decoration:none;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(216,179,90,0.25)'" onmouseout="this.style.background='rgba(216,179,90,0.1)'"><i class="fab fa-facebook"></i></a>
-        <a href="#" style="width:36px;height:36px;border-radius:8px;background:rgba(216,179,90,0.1);border:1px solid rgba(216,179,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold-light);text-decoration:none;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(216,179,90,0.25)'" onmouseout="this.style.background='rgba(216,179,90,0.1)'"><i class="fab fa-youtube"></i></a>
-      </div>
+
     </div>
     <div>
       <div class="footer-heading">Shop</div>
@@ -3063,7 +3058,6 @@ ${getNav('contact')}
           <div style="display:flex;flex-direction:column;gap:1rem">
             ${[
               {q:'Do you ship internationally?', a:'Yes! We ship worldwide with full tracking.'},
-              {q:'How do you grade condition?', a:'We use industry-standard TCG grading: NM, LP, MP, VG, HP.'},
               {q:'Can I sell my cards to you?', a:'Yes! Submit an inquiry with details and we\'ll make an offer.'},
               {q:'Do you sell sealed products only?', a:'Yes! All our products are brand new, factory-sealed booster boxes, packs, Elite Trainer Boxes, and Booster Bundles.'},
             ].map(f => `
@@ -3077,21 +3071,7 @@ ${getNav('contact')}
           </div>
         </div>
 
-        <!-- Social -->
-        <div style="background:linear-gradient(145deg,var(--bg-card),var(--bg-card2));border:1px solid rgba(216,179,90,0.18);border-radius:18px;padding:2rem;text-align:center">
-          <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.08em;color:var(--gold-light);margin-bottom:1rem">Follow Us</h3>
-          <div style="display:flex;gap:0.75rem;justify-content:center">
-            ${[
-              {icon:'fab fa-instagram', label:'Instagram'},
-              {icon:'fab fa-tiktok',    label:'TikTok'},
-              {icon:'fab fa-facebook',  label:'Facebook'},
-              {icon:'fab fa-youtube',   label:'YouTube'},
-            ].map(s => `
-            <a href="#" style="display:flex;flex-direction:column;align-items:center;gap:0.35rem;padding:0.75rem;border-radius:12px;border:1px solid rgba(216,179,90,0.15);background:rgba(216,179,90,0.05);color:var(--gold-light);text-decoration:none;font-size:0.65rem;font-family:'Rajdhani',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;min-width:60px" onmouseover="this.style.background='rgba(216,179,90,0.12)';this.style.borderColor='rgba(216,179,90,0.35)'" onmouseout="this.style.background='rgba(216,179,90,0.05)';this.style.borderColor='rgba(216,179,90,0.15)'">
-              <i class="${s.icon}" style="font-size:1.2rem"></i>${s.label}
-            </a>`).join('')}
-          </div>
-        </div>
+
 
       </div>
     </div>
