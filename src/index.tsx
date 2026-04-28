@@ -174,16 +174,16 @@ function getHead(title: string) {
       text-transform: uppercase;
     }
 
-    .nav-links { display: flex; align-items: center; gap: 0.25rem; }
+    .nav-links { display: flex; align-items: center; gap: 0.1rem; }
     .nav-link {
       font-family: 'Rajdhani', sans-serif;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--silver);
       text-decoration: none;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.85rem;
       border-radius: 6px;
       transition: all 0.25s;
       position: relative;
@@ -238,24 +238,26 @@ function getHead(title: string) {
       color: white;
     }
 
-    /* Hamburger */
+    /* Hamburger — mobile only */
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .hamburger span { width: 24px; height: 2px; background: var(--gold-light); border-radius: 2px; transition: all 0.3s; }
     .mobile-menu {
       display: none;
       position: fixed;
       top: 72px; left: 0; right: 0;
-      background: rgba(5,8,24,0.97);
+      background: rgba(5,8,24,0.98);
       border-bottom: 1px solid rgba(216,179,90,0.2);
-      padding: 1rem 2rem 1.5rem;
+      padding: 1rem 1.5rem 1.5rem;
       z-index: 999;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.25rem;
+      max-height: calc(100vh - 72px);
+      overflow-y: auto;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu .nav-link { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-    /* ── NAV DROPDOWN ── */
+    /* ── NAV DROPDOWN (desktop) ── */
     .nav-dropdown {
       position: relative;
       display: inline-flex;
@@ -264,12 +266,12 @@ function getHead(title: string) {
     .nav-dropdown-btn {
       font-family: 'Rajdhani', sans-serif;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--silver);
       text-decoration: none;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.85rem;
       border-radius: 6px;
       border: none;
       background: none;
@@ -285,6 +287,7 @@ function getHead(title: string) {
       color: var(--gold-light);
       background: rgba(216,179,90,0.08);
     }
+    .nav-dropdown-btn.active { color: var(--gold-light); }
     .nav-dropdown.open .nav-dropdown-btn::after {
       content: '';
       position: absolute;
@@ -293,23 +296,23 @@ function getHead(title: string) {
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
       border-radius: 2px;
     }
-    .nav-dropdown-btn .nav-dd-arrow {
-      font-size: 0.6rem;
+    .nav-dd-arrow {
+      font-size: 0.58rem;
       color: var(--gold-dim);
       transition: transform 0.25s;
+      margin-left: 2px;
     }
-    .nav-dropdown.open .nav-dropdown-btn .nav-dd-arrow {
+    .nav-dropdown.open .nav-dd-arrow {
       transform: rotate(180deg);
       color: var(--gold-light);
     }
-
-    /* The panel itself */
+    /* The dropdown panel */
     .nav-dropdown-panel {
       position: absolute;
       top: calc(100% + 8px);
       left: 50%;
       transform: translateX(-50%) translateY(-6px) scale(0.97);
-      min-width: 230px;
+      min-width: 220px;
       background: rgba(8,10,28,0.98);
       border: 1px solid rgba(216,179,90,0.28);
       border-radius: 14px;
@@ -320,74 +323,62 @@ function getHead(title: string) {
       pointer-events: none;
       transition: all 0.22s cubic-bezier(.175,.885,.32,1.1);
       overflow: hidden;
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
     }
     .nav-dropdown.open .nav-dropdown-panel {
       opacity: 1;
       pointer-events: auto;
       transform: translateX(-50%) translateY(0) scale(1);
     }
-
-    /* Decorative top accent line */
     .nav-dropdown-panel::before {
       content: '';
       display: block;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold), var(--cyan), var(--gold), transparent);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
-
+    /* Section label inside panel */
     .nav-dd-section {
-      padding: 0.3rem 0.75rem 0.15rem;
+      padding: 0.25rem 0.85rem 0.1rem;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
     .nav-dd-section:not(:first-of-type) {
-      margin-top: 0.4rem;
-      padding-top: 0.55rem;
+      margin-top: 0.35rem;
+      padding-top: 0.45rem;
       border-top: 1px solid rgba(255,255,255,0.05);
     }
-
+    /* Standard dropdown item */
     .nav-dd-item {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      padding: 0.55rem 1rem;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--silver);
       text-decoration: none;
-      cursor: pointer;
       transition: all 0.15s;
-      border: none;
-      background: none;
-      width: 100%;
-      text-align: left;
+      white-space: nowrap;
     }
     .nav-dd-item:hover {
       background: rgba(216,179,90,0.09);
       color: var(--gold-light);
-      padding-left: 1.3rem;
-    }
-    .nav-dd-item .dd-emoji {
-      font-size: 1rem;
-      width: 1.4rem;
-      text-align: center;
-      flex-shrink: 0;
+      padding-left: 1.25rem;
     }
     .nav-dd-item .dd-badge {
       margin-left: auto;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 2px 7px;
+      padding: 1px 6px;
       border-radius: 4px;
       flex-shrink: 0;
     }
@@ -397,86 +388,25 @@ function getHead(title: string) {
     .ddb-all     { background: rgba(216,179,90,0.15); color: var(--gold-light); border: 1px solid rgba(216,179,90,0.28); }
 
 
-    /* ── NAV GAME SUB-ROWS ── */
-    .dd-game-row {
-      display: flex;
-      align-items: center;
-      padding: 0.45rem 1rem;
-      gap: 0.5rem;
-      cursor: pointer;
-      transition: background 0.18s;
-      border-radius: 6px;
-      margin: 1px 4px;
-    }
-    .dd-game-row:hover { background: rgba(216,179,90,0.08); }
-    .dd-game-row-link {
-      flex: 1;
+    /* ── GAME DIVIDER inside dropdown ── */
+    .dd-game-label {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      text-decoration: none;
-      color: var(--text-main);
+      padding: 0.3rem 1rem 0.1rem;
       font-family: 'Rajdhani', sans-serif;
-      font-weight: 600;
-      font-size: 0.92rem;
-      letter-spacing: 0.03em;
-      white-space: nowrap;
-      overflow: hidden;
-      min-width: 0;
-    }
-    .dd-game-row-link:hover { color: var(--gold-light); }
-    .dd-game-chevron {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-muted);
-      padding: 2px 5px;
-      border-radius: 4px;
-      font-size: 0.65rem;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-    .dd-game-chevron:hover { color: var(--gold-light); background: rgba(216,179,90,0.1); }
-    .dd-game-chevron.open { transform: rotate(180deg); color: var(--gold-light); }
-    .dd-sub-panel {
-      display: none;
-      flex-direction: column;
-      background: rgba(5,8,24,0.6);
-      border-left: 2px solid rgba(216,179,90,0.2);
-      margin: 0 4px 2px 28px;
-      border-radius: 0 6px 6px 0;
-      overflow: hidden;
-    }
-    .dd-sub-panel.open { display: flex; }
-    .dd-sub-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.85rem;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 600;
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      transition: all 0.18s;
-    }
-    .dd-sub-item:hover { color: var(--gold-light); background: rgba(216,179,90,0.07); }
-    .dd-sub-item span.sub-badge {
-      margin-left: auto;
-      font-size: 0.6rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding: 1px 6px;
-      border-radius: 3px;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
+    .dd-game-label:first-of-type { border-top: none; margin-top: 0; }
 
     /* ── MOBILE ACCORDION ── */
-    .mob-accordion {
-      display: flex;
-      flex-direction: column;
-    }
+    .mob-accordion { display: flex; flex-direction: column; }
     .mob-accordion-btn {
       display: flex;
       align-items: center;
@@ -490,21 +420,14 @@ function getHead(title: string) {
       text-transform: uppercase;
       color: var(--silver);
       background: none;
-      border-left: none;
-      border-right: none;
-      border-top: none;
+      border-left: none; border-right: none; border-top: none;
       cursor: pointer;
       width: 100%;
       text-align: left;
       transition: color 0.2s;
     }
-    .mob-accordion-btn:hover,
-    .mob-accordion-btn.open { color: var(--gold-light); }
-    .mob-accordion-btn .mob-arrow {
-      font-size: 0.65rem;
-      color: var(--gold-dim);
-      transition: transform 0.25s;
-    }
+    .mob-accordion-btn:hover, .mob-accordion-btn.open { color: var(--gold-light); }
+    .mob-accordion-btn .mob-arrow { font-size: 0.65rem; color: var(--gold-dim); transition: transform 0.25s; }
     .mob-accordion-btn.open .mob-arrow { transform: rotate(180deg); color: var(--gold-light); }
     .mob-accordion-panel {
       display: none;
@@ -1090,7 +1013,7 @@ function getHead(title: string) {
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .nav-links { display: none; }
       .hamburger { display: flex !important; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -1218,103 +1141,71 @@ function getNav(active: string) {
       </div>
     </a>
 
+    <!-- ── DESKTOP NAV ── -->
     <div class="nav-links">
+
+      <!-- Home -->
       <a href="/" class="nav-link ${active === 'home' ? 'active' : ''}">Home</a>
 
-      <!-- TCG Cards Dropdown -->
-      <div class="nav-dropdown" id="dd-tcg">
-        <div style="display:flex;align-items:center">
-          <a href="/tcg-cards" class="nav-dropdown-btn ${active === 'tcg' ? 'active' : ''}" style="text-decoration:none;border-radius:6px 0 0 6px;padding-right:0.35rem">
-            TCG Cards
-          </a>
-          <button onclick="toggleNavDD('dd-tcg')" aria-haspopup="true" style="background:none;border:none;cursor:pointer;padding:0.5rem 0.6rem 0.5rem 0.2rem;color:var(--silver);border-radius:0 6px 6px 0;transition:all 0.25s;line-height:1" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--silver)'">
-            <i class="fas fa-chevron-down nav-dd-arrow" style="font-size:0.7rem"></i>
-          </button>
-        </div>
-        <div class="nav-dropdown-panel" style="min-width:240px;padding:0.5rem 0">
-          <div class="nav-dd-section">Browse By Game</div>
-
-          <!-- Pokémon row -->
-          <div class="dd-game-row">
-            <a href="/tcg-cards?game=pokemon" class="dd-game-row-link">
-              <span>⚡</span> Pokémon
-              <span class="dd-badge ddb-pokemon" style="margin-left:0.25rem">TCG</span>
-            </a>
-            <button class="dd-game-chevron" onclick="toggleDDSub('sub-pokemon',this)" title="Show product types">
-              <i class="fas fa-chevron-down"></i>
-            </button>
-          </div>
-          <div class="dd-sub-panel" id="sub-pokemon">
-            <a href="/shop?cat=boxes" class="dd-sub-item">
-              <span>📦</span> Booster Boxes
-              <span class="sub-badge" style="background:rgba(76,203,255,0.15);color:var(--cyan);border:1px solid rgba(76,203,255,0.3)">SEALED</span>
-            </a>
-            <a href="/shop?cat=elite" class="dd-sub-item">
-              <span>🏆</span> Elite Trainer Boxes
-              <span class="sub-badge" style="background:rgba(216,179,90,0.18);color:var(--gold-light);border:1px solid rgba(216,179,90,0.4)">ELITE</span>
-            </a>
-            <a href="/shop?cat=bundles" class="dd-sub-item">
-              <span>🎁</span> Booster Bundles
-              <span class="sub-badge" style="background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3)">BUNDLE</span>
-            </a>
-            <a href="/shop?cat=packs" class="dd-sub-item">
-              <span>🎴</span> Booster Packs
-              <span class="sub-badge" style="background:rgba(255,199,0,0.12);color:#FFD700;border:1px solid rgba(255,199,0,0.3)">PACK</span>
-            </a>
-            <a href="/shop?cat=bundles" class="dd-sub-item">
-              <span>🎁</span> Booster Bundles
-              <span class="sub-badge" style="background:rgba(216,179,90,0.12);color:var(--gold-light);border:1px solid rgba(216,179,90,0.3)">BUNDLE</span>
-            </a>
-          </div>
-
-          <!-- Yu-Gi-Oh! row -->
-          <div class="dd-game-row">
-            <a href="/tcg-cards?game=yugioh" class="dd-game-row-link">
-              <span>🐉</span> Yu-Gi-Oh!
-              <span class="dd-badge ddb-yugioh" style="margin-left:0.25rem">OCG</span>
-            </a>
-            <button class="dd-game-chevron" onclick="toggleDDSub('sub-yugioh',this)" title="Show product types">
-              <i class="fas fa-chevron-down"></i>
-            </button>
-          </div>
-          <div class="dd-sub-panel" id="sub-yugioh">
-            <a href="/shop?cat=boxes&game=yugioh" class="dd-sub-item">
-              <span>📦</span> Booster Boxes
-              <span class="sub-badge" style="background:rgba(76,203,255,0.15);color:var(--cyan);border:1px solid rgba(76,203,255,0.3)">SEALED</span>
-            </a>
-            <a href="/shop?cat=packs&game=yugioh" class="dd-sub-item">
-              <span>🎴</span> Booster Packs
-              <span class="sub-badge" style="background:rgba(70,199,194,0.12);color:var(--teal);border:1px solid rgba(70,199,194,0.3)">PACK</span>
-            </a>
-          </div>
-
-          <!-- MTG row -->
-          <div class="dd-game-row">
-            <a href="/tcg-cards?game=mtg" class="dd-game-row-link">
-              <span>🔮</span> Magic: TG
-              <span class="dd-badge ddb-mtg" style="margin-left:0.25rem">MTG</span>
-            </a>
-            <button class="dd-game-chevron" onclick="toggleDDSub('sub-mtg',this)" title="Show product types">
-              <i class="fas fa-chevron-down"></i>
-            </button>
-          </div>
-          <div class="dd-sub-panel" id="sub-mtg">
-            <a href="/shop?cat=boxes&game=mtg" class="dd-sub-item">
-              <span>📦</span> Booster Boxes
-              <span class="sub-badge" style="background:rgba(76,203,255,0.15);color:var(--cyan);border:1px solid rgba(76,203,255,0.3)">SEALED</span>
-            </a>
-            <a href="/shop?cat=packs&game=mtg" class="dd-sub-item">
-              <span>🎴</span> Booster Packs
-              <span class="sub-badge" style="background:rgba(166,107,255,0.12);color:var(--purple);border:1px solid rgba(166,107,255,0.3)">PACK</span>
-            </a>
-          </div>
-
+      <!-- Shop dropdown -->
+      <div class="nav-dropdown" id="dd-shop">
+        <button class="nav-dropdown-btn ${active === 'shop' ? 'active' : ''}" onclick="toggleNavDD('dd-shop')">
+          Shop <i class="fas fa-chevron-down nav-dd-arrow"></i>
+        </button>
+        <div class="nav-dropdown-panel">
+          <div class="nav-dd-section">All Products</div>
+          <a href="/shop" class="nav-dd-item"><span>🛍️</span> All Products</a>
+          <a href="/shop?cat=boxes" class="nav-dd-item"><span>📦</span> Booster Boxes <span class="dd-badge ddb-all" style="margin-left:auto">SEALED</span></a>
+          <a href="/shop?cat=elite" class="nav-dd-item"><span>🏆</span> Elite Trainer Boxes <span class="dd-badge" style="margin-left:auto;background:rgba(216,179,90,0.18);color:var(--gold-light);border:1px solid rgba(216,179,90,0.4)">ELITE</span></a>
+          <a href="/shop?cat=bundles" class="nav-dd-item"><span>🎁</span> Booster Bundles <span class="dd-badge" style="margin-left:auto;background:rgba(166,107,255,0.15);color:var(--purple);border:1px solid rgba(166,107,255,0.3)">BUNDLE</span></a>
+          <a href="/shop?cat=packs" class="nav-dd-item"><span>🎴</span> Booster Packs <span class="dd-badge ddb-pokemon" style="margin-left:auto">PACK</span></a>
         </div>
       </div>
 
+      <!-- TCG Cards dropdown -->
+      <div class="nav-dropdown" id="dd-tcg">
+        <button class="nav-dropdown-btn ${active === 'tcg' ? 'active' : ''}" onclick="toggleNavDD('dd-tcg')">
+          TCG Cards <i class="fas fa-chevron-down nav-dd-arrow"></i>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:260px">
+          <div class="nav-dd-section">Browse By Game</div>
+          <a href="/tcg-cards" class="nav-dd-item"><span>🃏</span> All TCG Cards</a>
 
-      <a href="/shop" class="nav-link ${active === 'shop' ? 'active' : ''}">Shop</a>
-      <a href="/contact" class="nav-link ${active === 'contact' ? 'active' : ''}">Contact</a>
+          <div class="dd-game-label"><span style="color:#FFD700">⚡</span> Pokémon</div>
+          <a href="/shop?cat=boxes&game=pokemon" class="nav-dd-item" style="padding-left:1.5rem"><span>📦</span> Booster Boxes</a>
+          <a href="/shop?cat=elite&game=pokemon" class="nav-dd-item" style="padding-left:1.5rem"><span>🏆</span> Elite Trainer Boxes</a>
+          <a href="/shop?cat=bundles&game=pokemon" class="nav-dd-item" style="padding-left:1.5rem"><span>🎁</span> Booster Bundles</a>
+          <a href="/shop?cat=packs&game=pokemon" class="nav-dd-item" style="padding-left:1.5rem"><span>🎴</span> Booster Packs</a>
+
+          <div class="dd-game-label"><span style="color:#46C7C2">🐉</span> Yu-Gi-Oh!</div>
+          <a href="/shop?cat=boxes&game=yugioh" class="nav-dd-item" style="padding-left:1.5rem"><span>📦</span> Booster Boxes</a>
+          <a href="/shop?cat=elite&game=yugioh" class="nav-dd-item" style="padding-left:1.5rem"><span>🏆</span> Elite Trainer Boxes</a>
+          <a href="/shop?cat=bundles&game=yugioh" class="nav-dd-item" style="padding-left:1.5rem"><span>🎁</span> Booster Bundles</a>
+          <a href="/shop?cat=packs&game=yugioh" class="nav-dd-item" style="padding-left:1.5rem"><span>🎴</span> Booster Packs</a>
+
+          <div class="dd-game-label"><span style="color:#A66BFF">🔮</span> Magic: The Gathering</div>
+          <a href="/shop?cat=boxes&game=mtg" class="nav-dd-item" style="padding-left:1.5rem"><span>📦</span> Booster Boxes</a>
+          <a href="/shop?cat=elite&game=mtg" class="nav-dd-item" style="padding-left:1.5rem"><span>🏆</span> Elite Trainer Boxes</a>
+          <a href="/shop?cat=bundles&game=mtg" class="nav-dd-item" style="padding-left:1.5rem"><span>🎁</span> Booster Bundles</a>
+          <a href="/shop?cat=packs&game=mtg" class="nav-dd-item" style="padding-left:1.5rem"><span>🎴</span> Booster Packs</a>
+        </div>
+      </div>
+
+      <!-- Contact dropdown -->
+      <div class="nav-dropdown" id="dd-contact">
+        <button class="nav-dropdown-btn ${active === 'contact' ? 'active' : ''}" onclick="toggleNavDD('dd-contact')">
+          Contact <i class="fas fa-chevron-down nav-dd-arrow"></i>
+        </button>
+        <div class="nav-dropdown-panel">
+          <div class="nav-dd-section">Get In Touch</div>
+          <a href="/contact" class="nav-dd-item"><span>✉️</span> Send an Inquiry</a>
+          <a href="/contact#faq" class="nav-dd-item"><span>❓</span> FAQ</a>
+          <a href="https://www.whatnot.com/user/ctglegacyinvestments" target="_blank" rel="noopener" class="nav-dd-item"><span>📺</span> Live on Whatnot</a>
+          <a href="mailto:ctg.investments2026@gmail.com" class="nav-dd-item"><span>📧</span> ctg.investments2026@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- Cart -->
       <a href="/cart" class="nav-cart-btn" id="cart-nav-btn">
         <i class="fas fa-shopping-cart"></i>
         Cart
@@ -1327,64 +1218,72 @@ function getNav(active: string) {
     </div>
   </div>
 </nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="/" class="nav-link">Home</a>
 
-  <!-- Mobile TCG Accordion -->
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/" class="nav-link">🏠 Home</a>
+
+  <!-- Shop accordion -->
+  <div class="mob-accordion">
+    <button class="mob-accordion-btn" id="mob-btn-shop" onclick="toggleMobAccordion('mob-btn-shop','mob-panel-shop')">
+      <span><i class="fas fa-store" style="margin-right:0.5rem;font-size:0.8rem;color:var(--gold-dim)"></i>Shop</span>
+      <i class="fas fa-chevron-down mob-arrow"></i>
+    </button>
+    <div class="mob-accordion-panel" id="mob-panel-shop">
+      <a href="/shop" class="mob-sub-link"><span>🛍️</span> All Products</a>
+      <a href="/shop?cat=boxes" class="mob-sub-link"><span>📦</span> Booster Boxes</a>
+      <a href="/shop?cat=elite" class="mob-sub-link"><span>🏆</span> Elite Trainer Boxes</a>
+      <a href="/shop?cat=bundles" class="mob-sub-link"><span>🎁</span> Booster Bundles</a>
+      <a href="/shop?cat=packs" class="mob-sub-link"><span>🎴</span> Booster Packs</a>
+    </div>
+  </div>
+
+  <!-- TCG Cards accordion -->
   <div class="mob-accordion">
     <button class="mob-accordion-btn" id="mob-btn-tcg" onclick="toggleMobAccordion('mob-btn-tcg','mob-panel-tcg')">
       <span><i class="fas fa-layer-group" style="margin-right:0.5rem;font-size:0.8rem;color:var(--gold-dim)"></i>TCG Cards</span>
       <i class="fas fa-chevron-down mob-arrow"></i>
     </button>
     <div class="mob-accordion-panel" id="mob-panel-tcg">
+      <a href="/tcg-cards" class="mob-sub-link"><span>🃏</span> All TCG Cards</a>
 
-      <!-- Pokémon + sub -->
-      <div style="display:flex;align-items:center">
-        <a href="/tcg-cards?game=pokemon" class="mob-sub-link" style="flex:1"><span>⚡</span> Pokémon</a>
-        <button onclick="toggleMobSub('mob-sub-pokemon',this)" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0.4rem 0.75rem;font-size:0.65rem;transition:all 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-      </div>
-      <div id="mob-sub-pokemon" style="display:none;flex-direction:column;border-left:2px solid rgba(255,199,0,0.2);margin-left:1.5rem">
-        <a href="/shop?cat=boxes"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
-        <a href="/shop?cat=elite"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🏆</span> Elite Trainer Boxes</a>
-        <a href="/shop?cat=bundles" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎁</span> Booster Bundles</a>
-        <a href="/shop?cat=packs"     class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
-      </div>
+      <div style="padding:0.3rem 1rem 0.1rem;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700">⚡ Pokémon</div>
+      <a href="/shop?cat=boxes&game=pokemon"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
+      <a href="/shop?cat=elite&game=pokemon"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🏆</span> Elite Trainer Boxes</a>
+      <a href="/shop?cat=bundles&game=pokemon" class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎁</span> Booster Bundles</a>
+      <a href="/shop?cat=packs&game=pokemon"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
 
-      <!-- Yu-Gi-Oh! + sub -->
-      <div style="display:flex;align-items:center">
-        <a href="/tcg-cards?game=yugioh" class="mob-sub-link" style="flex:1"><span>🐉</span> Yu-Gi-Oh!</a>
-        <button onclick="toggleMobSub('mob-sub-yugioh',this)" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0.4rem 0.75rem;font-size:0.65rem;transition:all 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-      </div>
-      <div id="mob-sub-yugioh" style="display:none;flex-direction:column;border-left:2px solid rgba(70,199,194,0.2);margin-left:1.5rem">
-        <a href="/shop?cat=boxes&game=yugioh"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
-        <a href="/shop?cat=packs&game=yugioh"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
-        <a href="/shop?cat=bundles&game=yugioh" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎁</span> Booster Bundles</a>
-      </div>
+      <div style="padding:0.3rem 1rem 0.1rem;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700;border-top:1px solid rgba(255,255,255,0.05);margin-top:0.25rem">🐉 Yu-Gi-Oh!</div>
+      <a href="/shop?cat=boxes&game=yugioh"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
+      <a href="/shop?cat=elite&game=yugioh"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🏆</span> Elite Trainer Boxes</a>
+      <a href="/shop?cat=bundles&game=yugioh" class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎁</span> Booster Bundles</a>
+      <a href="/shop?cat=packs&game=yugioh"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
 
-      <!-- Magic + sub -->
-      <div style="display:flex;align-items:center">
-        <a href="/tcg-cards?game=mtg" class="mob-sub-link" style="flex:1"><span>🔮</span> Magic: The Gathering</a>
-        <button onclick="toggleMobSub('mob-sub-mtg',this)" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0.4rem 0.75rem;font-size:0.65rem;transition:all 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-      </div>
-      <div id="mob-sub-mtg" style="display:none;flex-direction:column;border-left:2px solid rgba(166,107,255,0.2);margin-left:1.5rem">
-        <a href="/shop?cat=boxes&game=mtg"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>📦</span> Booster Boxes</a>
-        <a href="/shop?cat=packs&game=mtg"   class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎴</span> Booster Packs</a>
-        <a href="/shop?cat=bundles&game=mtg" class="mob-sub-link" style="padding-left:1rem;font-size:0.82rem"><span>🎁</span> Booster Bundles</a>
-      </div>
-
+      <div style="padding:0.3rem 1rem 0.1rem;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);font-family:'Rajdhani',sans-serif;font-weight:700;border-top:1px solid rgba(255,255,255,0.05);margin-top:0.25rem">🔮 Magic: TG</div>
+      <a href="/shop?cat=boxes&game=mtg"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>📦</span> Booster Boxes</a>
+      <a href="/shop?cat=elite&game=mtg"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🏆</span> Elite Trainer Boxes</a>
+      <a href="/shop?cat=bundles&game=mtg" class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎁</span> Booster Bundles</a>
+      <a href="/shop?cat=packs&game=mtg"   class="mob-sub-link" style="padding-left:1.5rem;font-size:0.83rem"><span>🎴</span> Booster Packs</a>
     </div>
   </div>
 
+  <!-- Contact accordion -->
+  <div class="mob-accordion">
+    <button class="mob-accordion-btn" id="mob-btn-contact" onclick="toggleMobAccordion('mob-btn-contact','mob-panel-contact')">
+      <span><i class="fas fa-envelope" style="margin-right:0.5rem;font-size:0.8rem;color:var(--gold-dim)"></i>Contact</span>
+      <i class="fas fa-chevron-down mob-arrow"></i>
+    </button>
+    <div class="mob-accordion-panel" id="mob-panel-contact">
+      <a href="/contact" class="mob-sub-link"><span>✉️</span> Send an Inquiry</a>
+      <a href="/contact#faq" class="mob-sub-link"><span>❓</span> FAQ</a>
+      <a href="https://www.whatnot.com/user/ctglegacyinvestments" target="_blank" rel="noopener" class="mob-sub-link"><span>📺</span> Live on Whatnot</a>
+      <a href="mailto:ctg.investments2026@gmail.com" class="mob-sub-link"><span>📧</span> Email Us</a>
+    </div>
+  </div>
 
-  <a href="/shop" class="nav-link">Shop</a>
-  <a href="/contact" class="nav-link">Contact</a>
-  <a href="/cart" class="nav-link" style="color:var(--gold-light)"><i class="fas fa-shopping-cart" style="margin-right:0.4rem"></i> Cart (<span id="mobile-cart-count">0</span>)</a>
+  <a href="/cart" class="nav-link" style="color:var(--gold-light);padding:0.75rem 1rem;border-bottom:1px solid rgba(255,255,255,0.05)">
+    <i class="fas fa-shopping-cart" style="margin-right:0.4rem"></i> Cart (<span id="mobile-cart-count">0</span>)
+  </a>
 </div>
 <div class="toast" id="toast"><i class="fas fa-check-circle" style="color:var(--teal);margin-right:8px"></i><span id="toast-msg"></span></div>
 `
